@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _movementInput;
     private Vector2 _smoothedMovementInput;
     private Vector2 _movementInputSmoothVelocity;
-    private Camera _camera;
     private Animator _animator; //for movement sprite
 
     private Vector2 _pointerInput;
@@ -30,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _weaponParent = GetComponentInChildren<WeaponParent>();
-        _camera = Camera.main;
         _animator = GetComponent<Animator>();
     }
 
@@ -75,43 +73,28 @@ public class PlayerMovement : MonoBehaviour
 
         _rigidbody.velocity = _smoothedMovementInput * _speed;
 
-        PreventPlayerGoingOffScreen();
     }
 
-    private void PreventPlayerGoingOffScreen()
+    private void RotateTowardsMouse()
     {
-        Vector2 screenPosition = _camera.WorldToScreenPoint(transform.position);
-        //if x or y value is outside screen bounds, player has gone off screen
-        //if player out of left/right bounds and wants to keep walking out
-        if ((screenPosition.x < _screenBorder && _rigidbody.velocity.x < 0) ||
-                (screenPosition.x > _camera.pixelWidth - _screenBorder && _rigidbody.velocity.x > 0))
-        {
-            _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
-        }
+        // Get the mouse position in world coordinates
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 playerPosition = transform.position;
 
-        if ((screenPosition.y < _screenBorder && _rigidbody.velocity.y < 0) ||
-                (screenPosition.y > _camera.pixelHeight - _screenBorder && _rigidbody.velocity.y > 0))
+        // Determine the direction from the player to the mouse
+        Vector2 directionToMouse = mousePosition - playerPosition;
+
+        // Check if the mouse is to the right or left of the player
+        if (directionToMouse.x > 0)
         {
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
+            // Face right
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (directionToMouse.x < 0)
+        {
+            // Face left
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
-
-    private void RotateTowardsMouse() {
-    // Get the mouse position in world coordinates
-    Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    Vector2 playerPosition = transform.position;
-
-    // Determine the direction from the player to the mouse
-    Vector2 directionToMouse = mousePosition - playerPosition;
-
-    // Check if the mouse is to the right or left of the player
-    if (directionToMouse.x > 0) {
-        // Face right
-        transform.rotation = Quaternion.Euler(0, 0, 0);
-    } else if (directionToMouse.x < 0) {
-        // Face left
-        transform.rotation = Quaternion.Euler(0, 180, 0);
-    }
-}
 
 }
