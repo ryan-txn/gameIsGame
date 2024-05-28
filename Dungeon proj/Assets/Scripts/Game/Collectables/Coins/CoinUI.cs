@@ -12,7 +12,7 @@ public class CoinUI : MonoBehaviour
         _scoreText = GetComponent<TMP_Text>();
     }
 
-    public void UpdateScore(CoinController coinController)
+    public void UpdateCoins(CoinController coinController)
     {
         _scoreText.text = $"COINS: {coinController.coinAmt}"; //$ allows {} to be embedded within ""
     }

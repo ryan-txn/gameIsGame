@@ -19,6 +19,11 @@ public class HealthController : MonoBehaviour
         }
     }
 
+    public float currentHealthNum
+    {
+        get {return _currentHealth;}
+    }
+
     //invincibility frames
     public bool IsInvincible { get; set; }
 
