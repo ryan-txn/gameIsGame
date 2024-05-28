@@ -7,22 +7,27 @@ public class Bullet : MonoBehaviour
 {
     private Camera _camera;
 
+    [SerializeField]
+    private int _damage;
+
     private void Awake() 
     {
         _camera = Camera.main;
     }
 
-/*    private void Update() 
-    {
-        DestroyWhenOffScreen(); //ensures that this happens every frame
-    }*/
+    /*    
+    * private void Update() 
+    * {
+    *    DestroyWhenOffScreen(); //ensures that this happens every frame
+    * }
+    */
   
     private void OnTriggerEnter2D(Collider2D collision)
     {
        if (collision.GetComponent<EnemyMovement>()) 
        {
             HealthController healthController = collision.GetComponent<HealthController>();
-            healthController.TakeDamage(10);
+            healthController.TakeDamage(_damage);
             Destroy(gameObject); //destroy bullet
        }
 
