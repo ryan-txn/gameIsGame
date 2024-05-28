@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyScoreAllocator : MonoBehaviour
 {
+    /*
     [SerializeField]
     private int _killScore;
 
@@ -18,4 +19,5 @@ public class EnemyScoreAllocator : MonoBehaviour
     {
         _scoreController.AddScore(_killScore);
     }
+    */
 }
