@@ -12,10 +12,10 @@ public class Bullet : MonoBehaviour
         _camera = Camera.main;
     }
 
-    private void Update() 
+/*    private void Update() 
     {
         DestroyWhenOffScreen(); //ensures that this happens every frame
-    }
+    }*/
   
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -25,9 +25,14 @@ public class Bullet : MonoBehaviour
             healthController.TakeDamage(10);
             Destroy(gameObject); //destroy bullet
        }
+
+       if (collision.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
     }
 
-    private void DestroyWhenOffScreen() 
+/*    private void DestroyWhenOffScreen() 
     {
         Vector2 screenPosition = _camera.WorldToScreenPoint(transform.position);
 
@@ -36,5 +41,5 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
+    }*/
 }
