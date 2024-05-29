@@ -10,12 +10,31 @@ public class SceneTransition : MonoBehaviour
     public string _sceneToLoad;
 
     private bool _doorAccessed;
+    private bool _collided;
+
+    private void Update()
+    {
+        if (_collided && _doorAccessed)
+        {
+            SceneManager.LoadScene( _sceneToLoad );
+        }
+    }
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Player" /*&& _doorAccessed*/)
+        
+        if (collider.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene(_sceneToLoad);
+            _collided = true;
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D collider)
+    {
+
+        if (collider.gameObject.tag == "Player")
+        {
+            _collided = false;
         }
     }
 
