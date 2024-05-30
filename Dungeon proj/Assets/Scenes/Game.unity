@@ -4767,9 +4767,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin
       objectReference: {fileID: 0}
+    - target: {fileID: 7631316667576980762, guid: c4313969df4ea584f969ce0c94ef0dce, type: 3}
+      propertyPath: _playerAwarenessDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7718570404355564884, guid: c4313969df4ea584f969ce0c94ef0dce, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.774
+      value: 2.94
       objectReference: {fileID: 0}
     - target: {fileID: 7718570404355564884, guid: c4313969df4ea584f969ce0c94ef0dce, type: 3}
       propertyPath: m_LocalPosition.y
