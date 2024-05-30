@@ -4638,7 +4638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aca77addfe953c41a1aa99689ea4eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 649121753725581618, guid: 9647f0aa53b605d4f87aefac9134914c, type: 3}
+  _bulletPrefab: {fileID: 649121753725581618, guid: 13643717ad3389b4699cefa4fa0a8350, type: 3}
   _bulletSpeed: 8
   _gunOffset: {fileID: 1541389847}
   _timeBetweenShots: 0.5
@@ -5357,7 +5357,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textComponent: {fileID: 1542391787}
-  messageBoxRectTransform: {fileID: 1803158481}
 --- !u!1 &1867116399
 GameObject:
   m_ObjectHideFlags: 0

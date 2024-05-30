@@ -39,7 +39,7 @@ PrefabInstance:
     - target: {fileID: 2475259422498624449, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5482971d57314b94087e863e528a5f1f, type: 3}
+      objectReference: {fileID: 21300000, guid: 8716f6411d0080841a2b5013c09b88ea, type: 3}
     - target: {fileID: 2475259422498624449, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -84,13 +84,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5987322817529133786, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987322817529133786, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987322817529133786, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987322817529133786, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1138447817665496743, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7480619245087082760}
+    - targetCorrespondingSourceObject: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4794460873254951205}
   m_SourcePrefab: {fileID: 100100000, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
 --- !u!1 &6756175940945520477 stripped
 GameObject:
@@ -110,3 +130,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthAmount: 10
+--- !u!58 &4794460873254951205
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6756175940945520477}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.020595357, y: 0.001716286}
+  serializedVersion: 2
+  m_Radius: 0.18425584
