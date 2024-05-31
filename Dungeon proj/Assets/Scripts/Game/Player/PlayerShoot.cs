@@ -60,13 +60,16 @@ public class PlayerShoot : MonoBehaviour
         bullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
 
-    private void OnFire(InputValue inputValue) 
+    private void OnFire(InputValue inputValue)
     {
-        _fireContinuously = inputValue.isPressed;
-
-        if (inputValue.isPressed)
+        if (!PauseMenu.isPaused)
         {
-            _fireSingle = true;
+            _fireContinuously = inputValue.isPressed;
+
+            if (inputValue.isPressed)
+            {
+                _fireSingle = true;
+            }
         }
     }
 }

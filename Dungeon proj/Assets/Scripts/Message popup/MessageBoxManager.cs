@@ -41,7 +41,5 @@ public class MessageBoxManager : MonoBehaviour
     public void HideMessage()
     {
         gameObject.SetActive(false);
-    }
-
-  
+    }  
 }
