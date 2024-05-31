@@ -17,7 +17,7 @@ public class MessageBoxManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        else
+        else if (_instance == null)
         {
             _instance = this;
         }
