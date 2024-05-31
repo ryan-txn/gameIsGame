@@ -9,7 +9,7 @@ public class MessageBox : MonoBehaviour
  
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && MessageBoxManager._instance != null)
         {
             MessageBoxManager._instance.ShowMessage(message);
         }
@@ -17,7 +17,7 @@ public class MessageBox : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && MessageBoxManager._instance != null)
         {
             MessageBoxManager._instance.HideMessage();
         }
