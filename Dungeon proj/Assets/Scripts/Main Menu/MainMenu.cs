@@ -7,11 +7,19 @@ public class MainMenu : MonoBehaviour
 {
     public void Play()
     {
+        if (!ControlMenu.isActive)
+        {
         SceneManager.LoadScene("Lobby");
+
+        }
     }
 
     public void Exit()
     {
+        if (!ControlMenu.isActive)
+        {
         Application.Quit();
+
+        }
     }
 }
