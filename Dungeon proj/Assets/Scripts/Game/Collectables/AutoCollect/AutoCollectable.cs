@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collectable : MonoBehaviour
+public class AutoCollectable : MonoBehaviour
 {
     private interfaceCollectableBehaviour _collectableBehaviour;
 
@@ -10,6 +10,7 @@ public class Collectable : MonoBehaviour
     {
         _collectableBehaviour = GetComponent<interfaceCollectableBehaviour>();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var player = collision.GetComponent<PlayerMovement>();
