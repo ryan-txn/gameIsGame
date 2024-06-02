@@ -4852,7 +4852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45dfb92bbb55af241adaee892ca5f1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 8
+  _speed: 6.5
   _rotationSpeed: 720
   _screenBorder: 15
   pointerPosition: {fileID: 8668546908124610394, guid: c2eb1f72c29fadd47bdc85a5a39c908e, type: 3}
@@ -5230,7 +5230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e0ccd4e1744adc47a20941921572a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: PRESS E TO INTERACT
+  message: '[E] ENTER DUNGEON'
 --- !u!58 &1254521958
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5918,7 +5918,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1523172178}
-  isPaused: 0
 --- !u!1 &1974696055
 GameObject:
   m_ObjectHideFlags: 0
