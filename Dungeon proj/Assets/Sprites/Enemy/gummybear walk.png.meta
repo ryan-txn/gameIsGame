@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fd2aef5572925ef4aa012a908cbc547b
+guid: 8890d0b8777b1b345a9f83c01198b6e1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gummy walk_0
+      name: gummybear walk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2508f123706d9f94fa4b184aabcb52f4
-      internalID: 22317204
+      spriteID: e9c4192ff42169747b5ec952aff43933
+      internalID: -303747744
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gummy walk_1
+      name: gummybear walk_1
       rect:
         serializedVersion: 2
         x: 256
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 681f607b296c596488106987d86aa39b
-      internalID: 1081176665
+      spriteID: 9943849eb834929499aac635bdc9a665
+      internalID: 95536504
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gummy walk_2
+      name: gummybear walk_2
       rect:
         serializedVersion: 2
         x: 512
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 660c54b7aa70ae74592c393b58b1b736
-      internalID: 250261928
+      spriteID: f0b830856364285449259941399d97dc
+      internalID: 999663538
       vertices: []
       indices: 
       edges: []
@@ -183,9 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      gummy walk_0: 22317204
-      gummy walk_1: 1081176665
-      gummy walk_2: 250261928
+      gummybear walk_0: -303747744
+      gummybear walk_1: 95536504
+      gummybear walk_2: 999663538
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
