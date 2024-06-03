@@ -15,13 +15,11 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 _targetDirection;
     private float _changeDirectionCooldown; // time to change direction
     private Camera _camera;
-    private SpriteRenderer _spriteRenderer;
-
+    
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _playerAwarenessController = GetComponent<PlayerAwarenessController>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
         _targetDirection = transform.up; // initial target direction will be the way it's currently facing
         _camera = Camera.main;
     }
@@ -95,4 +93,5 @@ public class EnemyMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
+
 }

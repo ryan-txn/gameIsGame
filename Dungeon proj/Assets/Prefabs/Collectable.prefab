@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4272204839965675767}
   - component: {fileID: 1138447817665496743}
   - component: {fileID: 6445623393024739350}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collectable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5987322817529133786}
   - component: {fileID: 2475259422498624449}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 942863389
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

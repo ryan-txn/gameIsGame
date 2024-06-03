@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6476681306298437514}
   - component: {fileID: 4485336775462399408}
   - component: {fileID: 2197546647642552953}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 6402856309588444279}
   - component: {fileID: 33876769468005023}
   - component: {fileID: 920796976239781505}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: gummy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
