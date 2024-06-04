@@ -411,6 +411,7 @@ MonoBehaviour:
   _collectablePrefabs:
   - {fileID: 6756175940945520477, guid: 356aa22379986824c8e907ea67d900d9, type: 3}
   - {fileID: 6756175940945520477, guid: c4313969df4ea584f969ce0c94ef0dce, type: 3}
+  - {fileID: 6756175940945520477, guid: b333a6f5f878a6d44b1745d4cacbc9d0, type: 3}
 --- !u!4 &136355347
 Transform:
   m_ObjectHideFlags: 0
@@ -461,7 +462,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 334.52002, y: -8.900024}
+  m_AnchoredPosition: {x: 334.52002, y: -8.899902}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &356516802

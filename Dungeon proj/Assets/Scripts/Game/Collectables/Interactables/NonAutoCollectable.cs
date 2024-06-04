@@ -8,7 +8,7 @@ public class NonAutoCollectable : MonoBehaviour
 {
     private interfaceCollectableBehaviour _collectableBehaviour;
 
-    private bool _itemInteracted;
+    private bool _itemInteracted; 
 
     private void Awake()
     {

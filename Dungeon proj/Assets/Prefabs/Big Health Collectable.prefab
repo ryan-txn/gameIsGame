@@ -10,7 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Name
-      value: Health Collectable
+      value: Big Health Collectable
+      objectReference: {fileID: 0}
+    - target: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1138447817665496743, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Size.x
@@ -39,7 +43,7 @@ PrefabInstance:
     - target: {fileID: 2475259422498624449, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8716f6411d0080841a2b5013c09b88ea, type: 3}
+      objectReference: {fileID: 21300000, guid: 4e7d4bf69b2cc6e42bc0cd849039a1a4, type: 3}
     - target: {fileID: 2475259422498624449, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -142,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6444c7a81711a45b166e044cc4209b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthAmount: 10
+  _healthAmount: 20
 --- !u!58 &4794460873254951205
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -232,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e0ccd4e1744adc47a20941921572a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: '[E] APPLE (10HP)'
+  message: '[E] SALAD (20HP)'
 --- !u!114 &6143593767083781905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,4 +249,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea29013d91f44c049a29b3fba1ac4f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  probability: 30
+  probability: 20
