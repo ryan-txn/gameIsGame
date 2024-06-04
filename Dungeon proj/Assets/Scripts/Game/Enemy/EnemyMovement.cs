@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -14,8 +15,9 @@ public class EnemyMovement : MonoBehaviour
     private PlayerAwarenessController _playerAwarenessController;
     private Vector2 _targetDirection;
     private float _changeDirectionCooldown; // time to change direction
+    private float _wallDetectionCooldown; // time to change direction when colliding with wall
     private Camera _camera;
-    
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -35,7 +37,6 @@ public class EnemyMovement : MonoBehaviour
     {
         HandleRandomDirectionChange();
         HandlePlayerTargeting();
-        HandleEnemyOffScreen();
     }
 
     private void HandleRandomDirectionChange()
@@ -60,23 +61,6 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void HandleEnemyOffScreen()
-    {
-        Vector2 screenPosition = _camera.WorldToScreenPoint(transform.position);
-
-        if ((screenPosition.x < _screenBorder && _targetDirection.x < 0) ||
-                (screenPosition.x > _camera.pixelWidth - _screenBorder && _targetDirection.x > 0))
-        {
-            _targetDirection = new Vector2(-_targetDirection.x, _targetDirection.y);
-        }
-
-        if ((screenPosition.y < _screenBorder && _targetDirection.y < 0) ||
-                (screenPosition.y > _camera.pixelHeight - _screenBorder && _targetDirection.y > 0))
-        {
-            _targetDirection = new Vector2(_targetDirection.x, -_targetDirection.y);
-        }
-    }
-
     private void SetVelocity() 
     {
         _rigidbody.velocity = _targetDirection.normalized * _speed;
@@ -94,4 +78,15 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        _wallDetectionCooldown -= Time.deltaTime;
+        if (collision.gameObject.GetComponent<TilemapCollider2D>() && _wallDetectionCooldown <= 0)
+        {
+            Debug.Log("Enemy collided with Wall!");
+            _targetDirection = -_targetDirection;
+
+            _wallDetectionCooldown = 1f;
+        }
+    }
 }
