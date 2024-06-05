@@ -31,6 +31,7 @@ public class EnemyMovement : MonoBehaviour
     private void FixedUpdate()
     {
         SetAnimation();
+        UpdateTargetDirection();
         if (_isIdle)
         {
             _idleTimer -= Time.deltaTime;
@@ -42,7 +43,6 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            UpdateTargetDirection();
             SetVelocity();
             UpdateSpriteDirection();
         }
@@ -104,12 +104,12 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    //turn the other way if walk into wall
     private void OnCollisionStay2D(Collision2D collision)
     {
         _wallDetectionCooldown -= Time.deltaTime;
        if (collision.gameObject.GetComponent<TilemapCollider2D>() && _wallDetectionCooldown <= 0)
         {
-            Debug.Log("Enemy collided with Wall!");
             _targetDirection = - _targetDirection;
 
             _wallDetectionCooldown = 1f;
