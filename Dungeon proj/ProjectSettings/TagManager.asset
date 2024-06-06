@@ -51,15 +51,15 @@ TagManager:
   - name: Collectables
     uniqueID: 942863389
     locked: 0
-  - name: Bullets
-    uniqueID: 3540685439
-    locked: 0
   - name: Player
     uniqueID: 4076064339
     locked: 0
-  - name: Weapon
-    uniqueID: 3317613099
-    locked: 0
   - name: Enemies
     uniqueID: 1650503849
+    locked: 0
+  - name: Bullets
+    uniqueID: 3540685439
+    locked: 0
+  - name: Weapon
+    uniqueID: 3317613099
     locked: 0
