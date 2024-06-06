@@ -326,14 +326,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2197546647642552953, guid: dabf18361fdf19a4998f9d8a12152eb3, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: af85e6d7fb1eb6b4788dace4829afaf6, type: 2}
-    - target: {fileID: 5240419878180326412, guid: dabf18361fdf19a4998f9d8a12152eb3, type: 3}
-      propertyPath: _idleCooldown
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6178371942024666961, guid: dabf18361fdf19a4998f9d8a12152eb3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.26
