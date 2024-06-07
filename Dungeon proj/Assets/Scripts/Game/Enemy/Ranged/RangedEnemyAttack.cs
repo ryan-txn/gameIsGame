@@ -15,17 +15,19 @@ public class RangedEnemyAttack : MonoBehaviour
 
     private float lastFireTime;
     private PlayerAwarenessController _playerAwarenessController;
+    private HealthController _enemyHealthController;
 
     private void Awake()
     {
         _playerAwarenessController = GetComponent<PlayerAwarenessController>();
+        _enemyHealthController = GetComponent<HealthController>();
     }
 
     private void Update()
     {
         float timeSinceLastFire = Time.time - lastFireTime;
 
-        if (_playerAwarenessController.AwareOfPlayer && timeSinceLastFire >= _timeBetweenShots)
+        if (_playerAwarenessController.AwareOfPlayer && timeSinceLastFire >= _timeBetweenShots && _enemyHealthController.currentHealthNum != 0)
         {
             FireBullet();
             lastFireTime = Time.time;
