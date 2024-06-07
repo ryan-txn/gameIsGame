@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class CoinController : MonoBehaviour
 {
     public UnityEvent OnCoinAmtChanged;
-    public int coinAmt {get; private set;}
+    public int coinAmt;
 
     public void AddCoinAmt(int amount)
     {

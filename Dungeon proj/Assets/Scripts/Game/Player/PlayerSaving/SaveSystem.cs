@@ -10,7 +10,11 @@ public static class SaveSystem
         string path = Application.persistentDataPath + "/player.sigma";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        PlayerData data = new PlayerData(playerCoins, playerHealth);
+        PlayerData data = new PlayerData
+        {
+            coins = playerCoins.coinAmt,
+            health = playerHealth.currentHealthNum
+        };
 
         formatter.Serialize(stream, data);
         stream.Close();

@@ -8,9 +8,9 @@ public class PlayerData
     public int coins;
     public float health;
 
-    public PlayerData (CoinController playerCoins, HealthController playerHealth)
+/*    public PlayerData (CoinController playerCoins, HealthController playerHealth)
     {
         coins = playerCoins.coinAmt;
         health = playerHealth.currentHealthNum;
-    }
+    }*/
 }
