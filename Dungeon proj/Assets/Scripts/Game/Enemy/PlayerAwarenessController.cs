@@ -11,11 +11,15 @@ public class PlayerAwarenessController : MonoBehaviour
 
     [SerializeField]
     private float _playerAwarenessDistance;
+    
+    [SerializeField]
+    private float _lossAwarenessDelay = 1f; // Delay before considering player out of sight
 
     private Transform _playerTransform;
     private GameObject _playerObject;
     private bool hasLineOfSight;
     private EnemyMovement _enemyMovement;
+    private float _lastAwareTime; // Time when the enemy was last aware of the player
 
     private void Awake()
     {
@@ -38,16 +42,21 @@ public class PlayerAwarenessController : MonoBehaviour
         {
             Debug.DrawRay(transform.position, _playerObject.transform.position - transform.position, Color.green);
             AwareOfPlayer = true;
+            _lastAwareTime = Time.time; // Update the last aware time
         }
         else
         {
             Debug.DrawRay(transform.position, _playerObject.transform.position - transform.position, Color.red);
-            // Call the event when player leaves awareness
-            if (AwareOfPlayer)
+
+            // Check if enough time has passed since the last awareness
+            if (Time.time - _lastAwareTime > _lossAwarenessDelay)
             {
-                _enemyMovement.OnPlayerLeaveAwareness();
+                if (AwareOfPlayer)
+                {
+                    _enemyMovement.OnPlayerLeaveAwareness();
+                }
+                AwareOfPlayer = false;
             }
-            AwareOfPlayer = false;
         }
     }
 

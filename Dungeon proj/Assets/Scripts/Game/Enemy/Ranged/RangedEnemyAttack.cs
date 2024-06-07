@@ -11,16 +11,23 @@ public class RangedEnemyAttack : MonoBehaviour
     private float _timeBetweenShots;
 
     [SerializeField]
-    private float bulletSpeed;
+    private float bulletSpeed; 
+    
+    [SerializeField]
+    private Transform _bulletFirePoint;
 
     private float lastFireTime;
     private PlayerAwarenessController _playerAwarenessController;
     private HealthController _enemyHealthController;
+    private Animator _animator;
+    private bool _isShooting = false;
+    public bool IsShooting => _isShooting;
 
     private void Awake()
     {
         _playerAwarenessController = GetComponent<PlayerAwarenessController>();
         _enemyHealthController = GetComponent<HealthController>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -29,14 +36,32 @@ public class RangedEnemyAttack : MonoBehaviour
 
         if (_playerAwarenessController.AwareOfPlayer && timeSinceLastFire >= _timeBetweenShots && _enemyHealthController.currentHealthNum != 0)
         {
-            FireBullet();
+            StartCoroutine(ShootCoroutine());
             lastFireTime = Time.time;
-        }
+        }        
+    }
+
+    private IEnumerator ShootCoroutine()
+    {
+        _isShooting = true;
+        SetAnimation();
+
+        FireBullet();
+
+        yield return new WaitForSeconds(0.35f); // Adjust this duration to match your shooting animation duration
+
+        _isShooting = false;
+        SetAnimation();
+    }
+
+    private void SetAnimation()
+    {
+        _animator.SetBool("IsShooting", _isShooting);
     }
 
     private void FireBullet()
     {
-        GameObject bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
+        GameObject bullet = Instantiate(_bulletPrefab, _bulletFirePoint.position, Quaternion.identity);
         Vector2 direction = _playerAwarenessController.DirectionToPlayer;
         bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed; 
 

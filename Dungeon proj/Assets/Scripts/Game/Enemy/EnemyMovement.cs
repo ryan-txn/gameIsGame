@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
     private float _idleTimer; // Timer for idle duration
 
     private Animator _animator;
+    private RangedEnemyAttack _rangedEnemyAttack; // Reference to RangedEnemyAttack script
 
     private void Awake()
     {
@@ -26,6 +27,7 @@ public class EnemyMovement : MonoBehaviour
         _targetDirection = transform.up; // initial target direction will be the way it's currently facing
         _camera = Camera.main;
         _animator = GetComponentInChildren<Animator>();
+        _rangedEnemyAttack = GetComponent<RangedEnemyAttack>(); // Get reference to RangedEnemyAttack if it exists
     }
 
     private void FixedUpdate()
@@ -60,29 +62,38 @@ public class EnemyMovement : MonoBehaviour
             _targetDirection = _playerAwarenessController.DirectionToPlayer;
             _isIdle = false; // Reset idle timer if player is detected
         }
-        else if (!_isIdle) // Only check for random direction change if not already idling
+        else if (!_isIdle && !IsShooting()) // Only check for random direction change if not already idling or shooting
         {
             HandleRandomDirectionChange();
         }
+    }
+
+    private bool IsShooting()
+    {
+        return _rangedEnemyAttack != null && _rangedEnemyAttack.IsShooting;
     }
 
     private void HandleRandomDirectionChange()
     {
         _changeDirectionCooldown -= Time.deltaTime;
 
-            if (_changeDirectionCooldown <= 0)
-            {
-                float angleChange = Random.Range(-90f, 90f);
-                Quaternion rotation = Quaternion.AngleAxis(angleChange, transform.forward);
-                _targetDirection = rotation * _targetDirection;
+        if (_changeDirectionCooldown <= 0)
+        {
+            float angleChange = Random.Range(-90f, 90f);
+            Quaternion rotation = Quaternion.AngleAxis(angleChange, transform.forward);
+            _targetDirection = rotation * _targetDirection;
 
-                _changeDirectionCooldown = Random.Range(1f, 5f);
-            }
+            _changeDirectionCooldown = Random.Range(1f, 5f);
+        }
     }
 
     private void SetVelocity() 
     {
-        if (!_isIdle)
+        if (IsShooting())
+        {
+            _rigidbody.velocity = Vector2.zero;
+        }
+        else if (!_isIdle)
         {
             _rigidbody.velocity = _targetDirection.normalized * _speed;
         }
@@ -96,30 +107,32 @@ public class EnemyMovement : MonoBehaviour
     {
         if (_targetDirection.x < 0)
         {
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (_targetDirection.x > 0)
         {
-        transform.rotation = Quaternion.Euler(0, 180, 0);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 
-    //turn the other way if walk into wall
+    // Turn the other way if walk into wall
     private void OnCollisionStay2D(Collision2D collision)
     {
         _wallDetectionCooldown -= Time.deltaTime;
-       if (collision.gameObject.GetComponent<TilemapCollider2D>() && _wallDetectionCooldown <= 0)
+        if (collision.gameObject.GetComponent<TilemapCollider2D>() && _wallDetectionCooldown <= 0)
         {
-            _targetDirection = - _targetDirection;
-
+            _targetDirection = -_targetDirection;
             _wallDetectionCooldown = 1f;
         }
     }
 
     public void OnPlayerLeaveAwareness() // Call this function from PlayerAwarenessController when player leaves awareness zone
     {
-        _isIdle = true;
-        _idleTimer = 2f; // Set idle timer for 2 seconds
-        _targetDirection = - _targetDirection;
+        if (!IsShooting()) // Only go idle if not shooting
+        {
+            _isIdle = true;
+            _idleTimer = 2f; // Set idle timer for 2 seconds
+            _targetDirection = -_targetDirection;
+        }
     }
 }
