@@ -63,7 +63,7 @@ public class PlayerShoot : MonoBehaviour
 
         // Rotate the bullet to face the direction of travel
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        angle += 90;
+        angle += 270;
         bullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
 
