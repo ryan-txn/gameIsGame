@@ -18,10 +18,17 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private float _timeBetweenShots;
 
+    private Transform _player;
+
     private bool _fireContinuously;
     private bool _fireSingle;
     private float _lastFireTime;
 
+
+    void Awake() 
+    {
+        _player = GetComponentInParent<Transform>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -43,7 +50,7 @@ public class PlayerShoot : MonoBehaviour
     private void FireBullet()
     {
         //create prefab of bullet at position of player
-        GameObject bullet = Instantiate(_bulletPrefab, _gunOffset.position, Quaternion.identity);
+        GameObject bullet = Instantiate(_bulletPrefab, _gunOffset.position, _player.rotation);
 
         // Calculate direction from gun to mouse pointer
         Vector2 gunPosition = _gunOffset.position;
