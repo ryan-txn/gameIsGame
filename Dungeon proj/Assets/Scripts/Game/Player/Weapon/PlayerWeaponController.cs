@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class PlayerWeaponController : MonoBehaviour
 {
-    private GameObject[] weaponSlots = new GameObject[4]; //4 inventory slots
+    private GameObject[] weaponSlots = new GameObject[4]; //4 inventory slots array
 
     private Transform weaponParent;
-    public bool inInventory;
     private int activeWeaponIndex = -1;
 
 
@@ -16,12 +15,11 @@ public class PlayerWeaponController : MonoBehaviour
     {
         weaponParent = transform;
         
-        // Initialize the first weapon (peastol) in inventory and set as active if not already active
+        // Initialize the first weapon (peastol) in inventory
         if (weaponParent.childCount > 0)
         {
             weaponSlots[0] = weaponParent.GetChild(0).gameObject;
             activeWeaponIndex = 0;
-            weaponSlots[0].SetActive(true);
         }
     }
 
@@ -43,18 +41,12 @@ public class PlayerWeaponController : MonoBehaviour
         }
 
         GameObject newWeapon = newWeaponTransform.gameObject;
-
+        
         // Check if the weapon is already in the inventory
-        for (int i = 0; i < weaponSlots.Length; i++)
+        if (IsWeaponInInventory(newWeapon.name))
         {
-            if (weaponSlots[i] != null && weaponSlots[i].name == newWeapon.name)
-            {
-                inInventory = true;
-                Debug.LogError("Weapon already in inventory");
-                return;
-            }
+            Debug.LogError("Weapon already in inventory");
         }
-
 
         // Add new weapon into first available slot
         for (int i = 0; i < weaponSlots.Length; i++)
@@ -69,12 +61,24 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void SwitchWeapon(int weaponIndex)
     {
-        if (activeWeaponIndex != 1) //if there is weapon equipped
+        if (activeWeaponIndex != -1) //if there is weapon equipped
         {
             weaponSlots[activeWeaponIndex].SetActive(false);  //unequip current weapon
         }
 
         activeWeaponIndex = weaponIndex;
         weaponSlots[activeWeaponIndex].SetActive(true); // equip the new weapon
+    }
+
+    public bool IsWeaponInInventory(string weaponName)
+    {
+        for (int i = 0; i < weaponSlots.Length; i++)
+        {
+            if (weaponSlots[i] != null && weaponSlots[i].name == weaponName)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -334,7 +334,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8bec79b49ab83a4eb90246c1b774178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inInventory: 0
 --- !u!1 &102941550
 GameObject:
   m_ObjectHideFlags: 0
@@ -6608,7 +6607,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6756175940945520477, guid: ae7862303fdcf7e46901e667ce95037b, type: 3}
       propertyPath: m_Name
-      value: Eggplant (1)
+      value: Eggplant
       objectReference: {fileID: 0}
     - target: {fileID: 7718570404355564884, guid: ae7862303fdcf7e46901e667ce95037b, type: 3}
       propertyPath: m_LocalPosition.x
