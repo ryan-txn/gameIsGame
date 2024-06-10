@@ -7,14 +7,14 @@ public class PlayerWeaponController : MonoBehaviour
     private GameObject[] weaponSlots = new GameObject[4]; //4 inventory slots
 
     private Transform weaponParent;
-
+    public bool inInventory;
     private int activeWeaponIndex = -1;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        weaponParent = GetComponent<Transform>();
+        weaponParent = transform;
         
         // Initialize the first weapon (peastol) in inventory and set as active if not already active
         if (weaponParent.childCount > 0)
@@ -49,11 +49,12 @@ public class PlayerWeaponController : MonoBehaviour
         {
             if (weaponSlots[i] != null && weaponSlots[i].name == newWeapon.name)
             {
-                // If the weapon exists in the inventory, switch to it
-                SwitchWeapon(i);
+                inInventory = true;
+                Debug.LogError("Weapon already in inventory");
                 return;
             }
         }
+
 
         // Add new weapon into first available slot
         for (int i = 0; i < weaponSlots.Length; i++)
@@ -64,7 +65,6 @@ public class PlayerWeaponController : MonoBehaviour
                 SwitchWeapon(i);
             }
         }
-        Debug.Log("Inventory is full. Cannot collect new weapon.");
     }
 
     private void SwitchWeapon(int weaponIndex)
