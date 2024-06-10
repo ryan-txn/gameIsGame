@@ -1522,6 +1522,8 @@ MonoBehaviour:
   _timetoWaitBeforeExit: 3
   player: {fileID: 450590019}
   coinUI: {fileID: 796560294}
+  healthBarUI: {fileID: 1834183506}
+  hpNumUI: {fileID: 356516802}
 --- !u!4 &620202452
 Transform:
   m_ObjectHideFlags: 0
