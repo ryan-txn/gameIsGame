@@ -10,6 +10,24 @@ public class PlayerWeaponController : MonoBehaviour
     private Transform weaponParent;
     private int activeWeaponIndex = -1;
 
+    private InputAction scrollAction;
+    
+    #region - Enable / Disable methods for scroll input -
+    private void OnEnable()
+    {
+        if (scrollAction == null)
+        {
+            scrollAction = new InputAction("ScrollWheel", binding: "<Mouse>/scroll");
+            scrollAction.performed += WeaponSwitch;
+        }
+        scrollAction.Enable();
+    }
+
+    private void OnDisable()
+    {
+        scrollAction.Disable();
+    }
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -93,5 +111,36 @@ public class PlayerWeaponController : MonoBehaviour
         return false;
     }
 
+    private int GetWeaponCount()
+    {
+        int count = 0;
+        for (int i = 0; i < weaponSlots.Length; i++)
+        {
+            if (weaponSlots[i] != null)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
     
+    //player input weaponswitch on mouse scroll
+    private void WeaponSwitch(InputAction.CallbackContext context)
+    {
+        // Only can weapon switch if you have more than 1 weapon in inventory
+        if (!PauseMenu.isPaused && GetWeaponCount() > 1) 
+        {
+            Vector2 scrollValue = context.ReadValue<Vector2>();
+            if (scrollValue.y != 0)
+            {
+                Debug.Log("Weapon changed by scrolling");
+                int newIndex = (activeWeaponIndex + (scrollValue.y > 0 ? 1 : -1)) % weaponSlots.Length;
+                if (newIndex < 0)
+                {
+                    newIndex = weaponSlots.Length - 1;
+                }
+                SwitchWeapon(newIndex);
+            }
+        }
+    }
 }
