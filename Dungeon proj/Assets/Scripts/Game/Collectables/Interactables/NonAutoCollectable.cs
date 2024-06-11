@@ -25,13 +25,13 @@ public class NonAutoCollectable : MonoBehaviour
 
         if (collider.gameObject.tag == "Player" && _itemInteracted)
         {
-            if (_weaponCollectableBehaviour == null || !_playerWeaponController.IsWeaponInInventory(gameObject.name))
+            if (_weaponCollectableBehaviour == null || !_playerWeaponController.IsWeaponInInventory(GetComponent<WeaponIdentifier>().weaponIndex))
             {
                 _collectableBehaviour.OnCollected(player.gameObject);
                 Destroy(gameObject);
             }
 
-            if(_playerWeaponController.IsWeaponInInventory(gameObject.name))
+            if(_weaponCollectableBehaviour != null && _playerWeaponController.IsWeaponInInventory(GetComponent<WeaponIdentifier>().weaponIndex))
             {
                 Debug.Log("Weapon already in inventory");
             }

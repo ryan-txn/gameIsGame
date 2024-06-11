@@ -7,7 +7,7 @@ public class WeaponCollectableBehaviour : MonoBehaviour, interfaceCollectableBeh
     public void OnCollected(GameObject player)
     {
         PlayerWeaponController weaponController = player.GetComponentInChildren<PlayerWeaponController>(); // Find the weapon controller in the player's children
-        if (weaponController.IsWeaponInInventory(this.name)!= true)
+        if (weaponController.IsWeaponInInventory(GetComponent<WeaponIdentifier>().weaponIndex)!= true)
         {
             weaponController.CollectWeapon(this.gameObject);
         }
@@ -15,6 +15,6 @@ public class WeaponCollectableBehaviour : MonoBehaviour, interfaceCollectableBeh
 
     public bool WeaponInInventory(PlayerWeaponController weaponController)
     {
-        return weaponController.IsWeaponInInventory(this.name);
+        return weaponController.IsWeaponInInventory(GetComponent<WeaponIdentifier>().weaponIndex);
     }
 }

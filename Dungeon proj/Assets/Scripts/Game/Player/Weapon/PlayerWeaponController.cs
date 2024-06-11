@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerWeaponController : MonoBehaviour
 {
-    private GameObject[] weaponSlots = new GameObject[4]; //4 inventory slots array
+    private GameObject[] weaponSlots = new GameObject[2]; //2 inventory slots array
 
     private Transform weaponParent;
     private int activeWeaponIndex = -1;
@@ -31,8 +32,18 @@ public class PlayerWeaponController : MonoBehaviour
 
     public void CollectWeapon(GameObject weaponObj)
     {
+        WeaponIdentifier weaponIdentifier = weaponObj.GetComponent<WeaponIdentifier>();
+
+        if (weaponIdentifier == null)
+        {
+            Debug.LogError("Weapon does not have a WeaponIdentifier component.");
+            return;
+        }
+
+        int weaponIndex = weaponIdentifier.weaponIndex;
+
         // Find the weapon in the weaponParent
-        Transform newWeaponTransform = weaponParent.Find(weaponObj.name);
+        Transform newWeaponTransform = weaponParent.GetChild(weaponIndex);
         
         if (newWeaponTransform == null)
         {
@@ -43,7 +54,7 @@ public class PlayerWeaponController : MonoBehaviour
         GameObject newWeapon = newWeaponTransform.gameObject;
         
         // Check if the weapon is already in the inventory
-        if (IsWeaponInInventory(newWeapon.name))
+        if (IsWeaponInInventory(weaponIndex))
         {
             Debug.LogError("Weapon already in inventory");
         }
@@ -70,15 +81,17 @@ public class PlayerWeaponController : MonoBehaviour
         weaponSlots[activeWeaponIndex].SetActive(true); // equip the new weapon
     }
 
-    public bool IsWeaponInInventory(string weaponName)
+    public bool IsWeaponInInventory(int weaponIndex)
     {
         for (int i = 0; i < weaponSlots.Length; i++)
         {
-            if (weaponSlots[i] != null && weaponSlots[i].name == weaponName)
+            if (weaponSlots[i] != null && weaponSlots[i].name == weaponParent.GetChild(weaponIndex).name)
             {
                 return true;
             }
         }
         return false;
     }
+
+    
 }
