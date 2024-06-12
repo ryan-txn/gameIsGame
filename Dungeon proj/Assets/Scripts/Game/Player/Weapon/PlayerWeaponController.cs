@@ -5,10 +5,24 @@ using UnityEngine.InputSystem;
 
 public class PlayerWeaponController : MonoBehaviour
 {
-    private GameObject[] weaponSlots = new GameObject[2]; //2 inventory slots array
+    [SerializeField]
+    private int INVENTORY_SIZE;
+
+    public int inventorySize
+    {
+        get { return INVENTORY_SIZE; }
+        set
+        {
+            INVENTORY_SIZE = value;  // Update weaponSlots array size here }
+        }
+    }
+
+    private GameObject[] weaponSlots;
 
     private Transform weaponParent;
     private int activeWeaponIndex = -1;
+
+    public WeaponUI weaponUI;
 
     private InputAction scrollAction;
     
@@ -32,6 +46,7 @@ public class PlayerWeaponController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        weaponSlots = new GameObject[INVENTORY_SIZE]; //2 Inventory slots array
         weaponParent = transform;
         
         // Initialize the first weapon (peastol) in inventory
