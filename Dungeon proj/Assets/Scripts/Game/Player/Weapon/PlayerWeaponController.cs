@@ -55,6 +55,7 @@ public class PlayerWeaponController : MonoBehaviour
             weaponSlots[0] = weaponParent.GetChild(0).gameObject;
             activeWeaponIndex = 0;
         }
+        weaponUI.UpdateWeaponUI(weaponSlots, activeWeaponIndex);
     }
 
     // Update is called once per frame
@@ -112,6 +113,8 @@ public class PlayerWeaponController : MonoBehaviour
 
         activeWeaponIndex = weaponIndex;
         weaponSlots[activeWeaponIndex].SetActive(true); // equip the new weapon
+        
+        weaponUI.UpdateWeaponUI(weaponSlots, activeWeaponIndex);
     }
 
     public bool IsWeaponInInventory(int weaponIndex)

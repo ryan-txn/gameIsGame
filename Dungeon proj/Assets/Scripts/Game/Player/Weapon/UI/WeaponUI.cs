@@ -1,22 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class WeaponUI : MonoBehaviour
 {
+    [SerializeField]
     public TMP_Text[] weaponSlotTexts;
     public Image[] weaponSlotImages;
-    private PlayerWeaponController _playerWeaponController;
+
+    public Color activeWeaponColor = new Color(187, 149, 0, 1); // Highlight color
+    public Color inactiveWeaponColor = Color.white; // Default color
 
     private void Awake()
     {
-        _playerWeaponController = GetComponent<PlayerWeaponController>();
-        weaponSlotTexts = new TMP_Text[_playerWeaponController.inventorySize];
-        weaponSlotImages = new Image[_playerWeaponController.inventorySize];
-
+        // All weapon slot images are fully transparent initially
+        foreach (var image in weaponSlotImages)
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
+        }
     }
 
     public void UpdateWeaponUI(GameObject[] weaponSlots, int activeWeaponIndex)
@@ -25,15 +28,26 @@ public class WeaponUI : MonoBehaviour
         {
             if (weaponSlots[i] != null)
             {
-                weaponSlotTexts[i].text = weaponSlots[i].name;
+                weaponSlotTexts[i].text = weaponSlots[i].name.ToUpper();
                 weaponSlotImages[i].sprite = weaponSlots[i].GetComponent<SpriteRenderer>().sprite;
+                weaponSlotImages[i].color = new Color(weaponSlotImages[i].color.r, weaponSlotImages[i].color.g, weaponSlotImages[i].color.b, 1); // Set to fully opaque
             }
             else
             {
-                weaponSlotTexts[i].text = "Empty";
+                weaponSlotTexts[i].text = "-";
                 weaponSlotImages[i].sprite = null;
+                weaponSlotImages[i].color = new Color(weaponSlotImages[i].color.r, weaponSlotImages[i].color.g, weaponSlotImages[i].color.b, 0); // Set to fully transparent
+            }
+
+            // Highlight active weapon
+            if (i == activeWeaponIndex)
+            {
+                weaponSlotTexts[i].color = activeWeaponColor;
+            }
+            else
+            {
+                weaponSlotTexts[i].color = inactiveWeaponColor;
             }
         }
-
     }
 }
