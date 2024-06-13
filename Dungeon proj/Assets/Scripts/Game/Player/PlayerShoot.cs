@@ -18,17 +18,10 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private float _timeBetweenShots;
 
-    private Transform _player;
-
     private bool _fireContinuously;
     private bool _fireSingle;
     private float _lastFireTime;
 
-
-    void Awake() 
-    {
-        _player = GetComponentInParent<Transform>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -50,7 +43,7 @@ public class PlayerShoot : MonoBehaviour
     private void FireBullet()
     {
         //create prefab of bullet at position of player
-        GameObject bullet = Instantiate(_bulletPrefab, _gunOffset.position, _player.rotation);
+        GameObject bullet = Instantiate(_bulletPrefab, _gunOffset.position, Quaternion.identity);
 
         // Calculate direction from gun to mouse pointer
         Vector2 gunPosition = _gunOffset.position;
@@ -63,7 +56,7 @@ public class PlayerShoot : MonoBehaviour
 
         // Rotate the bullet to face the direction of travel
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        angle += 270;
+        angle += 90;
         bullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
 
