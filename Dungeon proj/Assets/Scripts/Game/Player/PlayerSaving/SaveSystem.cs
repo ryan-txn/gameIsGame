@@ -7,7 +7,7 @@ public static class SaveSystem
     public static void SavePlayer(CoinController playerCoins, HealthController playerHealth)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/savefile.sigma";
+        string path = Application.persistentDataPath + "/player.sigma";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         PlayerData data = new PlayerData
@@ -16,16 +16,13 @@ public static class SaveSystem
             health = playerHealth.currentHealthNum
         };
 
-        Debug.Log("Saved coins are " + data.coins);
-        Debug.Log("Saved health is " + data.health);
-
         formatter.Serialize(stream, data);
         stream.Close();
     }
 
     public static PlayerData LoadPlayer()
     {
-        string path = Application.persistentDataPath + "/savefile.sigma";
+        string path = Application.persistentDataPath + "/player.sigma";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
