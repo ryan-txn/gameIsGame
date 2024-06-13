@@ -2179,6 +2179,8 @@ MonoBehaviour:
   _timetoWaitBeforeExit: 3
   player: {fileID: 450590019}
   coinUI: {fileID: 796560294}
+  healthBarUI: {fileID: 1834183506}
+  hpNumUI: {fileID: 356516802}
 --- !u!4 &620202452
 Transform:
   m_ObjectHideFlags: 0
@@ -3198,13 +3200,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1118356411}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1553845932}
-  m_Father: {fileID: 13710791}
+  m_Father: {fileID: 1595415315}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -4642,6 +4644,8 @@ RectTransform:
   - {fileID: 1049175794}
   - {fileID: 736068917}
   - {fileID: 1127479513}
+  - {fileID: 1869249697}
+  - {fileID: 1118356412}
   m_Father: {fileID: 1978392117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -7155,13 +7159,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869249696}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 102941551}
-  m_Father: {fileID: 13710791}
+  m_Father: {fileID: 1595415315}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
