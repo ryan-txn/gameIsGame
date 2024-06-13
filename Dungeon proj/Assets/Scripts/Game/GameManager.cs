@@ -14,8 +14,6 @@ public class GameManager : MonoBehaviour
     private CoinController coinController;
     private HealthController healthController;
     public CoinUI coinUI;
-    public HealthBarUI healthBarUI;
-    public HpNumUI hpNumUI;
 
     private void Awake()
     {
@@ -44,11 +42,7 @@ public class GameManager : MonoBehaviour
         PlayerData data = SaveSystem.LoadPlayer();
         coinController.coinAmt = data.coins;
         coinUI.UpdateCoins(coinController);
-
         healthController._currentHealth = data.health;
-        healthBarUI.UpdateHealthBar(healthController);
-        hpNumUI.UpdateHealthNum(healthController);
-
         Debug.Log("loaded coins are " + coinController.coinAmt);
         Debug.Log("loaded health is " + healthController._currentHealth);
     }
