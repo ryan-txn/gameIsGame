@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1650503849
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 999663538, guid: 8890d0b8777b1b345a9f83c01198b6e1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -199,7 +199,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerAwarenessDistance: 5
-  _lossAwarenessDelay: 1
 --- !u!58 &4852015983770923974
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -260,8 +259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71fa3189250af8d42b2bb98dbe35d78f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentHealth: 20
-  _maximumHealth: 20
+  _currentHealth: 10
+  _maximumHealth: 10
   OnDied:
     m_PersistentCalls:
       m_Calls:
