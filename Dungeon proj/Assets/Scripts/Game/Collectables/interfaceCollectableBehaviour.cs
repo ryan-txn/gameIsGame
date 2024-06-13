@@ -5,5 +5,4 @@ using UnityEngine;
 public interface interfaceCollectableBehaviour
 {
     void OnCollected(GameObject player);
-    
 }
