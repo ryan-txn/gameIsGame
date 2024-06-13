@@ -10,6 +10,7 @@ public class WeaponCollectableBehaviour : MonoBehaviour, interfaceCollectableBeh
         if (weaponController.IsWeaponInInventory(GetComponent<WeaponIdentifier>().weaponIndex)!= true)
         {
             weaponController.CollectWeapon(this.gameObject);
+            Destroy(gameObject);
         }
     }
 

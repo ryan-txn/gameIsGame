@@ -8,6 +8,9 @@ public class PlayerWeaponController : MonoBehaviour
     [SerializeField]
     private int INVENTORY_SIZE;
 
+    [SerializeField]
+    private GameObject[] collectibleWeaponPrefabs; //To instantiate weapons when replacing them
+
     public int inventorySize
     {
         get { return INVENTORY_SIZE; }
@@ -48,13 +51,18 @@ public class PlayerWeaponController : MonoBehaviour
     {
         weaponSlots = new GameObject[INVENTORY_SIZE]; //2 Inventory slots array
         weaponParent = transform;
-        
-        // Initialize the first weapon (peastol) in inventory
-        if (weaponParent.childCount > 0)
+
+        // Initialize the active weapon and add it into weaponslot inventory
+        for (int i = 0; i < weaponParent.childCount; i++)
         {
-            weaponSlots[0] = weaponParent.GetChild(0).gameObject;
-            activeWeaponIndex = 0;
+            if (weaponParent.GetChild(i).gameObject.activeSelf)
+            {
+                weaponSlots[0] = weaponParent.GetChild(i).gameObject; // Add the initially active weapon to the first slot
+                activeWeaponIndex = 0; // Set the active weapon index
+                break; // Exit loop after finding the initially active weapon
+            }
         }
+        
         weaponUI.UpdateWeaponUI(weaponSlots, activeWeaponIndex);
     }
 
@@ -100,8 +108,51 @@ public class PlayerWeaponController : MonoBehaviour
             {
                 weaponSlots[i] = newWeapon;
                 SwitchWeapon(i);
+                Destroy(weaponObj); 
+                return;
             }
         }
+
+        // If inventory full, replace unique weapon
+        if (GetWeaponCount() == weaponSlots.Length)
+        {
+            ReplaceWeapon(newWeapon, weaponIndex);
+            Destroy(weaponObj); 
+        }
+        newWeapon.transform.SetParent(weaponParent);
+        newWeapon.transform.localRotation = Quaternion.identity;
+    }
+
+    // Unequip current weapon and instantiate a weapon collectable
+    private void ReplaceWeapon(GameObject newWeapon, int weaponIndex)
+    {
+
+        if (weaponSlots != null)
+        {        
+            int oldWeaponIndex = GetWeaponIndex(weaponSlots[activeWeaponIndex]);
+            Instantiate(collectibleWeaponPrefabs[oldWeaponIndex], transform.position, Quaternion.identity);
+            // Deactivate the current weapon
+            weaponSlots[activeWeaponIndex].SetActive(false);
+        }
+
+        // Replace with the new weapon
+        weaponSlots[activeWeaponIndex] = newWeapon;
+        // Activate the new weapon
+        weaponSlots[activeWeaponIndex].SetActive(true);
+
+        weaponUI.UpdateWeaponUI(weaponSlots, activeWeaponIndex);
+    }
+
+    private int GetWeaponIndex(GameObject weapon)
+    {
+        for (int i = 0; i < weaponParent.childCount; i++)
+        {
+            if (weaponParent.GetChild(i).gameObject == weapon)
+            {
+                return i;
+            }
+        }
+        return -1; // Should never happen if weapons are managed correctly
     }
 
     private void SwitchWeapon(int weaponIndex)
@@ -113,7 +164,7 @@ public class PlayerWeaponController : MonoBehaviour
 
         activeWeaponIndex = weaponIndex;
         weaponSlots[activeWeaponIndex].SetActive(true); // equip the new weapon
-        
+
         weaponUI.UpdateWeaponUI(weaponSlots, activeWeaponIndex);
     }
 

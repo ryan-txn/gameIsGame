@@ -338,6 +338,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   INVENTORY_SIZE: 2
+  collectibleWeaponPrefabs:
+  - {fileID: 6756175940945520477, guid: bff6123167b42cf4997fcf221ef40814, type: 3}
+  - {fileID: 6756175940945520477, guid: ae7862303fdcf7e46901e667ce95037b, type: 3}
+  - {fileID: 6756175940945520477, guid: 7688b660bdff00a478526c41a66bb361, type: 3}
   weaponUI: {fileID: 234498369}
 --- !u!114 &57057316
 MonoBehaviour:
@@ -1853,8 +1857,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30.8, y: -6}
-  m_SizeDelta: {x: 246.2, y: 50}
+  m_AnchoredPosition: {x: -17.400024, y: -6}
+  m_SizeDelta: {x: 214.36, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &453591541
 MonoBehaviour:
@@ -1911,7 +1915,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -7292,8 +7296,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30.8, y: -254}
-  m_SizeDelta: {x: 246.2, y: 50}
+  m_AnchoredPosition: {x: -17.400024, y: -254}
+  m_SizeDelta: {x: 214.36, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1915494900
 MonoBehaviour:
@@ -7350,7 +7354,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
