@@ -12,15 +12,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
     private CoinController coinController;
-    private HealthController healthController;
-    public CoinUI coinUI;
-    public HealthBarUI healthBarUI;
-    public HpNumUI hpNumUI;
 
     private void Awake()
     {
         coinController = player.GetComponent<CoinController>();
-        healthController = player.GetComponent<HealthController>();
     }
 
 
@@ -31,25 +26,12 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
+        Save();
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void SavePlayer()
+    public void Save()
     {
-        SaveSystem.SavePlayer(coinController, healthController);
-    }
-
-    public void LoadPlayer()
-    {
-        PlayerData data = SaveSystem.LoadPlayer();
-        coinController.coinAmt = data.coins;
-        coinUI.UpdateCoins(coinController);
-
-        healthController._currentHealth = data.health;
-        healthBarUI.UpdateHealthBar(healthController);
-        hpNumUI.UpdateHealthNum(healthController);
-
-        Debug.Log("loaded coins are " + coinController.coinAmt);
-        Debug.Log("loaded health is " + healthController._currentHealth);
+        SaveSystem.SavePlayer(coinController);
     }
 }

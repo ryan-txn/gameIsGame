@@ -14,4 +14,9 @@ public class CoinController : MonoBehaviour
         OnCoinAmtChanged.Invoke();
     }
 
+    public void ChangeCoinAmt(int amount)
+    {
+        coinAmt = amount;
+        OnCoinAmtChanged.Invoke();
+    }
 }
