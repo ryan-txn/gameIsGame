@@ -30,16 +30,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2475259422498624449, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Size.x
-      value: 0.5875
+      value: 0.64
       objectReference: {fileID: 0}
     - target: {fileID: 2475259422498624449, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Size.y
-      value: 0.38875
+      value: 0.64
       objectReference: {fileID: 0}
     - target: {fileID: 2475259422498624449, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1504584234, guid: 98243a23848f81b4b96068737e6f22bf, type: 3}
+    - target: {fileID: 2475259422498624449, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475259422498624449, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475259422498624449, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -216944467
+      objectReference: {fileID: 0}
     - target: {fileID: 2475259422498624449, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -83,6 +95,10 @@ PrefabInstance:
     - target: {fileID: 4272204839965675767, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987322817529133786, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

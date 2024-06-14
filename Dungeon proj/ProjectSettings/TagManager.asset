@@ -54,6 +54,9 @@ TagManager:
   - name: Player
     uniqueID: 4076064339
     locked: 0
+  - name: Auto Collectables
+    uniqueID: 4078022829
+    locked: 0
   - name: Enemies
     uniqueID: 1650503849
     locked: 0
