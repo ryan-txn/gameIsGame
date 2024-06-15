@@ -8,6 +8,11 @@ public class CoinController : MonoBehaviour
     public UnityEvent OnCoinAmtChanged;
     public int coinAmt;
 
+    private void Awake()
+    {
+        LoadCoinAmount();
+    }
+
     public void AddCoinAmt(int amount)
     {
         coinAmt += amount;
@@ -18,5 +23,18 @@ public class CoinController : MonoBehaviour
     {
         coinAmt = amount;
         OnCoinAmtChanged.Invoke();
+    }
+
+    public void LoadCoinAmount()
+    {
+        if (DataManager.playerData == null)
+        {
+            Debug.LogError("Failed to load player data.");
+        }
+        else
+        {
+            coinAmt = DataManager.playerData.coins;
+            OnCoinAmtChanged.Invoke();
+        }
     }
 }

@@ -32,6 +32,6 @@ public class GameManager : MonoBehaviour
 
     public void Save()
     {
-        SaveSystem.SavePlayer(coinController);
+        DataManager.saveSystem.SavePlayer(coinController);
     }
 }
