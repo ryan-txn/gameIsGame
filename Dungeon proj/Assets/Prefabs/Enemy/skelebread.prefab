@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1650503849
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -1251957584, guid: c5b5431e2408c6d4a949f19e85822d26, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 33876769468005023}
   - component: {fileID: 920796976239781505}
   - component: {fileID: 89863215873590398}
+  - component: {fileID: 3356042810094577946}
   m_Layer: 2
   m_Name: skelebread
   m_TagString: Untagged
@@ -219,7 +220,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 1
-  _rangedEnemyAttack: {fileID: 89863215873590398}
 --- !u!114 &3450350230769496793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerAwarenessDistance: 7
+  _lossAwarenessDelay: 1
 --- !u!58 &4852015983770923974
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -360,7 +361,19 @@ MonoBehaviour:
         m_CallState: 2
   OnDamaged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3356042810094577946}
+        m_TargetAssemblyTypeName: FlashOnDamage, Assembly-CSharp
+        m_MethodName: Flash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -405,3 +418,17 @@ MonoBehaviour:
   _timeBetweenShots: 2
   bulletSpeed: 3
   _bulletFirePoint: {fileID: 1912321221332843624}
+--- !u!114 &3356042810094577946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7142303272250041979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5fae94b3b229741a86404d80e142c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashMaterial: {fileID: 2100000, guid: 381541aa84a954142a010cd537e4af73, type: 2}
+  _flashDuration: 0.025

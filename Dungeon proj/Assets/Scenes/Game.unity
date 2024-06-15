@@ -1348,6 +1348,7 @@ GameObject:
   - component: {fileID: 450590031}
   - component: {fileID: 450590032}
   - component: {fileID: 450590033}
+  - component: {fileID: 450590035}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1525,6 +1526,18 @@ MonoBehaviour:
   OnDamaged:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 450590035}
+        m_TargetAssemblyTypeName: FlashOnDamage, Assembly-CSharp
+        m_MethodName: Flash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 450590030}
         m_TargetAssemblyTypeName: PlayerDamagedInvincibility, Assembly-CSharp
         m_MethodName: StartInvincibility
@@ -1687,6 +1700,20 @@ CapsuleCollider2D:
   m_Offset: {x: 0.017628342, y: 0.02938053}
   m_Size: {x: 0.66844875, y: 0.8315514}
   m_Direction: 0
+--- !u!114 &450590035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450590019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5fae94b3b229741a86404d80e142c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashMaterial: {fileID: 2100000, guid: 381541aa84a954142a010cd537e4af73, type: 2}
+  _flashDuration: 0.025
 --- !u!1 &453591539
 GameObject:
   m_ObjectHideFlags: 0
@@ -4456,7 +4483,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 29196973021456921, guid: cc0124e64d8f7c24fadc366b43493cc4, type: 3}
       propertyPath: m_Name
-      value: Skele Spawner (2)
+      value: Skele Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 4018637960553979842, guid: cc0124e64d8f7c24fadc366b43493cc4, type: 3}
       propertyPath: m_LocalPosition.x
