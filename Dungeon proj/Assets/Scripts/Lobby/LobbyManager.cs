@@ -16,9 +16,9 @@ public class LobbyManager : MonoBehaviour
 
     public void Load()
     {
-        PlayerData data = SaveSystem.LoadPlayer();
-        Debug.Log("save file coins is " + data.coins);
-        coinController.ChangeCoinAmt(data.coins);
+        DataManager.playerData = DataManager.saveSystem.LoadPlayer();
+        Debug.Log("save file coins is " + DataManager.playerData.coins);
+        coinController.ChangeCoinAmt(DataManager.playerData.coins);
 
         Debug.Log("loaded coins are " + coinController.coinAmt);
     }

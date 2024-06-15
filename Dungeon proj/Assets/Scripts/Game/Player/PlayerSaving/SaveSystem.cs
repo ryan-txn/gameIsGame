@@ -2,9 +2,9 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-public static class SaveSystem
+public class SaveSystem
 {
-    public static void SavePlayer(CoinController playerCoins)
+    public void SavePlayer(CoinController playerCoins)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/savefile.sigma";
@@ -21,7 +21,7 @@ public static class SaveSystem
         stream.Close();
     }
 
-    public static PlayerData LoadPlayer()
+    public PlayerData LoadPlayer()
     {
         string path = Application.persistentDataPath + "/savefile.sigma";
         if (File.Exists(path))
