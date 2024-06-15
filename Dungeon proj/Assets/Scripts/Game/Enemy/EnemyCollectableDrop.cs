@@ -20,7 +20,7 @@ public class EnemyCollectableDrop : MonoBehaviour
 
         if (_chanceOfCollectableDrop >= random)
         {
-            _collectableSpawner.SpawnCollectable(transform.position);
+            _collectableSpawner.SpawnCollectable(transform.position, CollectableSpawner.SpawnType.Collectable);
         }
     }
 }

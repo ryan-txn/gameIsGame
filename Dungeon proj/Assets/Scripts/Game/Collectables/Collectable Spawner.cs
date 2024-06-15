@@ -7,9 +7,33 @@ public class CollectableSpawner : MonoBehaviour
     [SerializeField]
     private List<GameObject> _collectablePrefabs; //list of spawnable collectables
 
-    public void SpawnCollectable(Vector2 position)
+    [SerializeField]
+    private List<GameObject> _weaponPrefabs; // list of spawnable weapons
+
+    public enum SpawnType
     {
-        bool rightProbability = CheckTotalProbability();
+        Collectable,
+        Weapon
+    }
+
+    public void SpawnCollectable(Vector2 position, SpawnType spawnType)
+    {
+        List<GameObject> prefabsToUse;
+        if (spawnType == SpawnType.Collectable)
+        {
+            prefabsToUse = _collectablePrefabs;
+        }
+        else if (spawnType == SpawnType.Weapon)
+        {
+            prefabsToUse = _weaponPrefabs;
+        }
+        else
+        {
+            Debug.LogError("Invalid spawn type specified.");
+            return;
+        }
+
+        bool rightProbability = CheckTotalProbability(prefabsToUse);
         if (rightProbability == false) 
         {
             Debug.LogError("Probabilities dont add to 100. Check probabilities.");
@@ -18,7 +42,7 @@ public class CollectableSpawner : MonoBehaviour
         int randomPoint = Random.Range(0, 100);
         GameObject selectedCollectable = null;
 
-        foreach (GameObject collectable in _collectablePrefabs)
+        foreach (GameObject collectable in prefabsToUse)
         {
             DropProbability dropProbability = collectable.GetComponent<DropProbability>();
             if (dropProbability != null)
@@ -45,11 +69,11 @@ public class CollectableSpawner : MonoBehaviour
         }
     }
 
-    private bool CheckTotalProbability()
+    private bool CheckTotalProbability(List<GameObject> prefabs)
     {
         int total = 0;
 
-        foreach (GameObject collectable in _collectablePrefabs)
+        foreach (GameObject collectable in prefabs)
         {
             DropProbability dropProbability = collectable.GetComponent<DropProbability>();
             if (dropProbability != null)
