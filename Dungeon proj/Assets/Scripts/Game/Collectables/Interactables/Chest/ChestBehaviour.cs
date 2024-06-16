@@ -10,6 +10,7 @@ public class ChestBehaviour : MonoBehaviour
     private bool _chestOpened = false;
     private bool _collided;
     private Collider2D _collider; 
+    private Animator _animator;
 
     [SerializeField]
     private Transform _spawnPoint;
@@ -18,8 +19,14 @@ public class ChestBehaviour : MonoBehaviour
     {
         _collectableSpawner = FindObjectOfType<CollectableSpawner>();
         _collider = GetComponent<Collider2D>(); 
+        _animator = GetComponentInChildren<Animator>();
     }
 
+    void FixedUpdate()
+    {
+        SetAnimation();
+    }
+    
     private void Update()
     {
         if (_collided && _chestOpened)
@@ -51,5 +58,10 @@ public class ChestBehaviour : MonoBehaviour
     private void OnInteract(InputValue inputValue)
     {
         _chestOpened = inputValue.isPressed;
+    }
+
+    private void SetAnimation()
+    {
+        _animator.SetBool("IsOpened", _chestOpened);
     }
 }
