@@ -19,6 +19,19 @@ public class CoinController : MonoBehaviour
         OnCoinAmtChanged.Invoke();
     }
 
+    public void DeductCoinAmt(int amount)
+    {
+        if(coinAmt >= amount)
+        {
+            coinAmt -= amount;
+            OnCoinAmtChanged.Invoke();
+        }
+        else
+        {
+            Debug.Log("Not enough coins!");
+        }
+    }
+
     public void ChangeCoinAmt(int amount)
     {
         coinAmt = amount;

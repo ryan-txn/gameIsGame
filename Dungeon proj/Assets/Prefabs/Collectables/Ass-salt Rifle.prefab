@@ -141,6 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c00101c9c495967408af1bea03de2ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemPrice: 0
+  _isInShop: 0
 --- !u!114 &1721741227309251594
 MonoBehaviour:
   m_ObjectHideFlags: 0

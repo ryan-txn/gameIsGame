@@ -7,10 +7,13 @@ using UnityEngine.SceneManagement;
 public class NonAutoCollectable : MonoBehaviour
 {
     private interfaceCollectableBehaviour _collectableBehaviour;
-
-    private bool _itemInteracted; 
     private WeaponCollectableBehaviour _weaponCollectableBehaviour;
     private PlayerWeaponController _playerWeaponController;
+    private CoinController _coinController;
+    
+    private bool _itemInteracted; 
+    public int itemPrice;
+    public bool _isInShop;
 
     private void Awake()
     {
@@ -22,18 +25,44 @@ public class NonAutoCollectable : MonoBehaviour
     {
         var player = collider.GetComponent<PlayerMovement>();
         _playerWeaponController = collider.GetComponentInChildren<PlayerWeaponController>();
+        _coinController = collider.GetComponent<CoinController>();
 
         if (collider.gameObject.tag == "Player" && _itemInteracted)
         {
-            if (_weaponCollectableBehaviour == null || !_playerWeaponController.IsWeaponInInventory(GetComponent<WeaponIdentifier>().weaponIndex))
+            if (_isInShop)
             {
-                _collectableBehaviour.OnCollected(player.gameObject);
-                Destroy(gameObject);
-            }
+                if (_coinController != null && _coinController.coinAmt >= itemPrice)
+                {
+                    if (_weaponCollectableBehaviour == null || !_playerWeaponController.IsWeaponInInventory(GetComponent<WeaponIdentifier>().weaponIndex))
+                    {
+                        _coinController.DeductCoinAmt(itemPrice);
+                        _collectableBehaviour.OnCollected(player.gameObject);
+                        Destroy(gameObject);
+                    }
 
-            if(_weaponCollectableBehaviour != null && _playerWeaponController.IsWeaponInInventory(GetComponent<WeaponIdentifier>().weaponIndex))
+                    if (_weaponCollectableBehaviour != null && _playerWeaponController.IsWeaponInInventory(GetComponent<WeaponIdentifier>().weaponIndex))
+                    {
+                        Debug.Log("Weapon already in inventory");
+                    }
+                }
+                else
+                {
+                    Debug.Log("Not enough coins to buy this item.");
+                }
+            }
+            else
             {
-                Debug.Log("Weapon already in inventory");
+                // Free item on map
+                if (_weaponCollectableBehaviour == null || !_playerWeaponController.IsWeaponInInventory(GetComponent<WeaponIdentifier>().weaponIndex))
+                {
+                    _collectableBehaviour.OnCollected(player.gameObject);
+                    Destroy(gameObject);
+                }
+
+                if (_weaponCollectableBehaviour != null && _playerWeaponController.IsWeaponInInventory(GetComponent<WeaponIdentifier>().weaponIndex))
+                {
+                    Debug.Log("Weapon already in inventory");
+                }
             }
         }
     }
