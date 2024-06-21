@@ -622,10 +622,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6756175940945520477, guid: ae7862303fdcf7e46901e667ce95037b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 376751332}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae7862303fdcf7e46901e667ce95037b, type: 3}
 --- !u!1 &234498365
 GameObject:
@@ -1007,24 +1004,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &376751325 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6756175940945520477, guid: ae7862303fdcf7e46901e667ce95037b, type: 3}
-  m_PrefabInstance: {fileID: 233609495}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &376751332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 376751325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bebd3f1653d0f7b4b813423df2383768, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponIndex: 0
 --- !u!1 &377159576
 GameObject:
   m_ObjectHideFlags: 0
@@ -3096,6 +3075,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1127479512}
   m_CullTransparentMesh: 1
+--- !u!1 &1295583372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1295583374}
+  - component: {fileID: 1295583373}
+  m_Layer: 0
+  m_Name: RoomManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1295583373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295583372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2544dc4227d77584b84450944afe39f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomPrefabs:
+  - {fileID: 4084639904804468989, guid: 793abaa28f51d354abd4be45860a9f4d, type: 3}
+--- !u!4 &1295583374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295583372}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7313831, y: 0.20583276, z: 0.021138206}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1371730816
 GameObject:
   m_ObjectHideFlags: 0
@@ -4227,3 +4252,4 @@ SceneRoots:
   - {fileID: 197721492}
   - {fileID: 1112048564}
   - {fileID: 630975326582105244}
+  - {fileID: 1295583374}
