@@ -2377,6 +2377,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 796560292}
   m_CullTransparentMesh: 1
+--- !u!1839735485 &856449003 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 407228326368872682, guid: 3df0a53146ad6be4cb6c8e35fd11f60b, type: 3}
+  m_PrefabInstance: {fileID: 6454989942176655527}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &899462507
 GameObject:
   m_ObjectHideFlags: 0
@@ -3105,7 +3110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomPrefabs:
-  - {fileID: 4084639904804468989, guid: 793abaa28f51d354abd4be45860a9f4d, type: 3}
+  - {fileID: 7170004746263583874, guid: 1dd8e6136c2c8b1408550263cff6267c, type: 3}
+  startRoomWalls: {fileID: 856449003}
 --- !u!4 &1295583374
 Transform:
   m_ObjectHideFlags: 0
