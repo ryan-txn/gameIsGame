@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         coinController = player.GetComponent<CoinController>();
+        coinController.ChangeCoinAmt(DataManager.playerData.coins);
     }
 
 

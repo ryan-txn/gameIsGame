@@ -30,7 +30,7 @@ public class RoomManager : MonoBehaviour
         Vector3 spawnPoint = new Vector3(0, 0, 0);
         string wallTilemapTag = "Wall";
 
-        int positionIndex = 3; //Random.Range(0, 4);
+        int positionIndex = Random.Range(0, 4);
         var direction = Direction3D.GetRandomCardinalDirection(positionIndex);
 
         if (positionIndex == 0) //ROOM ON TOP
