@@ -14,6 +14,9 @@ public class RoomManager : MonoBehaviour
     [SerializeField]
     private Tilemap startRoomWalls;
 
+    [SerializeField]
+    private GameObject testCorridor;
+
 
     private void Awake()
     {
@@ -35,7 +38,7 @@ public class RoomManager : MonoBehaviour
 
         if (positionIndex == 0) //ROOM ON TOP
         {
-            spawnPoint += (direction * 13);
+            spawnPoint += (direction * 15);
             GameObject RoomInstance = Instantiate(roomPrefabs[0], spawnPoint, Quaternion.identity);
 
             //delete room 0 walls
@@ -62,6 +65,10 @@ public class RoomManager : MonoBehaviour
             wallTilemap.CompressBounds();
             wallTilemap.SetTile(enmyBottomGap1, null);
             wallTilemap.SetTile(enmyBottomGap2, null);
+
+            //spawn corridor
+            Vector3 corrSpawnPoint = new Vector3(0, 6, 0);
+            Instantiate(testCorridor, corrSpawnPoint, Quaternion.identity);
         }
         else if (positionIndex == 1)
         { //ROOM ON BOTTOM

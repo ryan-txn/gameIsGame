@@ -3112,6 +3112,7 @@ MonoBehaviour:
   roomPrefabs:
   - {fileID: 7170004746263583874, guid: 1dd8e6136c2c8b1408550263cff6267c, type: 3}
   startRoomWalls: {fileID: 856449003}
+  testCorridor: {fileID: 7170004746263583874, guid: 670e733b4e997ff48b6cb3fb621282f9, type: 3}
 --- !u!4 &1295583374
 Transform:
   m_ObjectHideFlags: 0
