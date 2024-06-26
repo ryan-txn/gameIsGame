@@ -8,6 +8,7 @@ public class ChestBehaviour : MonoBehaviour
 {
     private CollectableSpawner _collectableSpawner;
     private bool _chestOpened = false;
+    private bool _interacted;
     private bool _collided;
     private Collider2D _collider; 
     private Animator _animator;
@@ -29,8 +30,9 @@ public class ChestBehaviour : MonoBehaviour
     
     private void Update()
     {
-        if (_collided && _chestOpened)
+        if (_collided && _interacted)
         {
+            _chestOpened = true;
             _collectableSpawner.SpawnCollectable(_spawnPoint.position, CollectableSpawner.SpawnType.Weapon);
             _collider.enabled = false;
             Debug.Log("spawned weapon");
@@ -57,7 +59,7 @@ public class ChestBehaviour : MonoBehaviour
 
     private void OnInteract(InputValue inputValue)
     {
-        _chestOpened = inputValue.isPressed;
+        _interacted = inputValue.isPressed;
     }
 
     private void SetAnimation()
