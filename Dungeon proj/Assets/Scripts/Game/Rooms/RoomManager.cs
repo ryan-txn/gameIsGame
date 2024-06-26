@@ -15,7 +15,10 @@ public class RoomManager : MonoBehaviour
     private Tilemap startRoomWalls;
 
     [SerializeField]
-    private GameObject testCorridor;
+    private GameObject vertCorridor;
+
+    [SerializeField]
+    private GameObject horCorridor;
 
 
     private void Awake()
@@ -34,131 +37,23 @@ public class RoomManager : MonoBehaviour
         string wallTilemapTag = "Wall";
 
         int positionIndex = Random.Range(0, 4);
-        var direction = Direction3D.GetRandomCardinalDirection(positionIndex);
 
         if (positionIndex == 0) //ROOM ON TOP
         {
-            spawnPoint += (direction * 15);
-            GameObject RoomInstance = Instantiate(roomPrefabs[0], spawnPoint, Quaternion.identity);
-
-            //delete room 0 walls
-            Vector3Int topGap1 = new(-1, (gridHeight / 2) - 1, 0);
-            Vector3Int topGap2 = new(0, (gridHeight / 2) - 1, 0);
-            startRoomWalls.SetTile(topGap1, null);
-            startRoomWalls.SetTile(topGap2, null);
-
-            //find room 1 wall tilemap
-            Tilemap wallTilemap = FindTilemapWithTag(RoomInstance, wallTilemapTag);
-
-            //checking room 1 wall tilemap dimensions
-            wallTilemap.CompressBounds();
-            int enmyGridWidth = wallTilemap.size.x;
-            int enmyGridHeight = wallTilemap.size.y;
-            Debug.Log(enmyGridHeight + ", " + enmyGridWidth);
-
-            //checking room 1 wall tilemap tiles to be deleted
-            Vector3Int enmyBottomGap1 = new(-1, -(enmyGridHeight / 2), 0);
-            Vector3Int enmyBottomGap2 = new(0, -(enmyGridHeight / 2), 0);
-            Debug.Log(enmyBottomGap1 + ", " + enmyBottomGap2); // shld be -8
-
-            //delete appropriate room 1 walls
-            wallTilemap.CompressBounds();
-            wallTilemap.SetTile(enmyBottomGap1, null);
-            wallTilemap.SetTile(enmyBottomGap2, null);
-
-            //spawn corridor
-            Vector3 corrSpawnPoint = new Vector3(0, 6, 0);
-            Instantiate(testCorridor, corrSpawnPoint, Quaternion.identity);
+            SpawnRoomOnTop(spawnPoint, 15, gridHeight, wallTilemapTag);
         }
-        else if (positionIndex == 1)
-        { //ROOM ON BOTTOM
-            spawnPoint += (direction * 13);
-            GameObject RoomInstance = Instantiate(roomPrefabs[0], spawnPoint, Quaternion.identity);
-
-            //delete room 0 walls
-            Vector3Int bottomGap1 = new(-1, -(gridHeight / 2), 0);
-            Vector3Int bottomGap2 = new(0, -(gridHeight / 2), 0);
-            startRoomWalls.SetTile(bottomGap1, null);
-            startRoomWalls.SetTile(bottomGap2, null);
-
-            //find room 1 wall tilemap
-            Tilemap wallTilemap = FindTilemapWithTag(RoomInstance, wallTilemapTag);
-
-            //checking room 1 wall tilemap dimensions
-            wallTilemap.CompressBounds();
-            int enmyGridWidth = wallTilemap.size.x;
-            int enmyGridHeight = wallTilemap.size.y;
-            Debug.Log(enmyGridHeight + ", " + enmyGridWidth);
-
-            //checking room 1 wall tilemap tiles to be deleted
-            Vector3Int enmyTopGap1 = new(-1, (enmyGridHeight / 2) - 1, 0);
-            Vector3Int enmyTopGap2 = new(0, (enmyGridHeight / 2) - 1, 0);
-            Debug.Log(enmyTopGap1 + ", " + enmyTopGap2); // shld be 7
-
-            //delete appropriate room 1 walls
-            wallTilemap.CompressBounds();
-            wallTilemap.SetTile(enmyTopGap1, null);
-            wallTilemap.SetTile(enmyTopGap2, null);
+        else if (positionIndex == 1) //ROOM ON BOTTOM
+        { 
+            SpawnRoomOnBottom(spawnPoint, 15, gridHeight, wallTilemapTag);
         }
         else if (positionIndex == 2) //ROOM ON RIGHT
         {
-            spawnPoint += (direction * 16);
-            GameObject RoomInstance = Instantiate(roomPrefabs[0], spawnPoint, Quaternion.identity);
+            SpawnRoomOnRight(spawnPoint, 18, gridWidth, wallTilemapTag);
 
-            //delete room 0 walls
-            Vector3Int rightGap1 = new Vector3Int((gridWidth / 2) - 1, 0, 0);
-            Vector3Int rightGap2 = new Vector3Int((gridWidth / 2) - 1, -1, 0);
-            startRoomWalls.SetTile(rightGap1, null);
-            startRoomWalls.SetTile(rightGap2, null);
-
-            //find room 1 wall tilemap
-            Tilemap wallTilemap = FindTilemapWithTag(RoomInstance, wallTilemapTag);
-
-            //checking room 1 wall tilemap dimensions
-            wallTilemap.CompressBounds();
-            int enmyGridWidth = wallTilemap.size.x;
-            int enmyGridHeight = wallTilemap.size.y;
-            Debug.Log(enmyGridHeight + ", " + enmyGridWidth);
-
-            //checking room 1 wall tilemap tiles to be deleted
-            Vector3Int enmyRightGap1 = new Vector3Int(-(enmyGridWidth / 2), 0, 0);
-            Vector3Int enmyRightGap2 = new Vector3Int(-(enmyGridWidth / 2), -1, 0);
-            Debug.Log(enmyRightGap1 + ", " + enmyRightGap2); // shld be
-
-            //delete appropriate room 1 walls
-            wallTilemap.CompressBounds();
-            wallTilemap.SetTile(enmyRightGap1, null);
-            wallTilemap.SetTile(enmyRightGap2, null);
         }
         else //ROOM ON LEFT
         {
-            spawnPoint += (direction * 16);
-            GameObject RoomInstance = Instantiate(roomPrefabs[0], spawnPoint, Quaternion.identity);
-
-            //delete room 0 walls
-            Vector3Int leftGap1 = new Vector3Int(-(gridWidth / 2), 0, 0);
-            Vector3Int leftGap2 = new Vector3Int(-(gridWidth / 2), -1, 0);
-            startRoomWalls.SetTile(leftGap1, null);
-            startRoomWalls.SetTile(leftGap2, null);
-
-            //find room 1 wall tilemap
-            Tilemap wallTilemap = FindTilemapWithTag(RoomInstance, wallTilemapTag);
-
-            //checking room 1 wall tilemap dimensions
-            wallTilemap.CompressBounds();
-            int enmyGridWidth = wallTilemap.size.x;
-            int enmyGridHeight = wallTilemap.size.y;
-            Debug.Log(enmyGridHeight + ", " + enmyGridWidth);
-
-            //checking room 1 wall tilemap tiles to be deleted
-            Vector3Int enmyLeftGap1 = new Vector3Int((enmyGridWidth / 2) - 1, 0, 0);
-            Vector3Int enmyLeftGap2 = new Vector3Int((enmyGridWidth / 2) - 1, -1, 0);
-            Debug.Log(enmyLeftGap1 + ", " + enmyLeftGap2); //shld be 6
-
-            //delete appropriate room 1 walls
-            wallTilemap.CompressBounds();
-            wallTilemap.SetTile(enmyLeftGap1, null);
-            wallTilemap.SetTile(enmyLeftGap2, null);
+            SpawnRoomOnLeft(spawnPoint, 18, gridWidth, wallTilemapTag);
         }
     }
 
@@ -176,20 +71,147 @@ public class RoomManager : MonoBehaviour
         Debug.LogError("no wall tilemap found");
         return null;
     }
-}
 
-public static class Direction3D
-{
-    public static List<Vector3Int> cardinalDirectionsList = new List<Vector3Int>
+    void SpawnRoomOnTop(Vector3 spawnPoint,  int distanceFromFirstRoom, int firstRoomHeight, string wallTilemapTag)
     {
-        new Vector3Int(0, 1, 0),
-        new Vector3Int(0, -1, 0),
-        new Vector3Int(1, 0, 0),
-        new Vector3Int(-1, 0, 0)
-    };
+        Vector3Int direction = new Vector3Int(0, 1, 0);
+        spawnPoint += (direction * distanceFromFirstRoom);
+        GameObject RoomInstance = Instantiate(roomPrefabs[0], spawnPoint, Quaternion.identity);
 
-    public static Vector3Int GetRandomCardinalDirection(int index)
+        //delete room 0 walls
+        Vector3Int topGap1 = new(-1, (firstRoomHeight / 2) - 1, 0);
+        Vector3Int topGap2 = new(0, (firstRoomHeight / 2) - 1, 0);
+        startRoomWalls.SetTile(topGap1, null);
+        startRoomWalls.SetTile(topGap2, null);
+
+        //find room 1 wall tilemap
+        Tilemap wallTilemap = FindTilemapWithTag(RoomInstance, wallTilemapTag);
+
+        //checking room 1 wall tilemap dimensions
+        wallTilemap.CompressBounds();
+        int enmyGridWidth = wallTilemap.size.x;
+        int enmyGridHeight = wallTilemap.size.y;
+        Debug.Log(enmyGridHeight + ", " + enmyGridWidth);
+
+        //checking room 1 wall tilemap tiles to be deleted
+        Vector3Int enmyBottomGap1 = new(-1, -(enmyGridHeight / 2), 0);
+        Vector3Int enmyBottomGap2 = new(0, -(enmyGridHeight / 2), 0);
+        Debug.Log(enmyBottomGap1 + ", " + enmyBottomGap2); // shld be -8
+
+        //delete appropriate room 1 walls
+        wallTilemap.CompressBounds();
+        wallTilemap.SetTile(enmyBottomGap1, null);
+        wallTilemap.SetTile(enmyBottomGap2, null);
+
+        //spawn corridor
+        Vector3 corrSpawnPoint = new Vector3(0, 6, 0);
+        Instantiate(vertCorridor, corrSpawnPoint, Quaternion.identity);
+    }
+
+    void SpawnRoomOnBottom(Vector3 spawnPoint, int distanceFromFirstRoom, int firstRoomHeight, string wallTilemapTag)
     {
-        return cardinalDirectionsList[index];
+        Vector3Int direction = new Vector3Int(0, -1, 0);
+        spawnPoint += (direction * distanceFromFirstRoom);
+        GameObject RoomInstance = Instantiate(roomPrefabs[0], spawnPoint, Quaternion.identity);
+
+        //delete room 0 walls
+        Vector3Int bottomGap1 = new(-1, -(firstRoomHeight / 2), 0);
+        Vector3Int bottomGap2 = new(0, -(firstRoomHeight / 2), 0);
+        startRoomWalls.SetTile(bottomGap1, null);
+        startRoomWalls.SetTile(bottomGap2, null);
+
+        //find room 1 wall tilemap
+        Tilemap wallTilemap = FindTilemapWithTag(RoomInstance, wallTilemapTag);
+
+        //checking room 1 wall tilemap dimensions
+        wallTilemap.CompressBounds();
+        int enmyGridWidth = wallTilemap.size.x;
+        int enmyGridHeight = wallTilemap.size.y;
+        Debug.Log(enmyGridHeight + ", " + enmyGridWidth);
+
+        //checking room 1 wall tilemap tiles to be deleted
+        Vector3Int enmyTopGap1 = new(-1, (enmyGridHeight / 2) - 1, 0);
+        Vector3Int enmyTopGap2 = new(0, (enmyGridHeight / 2) - 1, 0);
+        Debug.Log(enmyTopGap1 + ", " + enmyTopGap2); // shld be 7
+
+        //delete appropriate room 1 walls
+        wallTilemap.CompressBounds();
+        wallTilemap.SetTile(enmyTopGap1, null);
+        wallTilemap.SetTile(enmyTopGap2, null);
+
+        //spawn corridor
+        Vector3 corrSpawnPoint = new Vector3(0, -7, 0);
+        Instantiate(vertCorridor, corrSpawnPoint, Quaternion.identity);
+    }
+
+    void SpawnRoomOnRight(Vector3 spawnPoint, int distanceFromFirstRoom, int firstRoomWidth, string wallTilemapTag)
+    {
+        Vector3Int direction = new Vector3Int(1, 0, 0);
+        spawnPoint += (direction * distanceFromFirstRoom);
+        GameObject RoomInstance = Instantiate(roomPrefabs[0], spawnPoint, Quaternion.identity);
+
+        //delete room 0 walls
+        Vector3Int rightGap1 = new Vector3Int((firstRoomWidth / 2) - 1, 0, 0);
+        Vector3Int rightGap2 = new Vector3Int((firstRoomWidth / 2) - 1, -1, 0);
+        startRoomWalls.SetTile(rightGap1, null);
+        startRoomWalls.SetTile(rightGap2, null);
+
+        //find room 1 wall tilemap
+        Tilemap wallTilemap = FindTilemapWithTag(RoomInstance, wallTilemapTag);
+
+        //checking room 1 wall tilemap dimensions
+        wallTilemap.CompressBounds();
+        int enmyGridWidth = wallTilemap.size.x;
+        int enmyGridHeight = wallTilemap.size.y;
+        Debug.Log(enmyGridHeight + ", " + enmyGridWidth);
+
+        //checking room 1 wall tilemap tiles to be deleted
+        Vector3Int enmyRightGap1 = new Vector3Int(-(enmyGridWidth / 2), 0, 0);
+        Vector3Int enmyRightGap2 = new Vector3Int(-(enmyGridWidth / 2), -1, 0);
+        Debug.Log(enmyRightGap1 + ", " + enmyRightGap2); // shld be
+
+        //delete appropriate room 1 walls
+        wallTilemap.CompressBounds();
+        wallTilemap.SetTile(enmyRightGap1, null);
+        wallTilemap.SetTile(enmyRightGap2, null);
+
+        //spawn corridor
+        Vector3 corrSpawnPoint = new Vector3(10, 0, 0);
+        Instantiate(horCorridor, corrSpawnPoint, Quaternion.identity);
+    }
+
+    void SpawnRoomOnLeft(Vector3 spawnPoint, int distanceFromFirstRoom, int firstRoomWidth, string wallTilemapTag)
+    {
+        Vector3Int direction = new Vector3Int(-1, 0, 0);
+        spawnPoint += (direction * distanceFromFirstRoom);
+        GameObject RoomInstance = Instantiate(roomPrefabs[0], spawnPoint, Quaternion.identity);
+
+        //delete room 0 walls
+        Vector3Int leftGap1 = new Vector3Int(-(firstRoomWidth / 2), 0, 0);
+        Vector3Int leftGap2 = new Vector3Int(-(firstRoomWidth / 2), -1, 0);
+        startRoomWalls.SetTile(leftGap1, null);
+        startRoomWalls.SetTile(leftGap2, null);
+
+        //find room 1 wall tilemap
+        Tilemap wallTilemap = FindTilemapWithTag(RoomInstance, wallTilemapTag);
+
+        //checking room 1 wall tilemap dimensions
+        wallTilemap.CompressBounds();
+        int enmyGridWidth = wallTilemap.size.x;
+        int enmyGridHeight = wallTilemap.size.y;
+        Debug.Log(enmyGridHeight + ", " + enmyGridWidth);
+
+        //checking room 1 wall tilemap tiles to be deleted
+        Vector3Int enmyLeftGap1 = new Vector3Int((enmyGridWidth / 2) - 1, 0, 0);
+        Vector3Int enmyLeftGap2 = new Vector3Int((enmyGridWidth / 2) - 1, -1, 0);
+        Debug.Log(enmyLeftGap1 + ", " + enmyLeftGap2); //shld be 6
+
+        //delete appropriate room 1 walls
+        wallTilemap.CompressBounds();
+        wallTilemap.SetTile(enmyLeftGap1, null);
+        wallTilemap.SetTile(enmyLeftGap2, null);
+
+        Vector3 corrSpawnPoint = new Vector3(-11, 0, 0);
+        Instantiate(horCorridor, corrSpawnPoint, Quaternion.identity);
     }
 }
