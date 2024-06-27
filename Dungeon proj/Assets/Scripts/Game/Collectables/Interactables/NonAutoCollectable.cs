@@ -10,8 +10,9 @@ public class NonAutoCollectable : MonoBehaviour
     private WeaponCollectableBehaviour _weaponCollectableBehaviour;
     private PlayerWeaponController _playerWeaponController;
     private CoinController _coinController;
-    
-    private bool _itemInteracted; 
+    private ShopAreaDetection _shopAreaDetection;
+
+    private bool _itemInteracted;
     public int itemPrice;
     public bool _isInShop;
 
@@ -19,6 +20,7 @@ public class NonAutoCollectable : MonoBehaviour
     {
         _collectableBehaviour = GetComponent<interfaceCollectableBehaviour>();
         _weaponCollectableBehaviour = GetComponent<WeaponCollectableBehaviour>();
+        _shopAreaDetection = FindObjectOfType<ShopAreaDetection>();
     }
 
     public void OnTriggerStay2D(Collider2D collider)
@@ -27,15 +29,42 @@ public class NonAutoCollectable : MonoBehaviour
         _playerWeaponController = collider.GetComponentInChildren<PlayerWeaponController>();
         _coinController = collider.GetComponent<CoinController>();
 
-        if (collider.gameObject.tag == "Player" && _itemInteracted)
+        if (collider.gameObject.tag == "Player")
         {
-            if (_isInShop)
+            if (_isInShop && _shopAreaDetection != null)
             {
-                if (_coinController != null && _coinController.coinAmt >= itemPrice)
+                //show shop merchant the item price
+                _shopAreaDetection.ShowItemPrice(itemPrice);
+            }
+
+            if (_itemInteracted)
+            {
+                if (_isInShop)
                 {
+                    if (_coinController != null && _coinController.coinAmt >= itemPrice)
+                    {
+                        if (_weaponCollectableBehaviour == null || !_playerWeaponController.IsWeaponInInventory(GetComponent<WeaponIdentifier>().weaponIndex))
+                        {
+                            _coinController.DeductCoinAmt(itemPrice);
+                            _collectableBehaviour.OnCollected(player.gameObject);
+                            Destroy(gameObject);
+                        }
+
+                        if (_weaponCollectableBehaviour != null && _playerWeaponController.IsWeaponInInventory(GetComponent<WeaponIdentifier>().weaponIndex))
+                        {
+                            Debug.Log("Weapon already in inventory");
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("Not enough coins to buy this item.");
+                    }
+                }
+                else
+                {
+                    // Free item on map
                     if (_weaponCollectableBehaviour == null || !_playerWeaponController.IsWeaponInInventory(GetComponent<WeaponIdentifier>().weaponIndex))
                     {
-                        _coinController.DeductCoinAmt(itemPrice);
                         _collectableBehaviour.OnCollected(player.gameObject);
                         Destroy(gameObject);
                     }
@@ -44,24 +73,6 @@ public class NonAutoCollectable : MonoBehaviour
                     {
                         Debug.Log("Weapon already in inventory");
                     }
-                }
-                else
-                {
-                    Debug.Log("Not enough coins to buy this item.");
-                }
-            }
-            else
-            {
-                // Free item on map
-                if (_weaponCollectableBehaviour == null || !_playerWeaponController.IsWeaponInInventory(GetComponent<WeaponIdentifier>().weaponIndex))
-                {
-                    _collectableBehaviour.OnCollected(player.gameObject);
-                    Destroy(gameObject);
-                }
-
-                if (_weaponCollectableBehaviour != null && _playerWeaponController.IsWeaponInInventory(GetComponent<WeaponIdentifier>().weaponIndex))
-                {
-                    Debug.Log("Weapon already in inventory");
                 }
             }
         }
