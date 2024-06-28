@@ -5,15 +5,17 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private Camera _camera;
-
     [SerializeField]
     private int _damage;
 
-    private void Awake() 
-    {
-        _camera = Camera.main;
-    }
+    [SerializeField]
+    private bool _isExplosive = false;
+
+    [SerializeField]
+    private float _explosionRadius = 5.0f;
+
+    [SerializeField]
+    private GameObject _explosionEffect; //visual effect
 
     /*    
     * private void Update() 
@@ -28,14 +30,48 @@ public class Bullet : MonoBehaviour
        {
             HealthController healthController = collision.GetComponent<HealthController>();
             healthController.TakeDamage(_damage);
+            if (_isExplosive)
+            {
+                Explode();
+            }
             Destroy(gameObject); //destroy bullet
        }
 
        if (collision.CompareTag("Wall"))
         {
+            if (_isExplosive)
+            {
+                Explode();
+            }
             Destroy(gameObject);
         }
     }
+
+    private void Explode()
+    {
+        if (_explosionEffect != null)
+        {
+            Instantiate(_explosionEffect, transform.position, Quaternion.identity);
+        }
+        //Hit enemies in the set explosion radius
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _explosionRadius);
+        foreach (Collider2D collider in colliders)
+        {
+            HealthController healthController = collider.GetComponent<HealthController>();
+            if (healthController != null && collider.GetComponent<EnemyMovement>() != null)
+            {
+                healthController.TakeDamage(_damage);
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _explosionRadius);
+    }
+
+    
 
 /*    private void DestroyWhenOffScreen() 
     {

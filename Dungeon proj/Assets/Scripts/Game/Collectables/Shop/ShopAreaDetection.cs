@@ -57,9 +57,11 @@ public class ShopAreaDetection : MonoBehaviour
         textBubbleContent.enabled = true;
     }
 
+    private List<string> walkAwayDialogues = new List<string> { "TAKE YOUR TIME", "DON'T BE A STRANGER", "NOT BUYING?", "IT'S FREE TO LOOK" };
+
     public void HideItemPrice()
     {
-        textBubble.SetActive(false);
-        textBubbleContent.enabled = false;
+        int index = Random.Range(0,walkAwayDialogues.Count);
+        textBubbleContent.text = walkAwayDialogues[index];
     }
 }

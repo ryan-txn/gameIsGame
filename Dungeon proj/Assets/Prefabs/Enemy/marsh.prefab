@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -1251957584, guid: c5b5431e2408c6d4a949f19e85822d26, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.90666676, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 89863215873590398}
   - component: {fileID: 3356042810094577946}
   m_Layer: 2
-  m_Name: skelebread
+  m_Name: marsh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -419,7 +419,7 @@ MonoBehaviour:
   bulletSpeed: 3
   _bulletFirePoint: {fileID: 1912321221332843624}
   _shootAnimationDuration: 0.35
-  _isSpreadShot: 0
+  _isSpreadShot: 1
 --- !u!114 &3356042810094577946
 MonoBehaviour:
   m_ObjectHideFlags: 0

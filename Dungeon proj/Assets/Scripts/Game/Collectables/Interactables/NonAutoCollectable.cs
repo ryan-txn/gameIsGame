@@ -82,4 +82,12 @@ public class NonAutoCollectable : MonoBehaviour
     {
         _itemInteracted = inputValue.isPressed;
     }
+
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player" && _isInShop && _shopAreaDetection != null)
+        {
+            _shopAreaDetection.HideItemPrice();
+        }
+    }
 }

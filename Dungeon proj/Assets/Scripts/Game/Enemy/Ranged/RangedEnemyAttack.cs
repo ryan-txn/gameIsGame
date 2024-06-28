@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RangedEnemyAttack : MonoBehaviour
@@ -11,10 +12,16 @@ public class RangedEnemyAttack : MonoBehaviour
     private float _timeBetweenShots;
 
     [SerializeField]
-    private float bulletSpeed; 
-    
+    private float bulletSpeed;
+
     [SerializeField]
     private Transform _bulletFirePoint;
+
+    [SerializeField]
+    private float _shootAnimationDuration;
+
+    [SerializeField]
+    private bool _isSpreadShot;
 
     private float lastFireTime;
     private PlayerAwarenessController _playerAwarenessController;
@@ -38,7 +45,7 @@ public class RangedEnemyAttack : MonoBehaviour
         {
             StartCoroutine(ShootCoroutine());
             lastFireTime = Time.time;
-        }        
+        }
     }
 
     private IEnumerator ShootCoroutine()
@@ -48,7 +55,7 @@ public class RangedEnemyAttack : MonoBehaviour
 
         FireBullet();
 
-        yield return new WaitForSeconds(0.35f); // Adjust this duration to match your shooting animation duration
+        yield return new WaitForSeconds(_shootAnimationDuration); // Adjust this duration to match your shooting animation duration
 
         _isShooting = false;
         SetAnimation();
@@ -61,13 +68,50 @@ public class RangedEnemyAttack : MonoBehaviour
 
     private void FireBullet()
     {
+        if (_isSpreadShot)
+        {
+            FireSpreadShot();
+        }
+        else
+        {
+            FireSingleShot();
+        }
+    }
+
+    private void FireSingleShot()
+    {
         GameObject bullet = Instantiate(_bulletPrefab, _bulletFirePoint.position, Quaternion.identity);
         Vector2 direction = _playerAwarenessController.DirectionToPlayer;
-        bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed; 
+        bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
 
         // Rotate the bullet to face the direction of travel
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         angle += 90;
         bullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
+
+    private void FireSpreadShot()
+    {
+        int numberOfProjectiles = 12; // Total number of projectiles including the main one
+        float spreadAngle = 30f; // Angle between each projectile
+
+        Vector2 directionToPlayer = _playerAwarenessController.DirectionToPlayer;
+        float baseAngle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+
+        for (int i = 0; i < numberOfProjectiles; i++)
+        {
+            float angleOffset = (i - numberOfProjectiles / 2) * spreadAngle;
+            float angle = baseAngle + angleOffset;
+            Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+
+            GameObject bullet = Instantiate(_bulletPrefab, _bulletFirePoint.position, Quaternion.identity);
+            bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+
+            // Rotate the bullet to face the direction of travel
+            float bulletAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            bulletAngle += 90;
+            bullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, bulletAngle));
+        }
+    }
+
 }
