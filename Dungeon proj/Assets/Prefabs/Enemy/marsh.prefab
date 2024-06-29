@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6476681306298437514}
   - component: {fileID: 4485336775462399408}
   - component: {fileID: 2197546647642552953}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 1650503849
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1251957584, guid: c5b5431e2408c6d4a949f19e85822d26, type: 3}
-  m_Color: {r: 0.90666676, g: 0, b: 1, a: 1}
+  m_Sprite: {fileID: -1196753650, guid: 8a7d3a8345accb04396137131aea9bbe, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 738489649393495243}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: af85e6d7fb1eb6b4788dace4829afaf6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 466b2fb84b8f82a488766bafdf556124, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1912321221332843624}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Bullet fire point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ Transform:
   m_GameObject: {fileID: 1312685419210793314}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.012, y: -0.163, z: 0}
+  m_LocalPosition: {x: 0.262, y: 0.206, z: 0}
   m_LocalScale: {x: 0.81144, y: 0.81144, z: 0.81144}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 3356042810094577946}
   m_Layer: 2
   m_Name: marsh
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5f114c6de164a34380a319355b85caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
+  _speed: 0.75
 --- !u!114 &3450350230769496793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,11 +414,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9869ed42928d4e14da1c527aa7fec338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 649121753725581618, guid: 12ca2cbad2f500d4dadd190e37698c8e, type: 3}
-  _timeBetweenShots: 2
+  _bulletPrefab: {fileID: 649121753725581618, guid: 8410d0634566c484ea013fa396aa8903, type: 3}
+  _timeBetweenShots: 2.5
   bulletSpeed: 3
   _bulletFirePoint: {fileID: 1912321221332843624}
-  _shootAnimationDuration: 0.35
+  _shootAnimationDuration: 1
   _isSpreadShot: 1
 --- !u!114 &3356042810094577946
 MonoBehaviour:

@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7980992190805637019}
   - component: {fileID: 5809280855481423392}
-  - component: {fileID: 4248177158060301430}
-  - component: {fileID: 3772113980382811406}
+  - component: {fileID: 4629697241336923311}
+  - component: {fileID: 8829228505591085928}
   m_Layer: 0
-  m_Name: Eggplant bullet
+  m_Name: Marsh Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.018604781, y: 0.8093305, z: 0.10143098}
-  m_LocalScale: {x: 1.66, y: 1.66, z: 1.66}
+  m_LocalScale: {x: 11.39, y: 1.9576635, z: 5.695}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6727393237781452848}
@@ -62,27 +62,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4248177158060301430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649121753725581618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a94ef2ae599234988afa7b98db2a0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 15
-  _isExplosive: 1
-  _explosionRadius: 2
-  _explosionForce: 200
-  _explosionEffect: {fileID: 3952979388403058086, guid: d8163f1521a3c4e4993cae1b15591a8a, type: 3}
-  _enemyLayerMask:
-    serializedVersion: 2
-    m_Bits: 4
---- !u!70 &3772113980382811406
+--- !u!70 &4629697241336923311
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,9 +94,22 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0033266693, y: -0.0033266842}
-  m_Size: {x: 0.14166382, y: 0.17805928}
+  m_Offset: {x: 0.000016384734, y: -0.0028604337}
+  m_Size: {x: 0.029587928, y: 0.18644994}
   m_Direction: 0
+--- !u!114 &8829228505591085928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649121753725581618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 053f032d7f426de439d313f252779e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 10
 --- !u!1 &3347322777328838153
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,7 +137,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.10143098}
-  m_LocalScale: {x: 0.31220162, y: 0.31220162, z: 1.7344532}
+  m_LocalScale: {x: 0.059747446, y: 0.36629164, z: 1.1417}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7980992190805637019}
@@ -190,8 +183,8 @@ SpriteRenderer:
   m_SortingLayerID: -754281857
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bc9d2b01d6d3d254caebdbf9cfc5b83d, type: 3}
-  m_Color: {r: 0.99371064, g: 0.99371064, b: 0.99371064, a: 1}
+  m_Sprite: {fileID: 21300000, guid: b5655654d30609146bd25a606c0921a6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
