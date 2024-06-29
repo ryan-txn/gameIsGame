@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 89863215873590398}
   - component: {fileID: 3356042810094577946}
   m_Layer: 2
-  m_Name: marsh
+  m_Name: marsh guard
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -266,9 +266,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.044138957, y: -0.060028914}
+  m_Offset: {x: -0.11564276, y: -0.2683239}
   serializedVersion: 2
-  m_Radius: 0.32817638
+  m_Radius: 0.34061134
 --- !u!114 &-369622680052293847
 MonoBehaviour:
   m_ObjectHideFlags: 0

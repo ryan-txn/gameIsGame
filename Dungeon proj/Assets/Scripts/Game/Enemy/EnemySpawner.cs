@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _enemyPrefab;
+    private List<GameObject> _enemyList;
 
     [SerializeField]
     private float _minimumSpawnTime;
@@ -14,11 +14,13 @@ public class EnemySpawner : MonoBehaviour
     private float _maximumSpawnTime;
 
     private float _timeUntilSpawn;
+    private GameObject _enemyPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
-        SetTimeUntilSpawn();   
+        SetTimeUntilSpawn();  
+        RandomiseEnemy(); 
     }
 
     // Update is called once per frame
@@ -36,5 +38,11 @@ public class EnemySpawner : MonoBehaviour
     private void SetTimeUntilSpawn()
     {
         _timeUntilSpawn = Random.Range(_minimumSpawnTime, _maximumSpawnTime);
+    }
+
+    private void RandomiseEnemy()
+    {
+        int index = Random.Range(0, _enemyList.Count);
+        _enemyPrefab = _enemyList[index];
     }
 }
