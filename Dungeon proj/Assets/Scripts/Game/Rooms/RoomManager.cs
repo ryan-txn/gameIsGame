@@ -46,7 +46,7 @@ public class RoomManager : MonoBehaviour
         else rootRoom = SpawnRoomOnBottom(isRoot, firstRoom, secondRoom, 15, wallTilemapTag, 8);
 
         positionIndex = currentDirections[Random.Range(0, currentDirections.Count)];
-        currentDirections.Remove(3 - positionIndex);
+        currentDirections.Remove(positionIndex);
         firstRoom = rootRoom;
         secondRoom = enemyRoomPrefabs[1];
         GameObject spawnedRoom;
@@ -55,6 +55,16 @@ public class RoomManager : MonoBehaviour
         else if (positionIndex == 1) spawnedRoom = SpawnRoomOnLeft(isRoot, firstRoom, secondRoom, 12, wallTilemapTag, 4); //12 ok, 4 ok
         else if (positionIndex == 2) spawnedRoom = SpawnRoomOnRight(isRoot, firstRoom, secondRoom, 12, wallTilemapTag, 5); //12 ok, 5 ok
         else spawnedRoom = SpawnRoomOnBottom(isRoot, firstRoom, secondRoom, 13, wallTilemapTag, 4); //13 ok, 4 ok
+
+        positionIndex = currentDirections[Random.Range(0, currentDirections.Count)];
+        currentDirections.Remove(positionIndex);
+        firstRoom = rootRoom;
+        secondRoom = enemyRoomPrefabs[2];
+        isRoot = false;
+        if (positionIndex == 0) spawnedRoom = SpawnRoomOnTop(isRoot, firstRoom, secondRoom, 15, wallTilemapTag, 7); //13 ok, 5 ok
+        else if (positionIndex == 1) spawnedRoom = SpawnRoomOnLeft(isRoot, firstRoom, secondRoom, 14, wallTilemapTag, 6); //12 ok, 4 ok
+        else if (positionIndex == 2) spawnedRoom = SpawnRoomOnRight(isRoot, firstRoom, secondRoom, 14, wallTilemapTag, 7); //12 ok, 5 ok
+        else spawnedRoom = SpawnRoomOnBottom(isRoot, firstRoom, secondRoom, 15, wallTilemapTag, 6); //13 ok, 4 ok
 
         //sometimes spawns same place as chest room
         positionIndex = currentDirections[Random.Range(0, currentDirections.Count)];
