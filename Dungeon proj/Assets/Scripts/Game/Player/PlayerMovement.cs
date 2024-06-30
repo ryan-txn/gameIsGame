@@ -7,10 +7,6 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private float _speed;
-    [SerializeField]
-    private float _rotationSpeed;
-    [SerializeField]
-    private float _screenBorder;
 
     private Rigidbody2D _rigidbody;
     private Vector2 _movementInput;

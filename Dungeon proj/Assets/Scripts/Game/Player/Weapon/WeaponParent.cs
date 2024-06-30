@@ -9,6 +9,11 @@ public class WeaponParent : MonoBehaviour
 
     private void FixedUpdate()
     {
+        WeaponFollowCursor();
+    }
+
+    private void WeaponFollowCursor()
+    {
         // Get the mouse position in world space
         Vector3 pointerPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pointerPosition.z = transform.position.z; // Make sure to keep the z-coordinate unchanged
