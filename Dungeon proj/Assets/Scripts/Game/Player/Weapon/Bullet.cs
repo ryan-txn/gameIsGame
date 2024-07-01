@@ -23,6 +23,16 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private LayerMask _enemyLayerMask; // Layer mask for enemies
 
+    [SerializeField]
+    private bool _isBouncy = false;
+
+    [SerializeField]
+    private int _maxNumberOfBounces;
+
+    private int _bounceCount = 0;
+
+    Vector2 _bulletVelocity;
+
 
     /*    
     * private void Update() 
@@ -31,27 +41,56 @@ public class Bullet : MonoBehaviour
     * }
     */
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private Rigidbody2D _rigidbody2D;
+
+    private void Awake()
     {
-        if (collision.GetComponent<EnemyMovement>())
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        _bulletVelocity = _rigidbody2D.velocity;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Wall") || collision.collider.GetComponent<EnemyMovement>())
         {
-            HealthController healthController = collision.GetComponent<HealthController>();
+            HandleCollision(collision);
+            
+        }
+    }
+
+    private void HandleCollision(Collision2D collision)
+    {
+        if (collision.collider.GetComponent<EnemyMovement>())
+        {
+            HealthController healthController = collision.collider.GetComponent<HealthController>();
             healthController.TakeDamage(_damage);
-            if (_isExplosive)
-            {
-                Explode();
-            }
-            Destroy(gameObject); //destroy bullet
         }
 
-        if (collision.CompareTag("Wall"))
+        if (_isExplosive)
         {
-            if (_isExplosive)
-            {
-                Explode();
-            }
-            Destroy(gameObject);
+            Explode();
         }
+
+        if (_isBouncy)
+            {
+                if (_bounceCount >= _maxNumberOfBounces)
+                {
+                    Destroy(gameObject); // Destroy bullet after reaching max bounces
+                }
+                else
+                {
+                    _bounceCount++;
+                    Bounce(collision);
+                }
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
     }
 
     private void Explode()
@@ -82,7 +121,7 @@ public class Bullet : MonoBehaviour
 
                 Debug.Log($"Applying force: {forceMagnitude} to {collider.gameObject.name} in direction {explosionDirection}");
 
-                rb.AddForce(explosionDirection * forceMagnitude, ForceMode2D.Impulse);                 
+                rb.AddForce(explosionDirection * forceMagnitude, ForceMode2D.Impulse);
                 healthController.TakeDamage(_damage);
             }
         }
@@ -92,6 +131,18 @@ public class Bullet : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _explosionRadius);
+    }
+
+    private void Bounce(Collision2D collision)
+    {
+        if (_rigidbody2D != null)
+        {
+            // Get reflection vector using normal of contact point
+            Vector2 reflectDirection = Vector2.Reflect(_rigidbody2D.velocity, collision.contacts[0].normal);
+            var _speed = _bulletVelocity.magnitude;
+
+            _rigidbody2D.velocity = reflectDirection.normalized * _speed;
+        }
     }
 
 
