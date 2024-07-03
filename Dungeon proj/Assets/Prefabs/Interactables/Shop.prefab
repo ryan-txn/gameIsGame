@@ -51,6 +51,7 @@ MonoBehaviour:
   - {fileID: 6756175940945520477, guid: bff6123167b42cf4997fcf221ef40814, type: 3}
   - {fileID: 6756175940945520477, guid: ae7862303fdcf7e46901e667ce95037b, type: 3}
   - {fileID: 6756175940945520477, guid: 7688b660bdff00a478526c41a66bb361, type: 3}
+  - {fileID: 6756175940945520477, guid: a934a7f5e77415a42ab80642c7acc6d5, type: 3}
   _shopItemContainer: {fileID: 6831339276869930931}
   numberOfItemsInShop: 4
   itemSpawnOffset: {x: 2, y: 0}
