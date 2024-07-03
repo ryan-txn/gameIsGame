@@ -31,8 +31,6 @@ public class Bullet : MonoBehaviour
 
     private int _bounceCount = 0;
 
-    Vector2 _bulletVelocity;
-
 
     /*    
     * private void Update() 
@@ -42,15 +40,17 @@ public class Bullet : MonoBehaviour
     */
 
     private Rigidbody2D _rigidbody2D;
+    private float _initialSpeed;
 
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        _bulletVelocity = _rigidbody2D.velocity;
+        _initialSpeed = _rigidbody2D.velocity.magnitude;
+        _rigidbody2D.velocity = _rigidbody2D.velocity;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -58,7 +58,6 @@ public class Bullet : MonoBehaviour
         if (collision.collider.CompareTag("Wall") || collision.collider.GetComponent<EnemyMovement>())
         {
             HandleCollision(collision);
-            
         }
     }
 
@@ -70,27 +69,32 @@ public class Bullet : MonoBehaviour
             healthController.TakeDamage(_damage);
         }
 
-        if (_isExplosive)
-        {
-            Explode();
-        }
+        Rigidbody2D collisionRigidbody = collision.collider.GetComponent<Rigidbody2D>();
 
-        if (_isBouncy)
+        if (collisionRigidbody != null)
+        {
+            if (_isExplosive)
             {
-                if (_bounceCount >= _maxNumberOfBounces)
+                Explode();
+            }
+
+            if (_isBouncy)
+            {
+                _bounceCount++;
+                if (_bounceCount > _maxNumberOfBounces)
                 {
                     Destroy(gameObject); // Destroy bullet after reaching max bounces
                 }
                 else
                 {
-                    _bounceCount++;
                     Bounce(collision);
                 }
             }
             else
             {
-                Destroy(gameObject);
+                Destroy(gameObject); // Destroy non-bouncy bullet after collision
             }
+        }
     }
 
     private void Explode()
@@ -138,10 +142,13 @@ public class Bullet : MonoBehaviour
         if (_rigidbody2D != null)
         {
             // Get reflection vector using normal of contact point
-            Vector2 reflectDirection = Vector2.Reflect(_rigidbody2D.velocity, collision.contacts[0].normal);
-            var _speed = _bulletVelocity.magnitude;
+            Vector2 reflectDirection = Vector2.Reflect(_rigidbody2D.velocity.normalized, collision.contacts[0].normal);
 
-            _rigidbody2D.velocity = reflectDirection.normalized * _speed;
+            // Blend the incoming direction with the reflected direction
+            float blendFactor = 0.7f; // Adjust this to smooth out the bounce angle
+            Vector2 smoothedDirection = Vector2.Lerp(_rigidbody2D.velocity.normalized, reflectDirection, blendFactor).normalized;
+
+            _rigidbody2D.velocity = smoothedDirection * (_initialSpeed * 0.75f);
         }
     }
 
