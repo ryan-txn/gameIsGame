@@ -12,7 +12,6 @@ public class RoomManager : MonoBehaviour
 
     [SerializeField]
     private GameObject vertCorridor;
-
     [SerializeField]
     private GameObject horCorridor;
 
@@ -68,6 +67,17 @@ public class RoomManager : MonoBehaviour
         spawnedRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, room_distance, wallTilemapTag, corr_distance);
 
         positionIndex = currentDirections[Random.Range(0, currentDirections.Count)];
+        firstRoom = rootRoom;
+        secondRoom = enemyRoomPrefabs[0];
+        isRoot = true;
+        direction = ReturnDirection(positionIndex);
+        room_distance = FindDistanceRooms(firstRoom, secondRoom, direction);
+        corr_distance = FindDistanceCorr(secondRoom, direction);
+        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, room_distance, wallTilemapTag, corr_distance);
+
+        currentDirections = new List<int> { 0, 1, 2, 3 };
+        currentDirections.RemoveAt(3 - positionIndex); //remove opposite index option
+        positionIndex = Random.Range(0, currentDirections.Count); //get position from 0-3
         firstRoom = rootRoom;
         secondRoom = enemyRoomPrefabs[0];
         isRoot = true;
@@ -133,22 +143,10 @@ public class RoomManager : MonoBehaviour
         Tilemap.CompressBounds();
         int RoomHeight = Tilemap.size.y;
         int RoomWidth = Tilemap.size.x;
-        if (direction == new Vector3Int(0, 1, 0))
-        {
-            distance = (RoomHeight / 2) + 1;
-        }
-        else if (direction == new Vector3Int(0, -1, 0))
-        {
-            distance = (RoomHeight / 2);
-        }
-        else if (direction == new Vector3Int(1, 0, 0))
-        {
-            distance = (RoomWidth / 2) + 1;
-        }
-        else
-        {
-            distance = (RoomWidth / 2);
-        }
+        if (direction == new Vector3Int(0, 1, 0)) distance = (RoomHeight / 2) + 1;
+        else if (direction == new Vector3Int(0, -1, 0)) distance = (RoomHeight / 2);
+        else if (direction == new Vector3Int(1, 0, 0)) distance = (RoomWidth / 2) + 1;
+        else distance = (RoomWidth / 2);
 
         return distance;
     }
