@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5809280855481423392}
   - component: {fileID: 4629697241336923311}
   - component: {fileID: 8829228505591085928}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Marsh Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

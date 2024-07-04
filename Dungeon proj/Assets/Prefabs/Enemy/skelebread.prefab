@@ -147,9 +147,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6178371942024666961}
   - component: {fileID: 7629316642225931625}
+  - component: {fileID: 4488764086988274523}
   - component: {fileID: 5240419878180326412}
   - component: {fileID: 3450350230769496793}
-  - component: {fileID: 4852015983770923974}
   - component: {fileID: -369622680052293847}
   - component: {fileID: 6402856309588444279}
   - component: {fileID: 33876769468005023}
@@ -207,35 +207,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5240419878180326412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7142303272250041979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5f114c6de164a34380a319355b85caf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 1
---- !u!114 &3450350230769496793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7142303272250041979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc6200054432ac04691c4a193aa23f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerAwarenessDistance: 7
-  _lossAwarenessDelay: 1
---- !u!58 &4852015983770923974
-CircleCollider2D:
+--- !u!70 &4488764086988274523
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -266,9 +239,36 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.044138957, y: -0.060028914}
-  serializedVersion: 2
-  m_Radius: 0.32817638
+  m_Offset: {x: -0.037960075, y: -0.06716003}
+  m_Size: {x: 0.46496034, y: 0.69632}
+  m_Direction: 0
+--- !u!114 &5240419878180326412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7142303272250041979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5f114c6de164a34380a319355b85caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 1
+--- !u!114 &3450350230769496793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7142303272250041979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6200054432ac04691c4a193aa23f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerAwarenessDistance: 7
+  _lossAwarenessDelay: 1
 --- !u!114 &-369622680052293847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +311,7 @@ MonoBehaviour:
           m_StringArgument: OnDie
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4852015983770923974}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6

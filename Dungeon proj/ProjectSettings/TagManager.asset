@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Wall
   - Enemy
+  - Player Collectable
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ignore Laser
   - Water
   - UI
   - 

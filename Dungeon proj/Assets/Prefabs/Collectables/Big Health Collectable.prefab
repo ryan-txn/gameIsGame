@@ -13,6 +13,10 @@ PrefabInstance:
       value: Big Health Collectable
       objectReference: {fileID: 0}
     - target: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

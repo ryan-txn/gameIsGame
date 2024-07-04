@@ -38,11 +38,19 @@ public class PlayerAwarenessController : MonoBehaviour
         // Direction, normalized magnitude
         DirectionToPlayer = enemyToPlayerVector.normalized;
 
-        if ((enemyToPlayerVector.magnitude <= _playerAwarenessDistance) && hasLineOfSight)
+        if (enemyToPlayerVector.magnitude <= _playerAwarenessDistance)
         {
-            Debug.DrawRay(transform.position, _playerObject.transform.position - transform.position, Color.green);
-            AwareOfPlayer = true;
-            _lastAwareTime = Time.time; // Update the last aware time
+            if (gameObject.CompareTag("Player Collectable"))
+            {
+                AwareOfPlayer = true;
+            }
+            else if (hasLineOfSight)
+            {
+                Debug.DrawRay(transform.position, _playerObject.transform.position - transform.position, Color.green);
+                AwareOfPlayer = true;
+                _lastAwareTime = Time.time; // Update the last aware time
+            }
+            
         }
         else
         {

@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin
       objectReference: {fileID: 0}
+    - target: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
+      propertyPath: m_TagString
+      value: Player Collectable
+      objectReference: {fileID: 0}
     - target: {fileID: 1138447817665496743, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Size.x
       value: 0.17464757
