@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 649121753725581618, guid: b64da93a67008944a86d4f96c7243b96, type: 3}
-  _bulletSpeed: 8
+  _bulletSpeed: 9
   _gunOffset: {fileID: 1069920822}
   _timeBetweenShots: 0.25
 --- !u!212 &129741159
@@ -533,6 +533,7 @@ MonoBehaviour:
   - {fileID: 6756175940945520477, guid: bff6123167b42cf4997fcf221ef40814, type: 3}
   - {fileID: 6756175940945520477, guid: ae7862303fdcf7e46901e667ce95037b, type: 3}
   - {fileID: 6756175940945520477, guid: 7688b660bdff00a478526c41a66bb361, type: 3}
+  - {fileID: 6756175940945520477, guid: 459a755421d49444296acba2c2501985, type: 3}
   - {fileID: 6756175940945520477, guid: a934a7f5e77415a42ab80642c7acc6d5, type: 3}
 --- !u!4 &136355347
 Transform:
@@ -7929,7 +7930,7 @@ GameObject:
   - component: {fileID: 1312497245}
   - component: {fileID: 1312497244}
   m_Layer: 0
-  m_Name: Rubber Gun
+  m_Name: Bubble Gum Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7944,8 +7945,8 @@ Transform:
   m_GameObject: {fileID: 1312497242}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.21, y: -0.05, z: 0}
-  m_LocalScale: {x: 0.27, y: 0.27, z: 0.21774194}
+  m_LocalPosition: {x: 0.164, y: -0.081, z: 0}
+  m_LocalScale: {x: 0.37, y: 0.37, z: 0.29838708}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 109397221}
@@ -7994,9 +7995,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 649121753725581618, guid: 95cc47c0318dc314ca483cc24fc09a72, type: 3}
-  _bulletSpeed: 8
+  _bulletSpeed: 7
   _gunOffset: {fileID: 109397221}
-  _timeBetweenShots: 0.5
+  _timeBetweenShots: 0.3
 --- !u!212 &1312497246
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8038,7 +8039,7 @@ SpriteRenderer:
   m_SortingLayerID: -977354197
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0dd6f1ff272ff294d8d2e5652ea8f9a0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1fe13f0debfd4d546a1deec8a0b3a5ca, type: 3}
   m_Color: {r: 0.99371064, g: 0.99371064, b: 0.99371064, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8094,7 +8095,7 @@ GameObject:
   - component: {fileID: 1377073905}
   - component: {fileID: 1377073904}
   m_Layer: 0
-  m_Name: Laser Gun
+  m_Name: Honey Bee-m
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8231,8 +8232,8 @@ LineRenderer:
       m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
+    numCornerVertices: 1
+    numCapVertices: 1
     alignment: 0
     textureMode: 0
     textureScale: {x: 1, y: 1}

@@ -10,23 +10,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Name
-      value: Eggplant
+      value: Bubble Gum Gun
       objectReference: {fileID: 0}
     - target: {fileID: 1138447817665496743, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Size.x
-      value: 0.58548915
+      value: 0.730337
       objectReference: {fileID: 0}
     - target: {fileID: 1138447817665496743, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Size.y
-      value: 0.256876
+      value: 0.28537065
       objectReference: {fileID: 0}
     - target: {fileID: 1138447817665496743, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Offset.x
-      value: -0.0017416477
+      value: 0.011318326
       objectReference: {fileID: 0}
     - target: {fileID: 1138447817665496743, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Offset.y
-      value: -0.012892254
+      value: -0.055634227
       objectReference: {fileID: 0}
     - target: {fileID: 2475259422498624449, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Size.x
@@ -39,7 +39,7 @@ PrefabInstance:
     - target: {fileID: 2475259422498624449, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 29b9efa12315a1946ba936741280f2b4, type: 3}
+      objectReference: {fileID: 21300000, guid: 1fe13f0debfd4d546a1deec8a0b3a5ca, type: 3}
     - target: {fileID: 2475259422498624449, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -86,15 +86,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5987322817529133786, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.315
+      value: 0.34999996
       objectReference: {fileID: 0}
     - target: {fileID: 5987322817529133786, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.315
+      value: 0.34999996
       objectReference: {fileID: 0}
     - target: {fileID: 5987322817529133786, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.315
+      value: 0.34999996
       objectReference: {fileID: 0}
     - target: {fileID: 5987322817529133786, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -122,7 +122,7 @@ PrefabInstance:
       addedObject: {fileID: -292160745740149833}
     - targetCorrespondingSourceObject: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -719324124867613515}
+      addedObject: {fileID: -3248959427004002985}
   m_SourcePrefab: {fileID: 100100000, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
 --- !u!1 &6756175940945520477 stripped
 GameObject:
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c00101c9c495967408af1bea03de2ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrice: 2
+  itemPrice: 3
   _isInShop: 0
 --- !u!114 &1721741227309251594
 MonoBehaviour:
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e0ccd4e1744adc47a20941921572a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: '[E] EGGPLANT'
+  message: '[E] BUBBLE GUM GUN'
 --- !u!114 &6279876569747363705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,8 +210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bebd3f1653d0f7b4b813423df2383768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponIndex: 1
---- !u!114 &-719324124867613515
+  weaponIndex: 3
+--- !u!114 &-3248959427004002985
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
