@@ -18,6 +18,10 @@ public class LaserShoot : MonoBehaviour
     private LayerMask _layerMask; // LayerMask to exclude certain layers like player
 
     Transform _gunTransform;
+    StaminaController _staminaController;
+
+    [SerializeField]
+    private float _staminaCostPerShot;
 
     [SerializeField]
     private float _timeBetweenDamage;
@@ -36,14 +40,16 @@ public class LaserShoot : MonoBehaviour
     {
         _hitParticleEffect.SetActive(false);
         _gunTransform = GetComponent<Transform>();
+        _staminaController = GetComponentInParent<StaminaController>();
     }
 
     void Update()
     {
-        if (_fireContinuously || _fireSingle)
+        if ((_fireContinuously || _fireSingle) && _staminaController.currentStaminaNum >= _staminaCostPerShot)
         {
 
             ShootLaser();
+            _staminaController.ConsumeStamina(_staminaCostPerShot);
             _fireSingle = false;
         }
         else

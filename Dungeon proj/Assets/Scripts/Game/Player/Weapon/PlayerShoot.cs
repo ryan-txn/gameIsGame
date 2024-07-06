@@ -18,7 +18,11 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private float _timeBetweenShots;
 
+    [SerializeField]
+    private float _staminaCostPerShot;
+
     private Transform _player;
+    private StaminaController _staminaController;
 
     private bool _fireContinuously;
     private bool _fireSingle;
@@ -28,19 +32,20 @@ public class PlayerShoot : MonoBehaviour
     void Awake() 
     {
         _player = GetComponentInParent<Transform>();
+        _staminaController = GetComponentInParent<StaminaController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_fireContinuously || _fireSingle)
+        if ((_fireContinuously || _fireSingle) && _staminaController.currentStaminaNum >= _staminaCostPerShot)
         {
             float timeSinceLastFire = Time.time - _lastFireTime;
             
             if (timeSinceLastFire >= _timeBetweenShots)
             {
                 FireBullet();
-
+                _staminaController.ConsumeStamina(_staminaCostPerShot);
                 _lastFireTime = Time.time;
                 _fireSingle = false; //lets you single fire again by turning off delay expiry
             }
