@@ -19,6 +19,11 @@ public class UpgradeMenu : MonoBehaviour
     private bool _collided;
     private bool _menuIsOpen;
 
+    public bool menuIsOpen
+    {
+        get {return _menuIsOpen;}
+    }
+
     void Start()
     {
         _upgradeMenu.SetActive(false);

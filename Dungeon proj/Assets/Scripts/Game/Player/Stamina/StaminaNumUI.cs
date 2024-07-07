@@ -5,9 +5,6 @@ using TMPro;
 
 public class StaminaNumUI : MonoBehaviour
 {
-    [SerializeField]
-    private bool _isUpgradeMenuText = false;
-
     private TMP_Text _staminaText;
 
     private void Awake()
@@ -17,10 +14,11 @@ public class StaminaNumUI : MonoBehaviour
 
     public void UpdateStaminaNum(StaminaController staminaController)
     {
-        if (_isUpgradeMenuText == true)
-        {
-            _staminaText.text = $"MAX STAMINA: {staminaController.maxStaminaNum}"; //$ allows {} to be embedded within ""        
-        }
         _staminaText.text = $"{staminaController.currentStaminaNum} /{staminaController.maxStaminaNum}"; //$ allows {} to be embedded within ""
+    }
+
+    public void UpdateUpgradeMenu(StaminaController staminaController)
+    {
+        _staminaText.text = $"MAX STAMINA: {staminaController.maxStaminaNum}"; //$ allows {} to be embedded within ""
     }
 }

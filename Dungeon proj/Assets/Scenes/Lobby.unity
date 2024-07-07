@@ -1530,6 +1530,8 @@ GameObject:
   - component: {fileID: 258844074}
   - component: {fileID: 258844076}
   - component: {fileID: 258844075}
+  - component: {fileID: 258844077}
+  - component: {fileID: 258844078}
   m_Layer: 5
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -1594,6 +1596,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258844073}
   m_CullTransparentMesh: 1
+--- !u!95 &258844077
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258844073}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6abee521569c87342910fc53ff199016, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &258844078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258844073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658703037fac55c4fb7577ed73cbefe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &264056192
 GameObject:
   m_ObjectHideFlags: 0
@@ -5726,7 +5761,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b450194ffe50242ba5defb17c1c5fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isUpgradeMenuText: 0
 --- !u!114 &684654600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5909,7 +5943,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 604, y: 32}
+  m_AnchoredPosition: {x: 604, y: 15.43}
   m_SizeDelta: {x: 360.9, y: 83.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &705908001
@@ -11386,8 +11420,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278453495
+  m_fontColor: {r: 0.9685534, g: 0.015228729, b: 0.015228729, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11411,7 +11445,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -11466,7 +11500,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b450194ffe50242ba5defb17c1c5fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isUpgradeMenuText: 1
 --- !u!1 &1121118624
 GameObject:
   m_ObjectHideFlags: 0
@@ -12200,7 +12233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a9c59f02c57024c9d765b0fd13b3a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isUpgradeMenuText: 1
 --- !u!114 &1170509431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12230,8 +12262,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4293340160
+  m_fontColor: {r: 0, g: 0.17180216, b: 0.9056604, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -12255,7 +12287,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -12842,8 +12874,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1803158481}
-  - {fileID: 1523172181}
   - {fileID: 1627379969}
+  - {fileID: 1523172181}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -13055,7 +13087,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a9c59f02c57024c9d765b0fd13b3a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isUpgradeMenuText: 0
 --- !u!114 &1531394886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13377,7 +13408,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -13856,6 +13887,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1170509430}
+        m_TargetAssemblyTypeName: StaminaNumUI, Assembly-CSharp
+        m_MethodName: UpdateUpgradeMenu
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1700598622}
+          m_ObjectArgumentAssemblyTypeName: StaminaController, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1700598623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14080,6 +14123,18 @@ MonoBehaviour:
       - m_Target: {fileID: 684654599}
         m_TargetAssemblyTypeName: HpNumUI, Assembly-CSharp
         m_MethodName: UpdateHealthNum
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1700598629}
+          m_ObjectArgumentAssemblyTypeName: HealthController, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1081190374}
+        m_TargetAssemblyTypeName: HpNumUI, Assembly-CSharp
+        m_MethodName: UpdateUpgradeMenu
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1700598629}
@@ -14455,6 +14510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1523172178}
+  upgradeMenu: {fileID: 690024171}
 --- !u!1 &1918756420
 GameObject:
   m_ObjectHideFlags: 0
@@ -14619,8 +14675,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PAUSED
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 654c2f55008a2594ba6fa4155498a09a, type: 2}
-  m_sharedMaterial: {fileID: -9117217953451775223, guid: 654c2f55008a2594ba6fa4155498a09a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c1b4a6c925f5b524d97717023b777ad2, type: 2}
+  m_sharedMaterial: {fileID: -9117217953451775223, guid: c1b4a6c925f5b524d97717023b777ad2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -14650,7 +14706,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -14680,7 +14736,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -757.2656, y: 0, z: -763.6293, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -14868,7 +14924,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

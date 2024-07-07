@@ -5,7 +5,6 @@ using TMPro;
 
 public class HpNumUI : MonoBehaviour
 {
-    public bool _isUpgradeMenuText;
     private TMP_Text _healthText;
 
     private void Awake()
@@ -15,11 +14,12 @@ public class HpNumUI : MonoBehaviour
 
     public void UpdateHealthNum(HealthController healthController)
     {
-        if (_isUpgradeMenuText)
-        {
-            _healthText.text = $"MAX HEALTH: {healthController.maxHealthNum}";
-        }
         _healthText.text = $"{healthController.currentHealthNum} /{healthController.maxHealthNum}"; //$ allows {} to be embedded within ""
+    }
+
+    public void UpdateUpgradeMenu(HealthController healthController)
+    {
+        _healthText.text = $"MAX HEALTH: {healthController.maxHealthNum}";        
     }
    
 }
