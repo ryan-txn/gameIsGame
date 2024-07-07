@@ -223,4 +223,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea29013d91f44c049a29b3fba1ac4f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  probability: 40
+  probability: 23

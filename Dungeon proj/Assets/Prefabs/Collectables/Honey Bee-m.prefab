@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Name
-      value: Rubber Gun
+      value: Honey Bee-m
       objectReference: {fileID: 0}
     - target: {fileID: 1138447817665496743, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Size.x
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e0ccd4e1744adc47a20941921572a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: '[E] RUBBER GUN'
+  message: '[E] HONEY BEE-M'
 --- !u!114 &6279876569747363705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bebd3f1653d0f7b4b813423df2383768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponIndex: 3
+  weaponIndex: 4
 --- !u!114 &-719324124867613515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,4 +223,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea29013d91f44c049a29b3fba1ac4f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  probability: 40
+  probability: 23

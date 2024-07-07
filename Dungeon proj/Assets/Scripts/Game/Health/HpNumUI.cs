@@ -14,7 +14,7 @@ public class HpNumUI : MonoBehaviour
 
     public void UpdateHealthNum(HealthController healthController)
     {
-        _healthText.text = $"{healthController.currentHealthNum} /100"; //$ allows {} to be embedded within ""
+        _healthText.text = $"{healthController.currentHealthNum} /{healthController.maxHealthNum}"; //$ allows {} to be embedded within ""
     }
    
 }

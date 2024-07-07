@@ -13,6 +13,10 @@ PrefabInstance:
       value: Big Health Collectable
       objectReference: {fileID: 0}
     - target: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -251,4 +255,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea29013d91f44c049a29b3fba1ac4f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  probability: 20
+  probability: 10

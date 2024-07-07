@@ -149,7 +149,15 @@ public class Bullet : MonoBehaviour
             Vector2 smoothedDirection = Vector2.Lerp(_rigidbody2D.velocity.normalized, reflectDirection, blendFactor).normalized;
 
             _rigidbody2D.velocity = smoothedDirection * (_initialSpeed * 0.75f);
+
+            StartCoroutine(DestroyAfterTime());
         }
+    }
+
+    private IEnumerator DestroyAfterTime()
+    {
+        yield return new WaitForSeconds(3.0f);
+        Destroy(gameObject);
     }
 
 

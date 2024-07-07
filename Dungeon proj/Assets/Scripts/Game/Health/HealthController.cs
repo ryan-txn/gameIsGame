@@ -23,6 +23,11 @@ public class HealthController : MonoBehaviour
         get {return _currentHealth;}
     }
 
+    public float maxHealthNum
+    {
+        get {return _maximumHealth;}
+    }
+
     //invincibility frames
     public bool IsInvincible { get; set; }
 
@@ -77,6 +82,13 @@ public class HealthController : MonoBehaviour
             _currentHealth = _maximumHealth;
         }
 
+        OnHealthChanged.Invoke();
+    }
+
+    public void AddMaxHealth(float amountToAdd)
+    {
+        _maximumHealth += amountToAdd;
+        _currentHealth +=amountToAdd;
         OnHealthChanged.Invoke();
     }
 }

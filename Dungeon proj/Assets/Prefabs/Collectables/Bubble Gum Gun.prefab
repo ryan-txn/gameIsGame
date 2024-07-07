@@ -10,27 +10,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Name
-      value: Health Collectable
-      objectReference: {fileID: 0}
-    - target: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
-      propertyPath: m_Layer
-      value: 3
+      value: Bubble Gum Gun
       objectReference: {fileID: 0}
     - target: {fileID: 1138447817665496743, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Size.x
-      value: 0.58548915
+      value: 0.730337
       objectReference: {fileID: 0}
     - target: {fileID: 1138447817665496743, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Size.y
-      value: 0.3764919
+      value: 0.28537065
       objectReference: {fileID: 0}
     - target: {fileID: 1138447817665496743, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Offset.x
-      value: -0.0017416477
+      value: 0.011318326
       objectReference: {fileID: 0}
     - target: {fileID: 1138447817665496743, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Offset.y
-      value: -0.0017416179
+      value: -0.055634227
       objectReference: {fileID: 0}
     - target: {fileID: 2475259422498624449, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Size.x
@@ -43,7 +39,7 @@ PrefabInstance:
     - target: {fileID: 2475259422498624449, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8716f6411d0080841a2b5013c09b88ea, type: 3}
+      objectReference: {fileID: 21300000, guid: 1fe13f0debfd4d546a1deec8a0b3a5ca, type: 3}
     - target: {fileID: 2475259422498624449, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -90,32 +86,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5987322817529133786, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.26
+      value: 0.34999996
       objectReference: {fileID: 0}
     - target: {fileID: 5987322817529133786, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.26
+      value: 0.34999996
       objectReference: {fileID: 0}
     - target: {fileID: 5987322817529133786, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.26
+      value: 0.34999996
       objectReference: {fileID: 0}
     - target: {fileID: 5987322817529133786, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 1138447817665496743, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
     - {fileID: 6445623393024739350, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7480619245087082760}
-    - targetCorrespondingSourceObject: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4794460873254951205}
     - targetCorrespondingSourceObject: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1161326710573118477}
@@ -127,61 +116,19 @@ PrefabInstance:
       addedObject: {fileID: -2715583629056677581}
     - targetCorrespondingSourceObject: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6143593767083781905}
+      addedObject: {fileID: 6279876569747363705}
+    - targetCorrespondingSourceObject: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -292160745740149833}
+    - targetCorrespondingSourceObject: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3248959427004002985}
   m_SourcePrefab: {fileID: 100100000, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
 --- !u!1 &6756175940945520477 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
   m_PrefabInstance: {fileID: 5788310012496393635}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7480619245087082760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6756175940945520477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff6444c7a81711a45b166e044cc4209b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthAmount: 10
---- !u!58 &4794460873254951205
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6756175940945520477}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.020595357, y: 0.001716286}
-  serializedVersion: 2
-  m_Radius: 0.18425584
 --- !u!114 &1161326710573118477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c00101c9c495967408af1bea03de2ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrice: 1
+  itemPrice: 3
   _isInShop: 0
 --- !u!114 &1721741227309251594
 MonoBehaviour:
@@ -238,8 +185,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e0ccd4e1744adc47a20941921572a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: '[E] APPLE (10HP)'
---- !u!114 &6143593767083781905
+  message: '[E] BUBBLE GUM GUN'
+--- !u!114 &6279876569747363705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6756175940945520477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e6e1fdb5e16524b974f6533165f03f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-292160745740149833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6756175940945520477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bebd3f1653d0f7b4b813423df2383768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponIndex: 3
+--- !u!114 &-3248959427004002985
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,4 +223,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea29013d91f44c049a29b3fba1ac4f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  probability: 20
+  probability: 23

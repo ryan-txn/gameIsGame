@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin
       objectReference: {fileID: 0}
+    - target: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 979242034117612286, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
+      propertyPath: m_TagString
+      value: Player Collectable
+      objectReference: {fileID: 0}
     - target: {fileID: 1138447817665496743, guid: 15c8ac512707e92459da1590ab7a3b45, type: 3}
       propertyPath: m_Size.x
       value: 0.17464757
@@ -193,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d9cddfdd2a3c5f4a8be5e76d62dbc2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isCoin: 1
 --- !u!114 &7631316667576980762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,4 +241,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea29013d91f44c049a29b3fba1ac4f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  probability: 50
+  probability: 35
