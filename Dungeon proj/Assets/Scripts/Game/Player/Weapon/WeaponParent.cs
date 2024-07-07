@@ -5,7 +5,7 @@ using UnityEngine;
 //weapon rotation script
 public class WeaponParent : MonoBehaviour
 {
-    public Vector2 PointerPosition  { get; set; }
+    public Vector2 PointerPosition { get; set; }
 
     private PlayerSwingWeapon _playerSwingWeapon;
 
@@ -16,10 +16,15 @@ public class WeaponParent : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!_playerSwingWeapon._isSwinging)
+        if (_playerSwingWeapon == null)
         {
             WeaponFollowCursor();
-        } else
+        }
+        else if (!_playerSwingWeapon._isSwinging)
+        {
+            WeaponFollowCursor();
+        }
+        else
         {
             return;
         }
@@ -39,11 +44,12 @@ public class WeaponParent : MonoBehaviour
 
         // Adjust the weapon's scale based on the direction
         Vector3 scale = transform.localScale;
-        
+
         if (direction.x < 0)
         {
             scale.y = -1;
-        } else if (direction.x > 0)
+        }
+        else if (direction.x > 0)
         {
             scale.y = 1;
         }

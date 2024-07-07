@@ -51,6 +51,20 @@ public class UpgradeMenu : MonoBehaviour
         {
             _coinController.DeductCoinAmt(upgradeCost);
             _healthController.AddMaxHealth(healthIncAmount);
+            Debug.Log("Max health upgraded");
+        }
+    }
+
+    public void UpgradeStamina()
+    {
+        int upgradeCost = 0; //10 coins
+        float staminaIncAmount = 20f; // increase by 20 stamina
+
+        if (_coinController.coinAmt >= upgradeCost)
+        {
+            _coinController.DeductCoinAmt(upgradeCost);
+            _staminaController.AddMaxStamina(staminaIncAmount);
+            Debug.Log("Max stamina upgraded");
         }
     }
 

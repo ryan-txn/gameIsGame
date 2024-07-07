@@ -60,5 +60,12 @@ public class StaminaController : MonoBehaviour
         }
 
         OnStaminaChanged.Invoke();
+    }
+
+    public void AddMaxStamina(float amountToAdd)
+    {
+        _maximumStamina += amountToAdd;
+        _currentStamina +=amountToAdd;
+        OnStaminaChanged.Invoke();
     }    
 }
