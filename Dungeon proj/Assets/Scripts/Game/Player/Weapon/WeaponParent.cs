@@ -7,9 +7,22 @@ public class WeaponParent : MonoBehaviour
 {
     public Vector2 PointerPosition  { get; set; }
 
+    private PlayerSwingWeapon _playerSwingWeapon;
+
+    private void Awake()
+    {
+        _playerSwingWeapon = GetComponentInChildren<PlayerSwingWeapon>();
+    }
+
     private void FixedUpdate()
     {
-        WeaponFollowCursor();
+        if (!_playerSwingWeapon._isSwinging)
+        {
+            WeaponFollowCursor();
+        } else
+        {
+            return;
+        }
     }
 
     private void WeaponFollowCursor()
