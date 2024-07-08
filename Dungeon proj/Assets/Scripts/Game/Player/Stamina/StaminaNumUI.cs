@@ -14,7 +14,7 @@ public class StaminaNumUI : MonoBehaviour
 
     public void UpdateStaminaNum(StaminaController staminaController)
     {
-        _staminaText.text = $"{staminaController.currentStaminaNum} /{staminaController.maxStaminaNum}"; //$ allows {} to be embedded within ""
+        _staminaText.text = $"{staminaController.currentStaminaNum} / {staminaController.maxStaminaNum}"; //$ allows {} to be embedded within ""
     }
 
     public void UpdateUpgradeMenu(StaminaController staminaController)

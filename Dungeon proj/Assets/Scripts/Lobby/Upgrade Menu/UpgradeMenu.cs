@@ -14,6 +14,7 @@ public class UpgradeMenu : MonoBehaviour
     private CoinController _coinController;
     private HealthController _healthController;
     private StaminaController _staminaController;
+    private PlayerMovement _playerMovementScript;
 
     private bool _menuInteracted;
     private bool _collided;
@@ -34,6 +35,7 @@ public class UpgradeMenu : MonoBehaviour
         _coinController = _player.GetComponent<CoinController>();
         _healthController = _player.GetComponent<HealthController>();
         _staminaController = _player.GetComponent<StaminaController>();
+        _playerMovementScript = _player.GetComponent<PlayerMovement>();
     }
 
     void Update()
@@ -70,6 +72,19 @@ public class UpgradeMenu : MonoBehaviour
             _coinController.DeductCoinAmt(upgradeCost);
             _staminaController.AddMaxStamina(staminaIncAmount);
             Debug.Log("Max stamina upgraded");
+        }
+    }
+
+    public void UpgradeSpeed()
+    {
+        int upgradeCost = 0; //10 coins
+        int speedIncAmount = 1; // increase by 1 speed
+
+        if (_coinController.coinAmt >= upgradeCost)
+        {
+            _coinController.DeductCoinAmt(upgradeCost);
+            _playerMovementScript.IncreaseSpeed(speedIncAmount);
+            Debug.Log("Max speed upgraded");
         }
     }
 

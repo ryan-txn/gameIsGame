@@ -8,6 +8,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float _speed;
 
+    public float playerSpeedStat
+    {
+        get {return _speed;}
+    }
+
     private Rigidbody2D _rigidbody;
     private Vector2 _movementInput;
     private Vector2 _smoothedMovementInput;
@@ -91,6 +96,11 @@ public class PlayerMovement : MonoBehaviour
             // Face left
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
+    }
+
+    public void IncreaseSpeed(int amountToAdd)
+    {
+        _speed += amountToAdd;
     }
 
 }

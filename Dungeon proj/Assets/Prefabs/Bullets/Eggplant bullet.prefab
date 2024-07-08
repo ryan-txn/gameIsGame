@@ -76,7 +76,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 15
   _isExplosive: 1
-  _explosionRadius: 2
+  _explosionRadius: 1.8
   _explosionForce: 200
   _explosionEffect: {fileID: 3952979388403058086, guid: d8163f1521a3c4e4993cae1b15591a8a, type: 3}
   _enemyLayerMask:
