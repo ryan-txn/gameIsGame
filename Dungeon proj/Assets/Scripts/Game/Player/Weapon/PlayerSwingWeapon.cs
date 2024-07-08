@@ -24,7 +24,7 @@ public class PlayerSwingWeapon : MonoBehaviour
     private Vector3 _initialPosition;
     private bool _swingBack;
 
-    private CapsuleCollider2D _circleCollider;
+    private CapsuleCollider2D _capsuleCollider;
 
 
     private void Awake()
@@ -32,10 +32,14 @@ public class PlayerSwingWeapon : MonoBehaviour
         _initialRotation = _weaponTransform.localRotation;
         _targetRotation = _initialRotation * Quaternion.Euler(0, 0, _swingAngle);
         _initialPosition = transform.localPosition;
-        _circleCollider = GetComponent<CapsuleCollider2D>();
-        if (_circleCollider != null)
+        _capsuleCollider = GetComponent<CapsuleCollider2D>();
+        if (_capsuleCollider != null)
         {
-            _circleCollider.enabled = false; // Ensure the collider is initially disabled
+            _capsuleCollider.enabled = false; // Ensure the collider is initially disabled
+        }
+        else
+        {
+            Debug.Log("Capsule collider not set!");
         }
     }
 
@@ -43,7 +47,7 @@ public class PlayerSwingWeapon : MonoBehaviour
     {
         if (_isSwinging)
         {
-            _circleCollider.enabled = true;
+            _capsuleCollider.enabled = true;
             float elapsed = Time.time - _swingStartTime;
             float progress = elapsed / (_swingDuration / 2); // Split the swing duration into two phases
 
@@ -61,15 +65,12 @@ public class PlayerSwingWeapon : MonoBehaviour
             }
             else
             {
-/*                if (progress >= 1f)
-                {
-                    EndSwing();
-                }
-                else
-                {*/
                     _weaponTransform.localRotation = Quaternion.Lerp(_targetRotation, _initialRotation, progress);
-                //}
             }
+        }
+        else
+        {
+            _capsuleCollider.enabled = false;
         }
     }
 
@@ -96,13 +97,13 @@ public class PlayerSwingWeapon : MonoBehaviour
     private void EndSwing()
     {
         _isSwinging = false;
-        _weaponTransform.localRotation = _initialRotation; // Reset rotation
-        transform.localPosition = _initialPosition; // Reset position
+/*        _weaponTransform.localRotation = _initialRotation; // Reset rotation
+        transform.localPosition = _initialPosition; // Reset position*/
     }
 
     private IEnumerator SwingCoroutine()
     {
-        float halfDuration = _swingDuration / 2;
+ //       float halfDuration = _swingDuration / 2;
         while (Time.time - _swingStartTime < _swingDuration)
         {
             yield return null;
@@ -114,8 +115,6 @@ public class PlayerSwingWeapon : MonoBehaviour
     {
         if (!PauseMenu.isPaused)
         {
-/*            _swingContinuously = inputValue.isPressed;
-*/
             if (inputValue.isPressed)
             {
                 StartSwing();

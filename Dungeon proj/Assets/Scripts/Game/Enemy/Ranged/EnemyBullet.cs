@@ -35,6 +35,11 @@ public class EnemyBullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (collision.GetComponent<PlayerSwingWeapon>())
+        {
+            Destroy(gameObject); //destroy bullet
+        }
     }
 
 /*    private void DestroyWhenOffScreen() 
