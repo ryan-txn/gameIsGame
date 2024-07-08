@@ -77,7 +77,7 @@ public class RoomManager : MonoBehaviour
 
         currentDirections = new List<int> { 0, 1, 2, 3 };
         currentDirections.RemoveAt(3 - positionIndex); //remove opposite index option
-        positionIndex = Random.Range(0, currentDirections.Count); //get position from 0-3
+        positionIndex = currentDirections[Random.Range(0, currentDirections.Count)]; //get position from 0-3
         firstRoom = rootRoom;
         secondRoom = enemyRoomPrefabs[0];
         isRoot = true;

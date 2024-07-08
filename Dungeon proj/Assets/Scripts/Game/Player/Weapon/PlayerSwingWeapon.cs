@@ -21,7 +21,6 @@ public class PlayerSwingWeapon : MonoBehaviour
     private float _swingStartTime;
     private Quaternion _initialRotation;
     private Quaternion _targetRotation;
-    private Vector3 _initialPosition;
     private bool _swingBack;
 
     private CapsuleCollider2D _capsuleCollider;
@@ -29,9 +28,6 @@ public class PlayerSwingWeapon : MonoBehaviour
 
     private void Awake()
     {
-        _initialRotation = _weaponTransform.localRotation;
-        _targetRotation = _initialRotation * Quaternion.Euler(0, 0, _swingAngle);
-        _initialPosition = transform.localPosition;
         _capsuleCollider = GetComponent<CapsuleCollider2D>();
         if (_capsuleCollider != null)
         {
@@ -65,7 +61,7 @@ public class PlayerSwingWeapon : MonoBehaviour
             }
             else
             {
-                    _weaponTransform.localRotation = Quaternion.Lerp(_targetRotation, _initialRotation, progress);
+                _weaponTransform.localRotation = Quaternion.Lerp(_targetRotation, _initialRotation, progress);
             }
         }
         else
@@ -74,11 +70,11 @@ public class PlayerSwingWeapon : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (_isSwinging && collision.collider.GetComponent<EnemyMovement>())
+        if (_isSwinging && collision.GetComponent<EnemyMovement>())
         {
-            HealthController healthController = collision.collider.GetComponent<HealthController>();
+            HealthController healthController = collision.GetComponent<HealthController>();
             healthController.TakeDamage(_damage);
         }
     }
@@ -90,6 +86,15 @@ public class PlayerSwingWeapon : MonoBehaviour
             _isSwinging = true;
             _swingStartTime = Time.time;
             _swingBack = false;
+            _initialRotation = _weaponTransform.localRotation;
+            if (_weaponTransform.localScale.y < 0)
+            {
+                _targetRotation = _initialRotation * Quaternion.Euler(0, 0, -_swingAngle);
+            }
+            else
+            {
+                _targetRotation = _initialRotation * Quaternion.Euler(0, 0, _swingAngle);
+            }
             StartCoroutine(SwingCoroutine());
         }
     }

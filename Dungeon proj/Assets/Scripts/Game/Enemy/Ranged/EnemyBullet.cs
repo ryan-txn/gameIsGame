@@ -24,14 +24,15 @@ public class EnemyBullet : MonoBehaviour
   
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       if (collision.GetComponent<PlayerMovement>()) 
-       {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ignore Laser") && collision.CompareTag("Player"))
+        {
             HealthController healthController = collision.GetComponent<HealthController>();
             healthController.TakeDamage(_damage);
             Destroy(gameObject); //destroy bullet
-       }
+            Debug.Log("player bullet hit player");
+        }
 
-       if (collision.CompareTag("Wall"))
+        if (collision.CompareTag("Wall"))
         {
             Destroy(gameObject);
         }
