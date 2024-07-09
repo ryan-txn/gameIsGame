@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4018637960553979842}
   - component: {fileID: 5346264245304467836}
   m_Layer: 0
-  m_Name: Random Enemy Spawner 2
+  m_Name: Choco Man Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,10 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyList:
-  - {fileID: 7142303272250041979, guid: 5f0aa320a0701f744988291bb0c211de, type: 3}
-  - {fileID: 7142303272250041979, guid: dabf18361fdf19a4998f9d8a12152eb3, type: 3}
-  - {fileID: 7142303272250041979, guid: b2db8a8b4c68ee14fbacac2255eb8f5b, type: 3}
   - {fileID: 7142303272250041979, guid: a04ca898c977fe14ebb5a5a0202b398c, type: 3}
-  - {fileID: 7617298862169958062, guid: 51281fca61575534d9dca147b60a0180, type: 3}
   _minimumSpawnTime: 2
   _maximumSpawnTime: 5
