@@ -15,16 +15,23 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D _rigidbody;
     private Vector2 _movementInput;
+    public Vector2 MovementInput => _movementInput;
+
     private Vector2 _smoothedMovementInput;
     private Vector2 _movementInputSmoothVelocity;
     private Animator _animator; //for movement sprite
 
     private Vector2 _pointerInput;
     public Vector2 PointerInput => _pointerInput;
+    private Vector2 directionToMouse;
+    public Vector2 DirectionToMouse => directionToMouse;
+
     [SerializeField]
     private InputActionReference pointerPosition;
 
     private WeaponParent _weaponParent;
+
+    private bool _movementEnabled = true;
 
     private void Awake() 
     {
@@ -43,8 +50,11 @@ public class PlayerMovement : MonoBehaviour
     //any changes to a rigidbody shld be made here
     private void FixedUpdate()
     {
-        SetPlayerVelocity();
-        RotateTowardsMouse();
+        if (_movementEnabled)
+        {
+            SetPlayerVelocity();
+            RotateTowardsMouse();
+        }
         SetAnimation();
     }
 
@@ -83,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 playerPosition = transform.position;
 
         // Determine the direction from the player to the mouse
-        Vector2 directionToMouse = mousePosition - playerPosition;
+        directionToMouse = mousePosition - playerPosition;
 
         // Check if the mouse is to the right or left of the player
         if (directionToMouse.x > 0)
@@ -101,6 +111,16 @@ public class PlayerMovement : MonoBehaviour
     public void IncreaseSpeed(int amountToAdd)
     {
         _speed += amountToAdd;
+    }
+
+    public void EnableMovement()
+    {
+        _movementEnabled = true;
+    }
+
+    public void DisableMovement()
+    {
+        _movementEnabled = false;
     }
 
 }
