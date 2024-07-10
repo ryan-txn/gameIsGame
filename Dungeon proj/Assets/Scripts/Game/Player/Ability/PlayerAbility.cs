@@ -4,88 +4,59 @@ using UnityEngine.InputSystem;
 
 public class PlayerAbility : MonoBehaviour
 {
+    private bool _abilityUnlocked = false;
     private bool _useAbility;
     private bool _canUseAbility = true;
 
-    private Rigidbody2D _rigidbody;
-    private TrailRenderer _trailRenderer;
-    private InvincibilityController _invincibilityController;
+    private float _cooldownTimer;
+    private float _cooldownDuration;
+
     private PlayerMovement _playerMovement;
 
     [SerializeField]
-    private float dashPower = 20f;
-    [SerializeField]
-    private float dashDuration = 0.5f;
-    [SerializeField]
-    private float dashCooldown = 2f;
-
-    [SerializeField]
-    private float invincibilityDuration = 0.5f;
-    [SerializeField]
-    private Color flashColor = Color.white;
-    [SerializeField]
-    private int numberOfFlashes = 3; // Number of flashes during invincibility
+    private AbilityBarUI _abilityBar;
 
     void Start()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _invincibilityController = GetComponent<InvincibilityController>();
-        _trailRenderer = GetComponent<TrailRenderer>();
         _playerMovement = GetComponent<PlayerMovement>();
+        _cooldownDuration = _playerMovement.DashCooldownDuration;
     }
 
     void Update()
     {
         if (_useAbility && _canUseAbility)
         {
-            StartCoroutine(Dash());
+            _playerMovement.TriggerDash();
+            StartCoroutine(CooldownTimer());
             _useAbility = false;
         }
     }
 
-    private IEnumerator Dash()
+    private IEnumerator CooldownTimer()
     {
-        Debug.Log("Dash started");
-
         _canUseAbility = false;
 
-        Vector2 originalVelocity = _rigidbody.velocity;
+        _cooldownTimer = _cooldownDuration + 0.25f; //offset
 
-        _playerMovement.DisableMovement();
-
-        Vector2 dashDirection = _playerMovement.MovementInput.normalized;
-        Debug.Log("Dash direction: " + dashDirection);
-
-        if (dashDirection == Vector2.zero)
+        while (_cooldownTimer > 0)
         {
-            dashDirection = new Vector2(_playerMovement.DirectionToMouse.x, _playerMovement.DirectionToMouse.y);
-            dashDirection.Normalize();
-            Debug.Log("Dash direction defaulted to mousedirection: " + dashDirection);
+            _cooldownTimer -= Time.deltaTime;
+            _abilityBar.UpdateAbilityBar(_cooldownTimer / _cooldownDuration);
+            yield return null;
         }
 
-        _rigidbody.velocity = new Vector2(dashDirection.x * dashPower, dashDirection.y * dashPower);
-        Debug.Log("Rigidbody velocity set to: " + _rigidbody.velocity);
-
-        _invincibilityController.StartInvincibility(invincibilityDuration, flashColor, numberOfFlashes);
-        _trailRenderer.emitting = true;        
-
-        yield return new WaitForSeconds(dashDuration);
-
-        _rigidbody.velocity = originalVelocity; // Reset velocity after dash
-        _trailRenderer.emitting = false;
-        Debug.Log("Dash ended");
-
-        _playerMovement.EnableMovement();
-
-        yield return new WaitForSeconds(dashCooldown);
         _canUseAbility = true;
-        Debug.Log("Dash cooldown ended");
     }
 
+    public void AbilityUnlocked()
+    {
+        _abilityUnlocked = true;
+        _abilityBar.ShowAbilityUI();
+    }
 
     private void OnAbility(InputValue inputValue)
     {
-        if (!PauseMenu.isPaused)
+        if (!PauseMenu.isPaused && _abilityUnlocked && _canUseAbility)
         {
             _useAbility = inputValue.isPressed;
         }
