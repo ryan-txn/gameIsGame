@@ -24,6 +24,8 @@ public class RoomManager : MonoBehaviour
 
     private readonly string wallTilemapTag = "Wall";
 
+    private int fixedRoomDistance = 30;
+
     private void Awake()
     {
         GenerateDungeon();
@@ -43,7 +45,7 @@ public class RoomManager : MonoBehaviour
         Vector3Int direction = ReturnDirection(positionIndex);
         room_distance = FindDistanceRooms(firstRoom, secondRoom, direction);
         corr_distance = FindDistanceCorr(secondRoom, direction);
-        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, room_distance, wallTilemapTag, corr_distance);
+        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, wallTilemapTag, corr_distance);
 
         positionIndex = currentDirections[Random.Range(0, currentDirections.Count)];
         currentDirections.Remove(positionIndex);
@@ -54,7 +56,7 @@ public class RoomManager : MonoBehaviour
         direction = ReturnDirection(positionIndex);
         room_distance = FindDistanceRooms(firstRoom, secondRoom, direction);
         corr_distance = FindDistanceCorr(secondRoom, direction);
-        spawnedRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, room_distance, wallTilemapTag, corr_distance);
+        spawnedRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, wallTilemapTag, corr_distance);
 
         positionIndex = currentDirections[Random.Range(0, currentDirections.Count)];
         currentDirections.Remove(positionIndex);
@@ -64,7 +66,7 @@ public class RoomManager : MonoBehaviour
         direction = ReturnDirection(positionIndex);
         room_distance = FindDistanceRooms(firstRoom, secondRoom, direction);
         corr_distance = FindDistanceCorr(secondRoom, direction);
-        spawnedRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, room_distance, wallTilemapTag, corr_distance);
+        spawnedRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, wallTilemapTag, corr_distance);
 
         positionIndex = currentDirections[Random.Range(0, currentDirections.Count)];
         firstRoom = rootRoom;
@@ -73,7 +75,7 @@ public class RoomManager : MonoBehaviour
         direction = ReturnDirection(positionIndex);
         room_distance = FindDistanceRooms(firstRoom, secondRoom, direction);
         corr_distance = FindDistanceCorr(secondRoom, direction);
-        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, room_distance, wallTilemapTag, corr_distance);
+        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, wallTilemapTag, corr_distance);
 
         currentDirections = new List<int> { 0, 1, 2, 3 };
         currentDirections.RemoveAt(3 - positionIndex); //remove opposite index option
@@ -84,7 +86,7 @@ public class RoomManager : MonoBehaviour
         direction = ReturnDirection(positionIndex);
         room_distance = FindDistanceRooms(firstRoom, secondRoom, direction);
         corr_distance = FindDistanceCorr(secondRoom, direction);
-        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, room_distance, wallTilemapTag, corr_distance);
+        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, wallTilemapTag, corr_distance);
     }
 
     // Method to find a Tilemap with a specific tag in the children of a GameObject
@@ -121,7 +123,7 @@ public class RoomManager : MonoBehaviour
             int firstRoomHeight = firstTilemap.size.y;
             secondTilemap.CompressBounds();
             int secondRoomHeight = secondTilemap.size.y;
-            distance = (firstRoomHeight / 2) + (secondRoomHeight / 2) + 1;
+            distance = (firstRoomHeight / 2) + (secondRoomHeight / 2);
 
         }
         else
@@ -130,7 +132,7 @@ public class RoomManager : MonoBehaviour
             int firstRoomWidth = firstTilemap.size.x;
             secondTilemap.CompressBounds();
             int secondRoomWidth = secondTilemap.size.x;
-            distance = (firstRoomWidth / 2) + (secondRoomWidth / 2) + 1;
+            distance = (firstRoomWidth / 2) + (secondRoomWidth / 2);
         }
 
         return distance;
@@ -198,7 +200,12 @@ public class RoomManager : MonoBehaviour
 
         //spawn corridor
         Vector3 corrSpawnPoint = currentRoomSpawn - (direction * corrDistance);
-        Instantiate(corridor, corrSpawnPoint, Quaternion.identity);
+        int corrLength = fixedRoomDistance - FindDistanceRooms(firstRoom, secondRoom, direction);
+        for (int i = 0; i < corrLength; i++)
+        {
+            Instantiate(corridor, corrSpawnPoint, Quaternion.identity);
+            corrSpawnPoint -= direction;
+        }
 
         return RoomInstance;
     }
