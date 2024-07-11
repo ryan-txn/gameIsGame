@@ -9,7 +9,10 @@ public class DetectPlayerEntry : MonoBehaviour
     private BoxCollider2D roomBoundsCollider;
 
     [SerializeField]
-    private GameObject corridorBlocker;
+    private GameObject horCorridorBlocker;
+
+    [SerializeField]
+    private GameObject vertCorridorBlocker;
 
     public bool playerEntered = false;
 
@@ -34,14 +37,14 @@ public class DetectPlayerEntry : MonoBehaviour
             int height = roomWalls.size.y;
             int width = roomWalls.size.x;
             Vector3 spawnpoint = transform.position;
-            Vector3 newSpawnpoint = spawnpoint + new Vector3(0, (height / 2) + 1, 0);
-            Instantiate(corridorBlocker, newSpawnpoint, Quaternion.identity);
-            newSpawnpoint = spawnpoint + new Vector3(0, -(height / 2) - 1, 0);
-            Instantiate(corridorBlocker, newSpawnpoint, Quaternion.identity);
-            newSpawnpoint = spawnpoint + new Vector3((width / 2) + 1, 0, 0);
-            Instantiate(corridorBlocker, newSpawnpoint, Quaternion.identity);
-            newSpawnpoint = spawnpoint + new Vector3(-(width / 2) - 1, 0, 0);
-            Instantiate(corridorBlocker, newSpawnpoint, Quaternion.identity);
+            Vector3 newSpawnpoint = spawnpoint + new Vector3(0, (height / 2) - 1, 0);
+            Instantiate(horCorridorBlocker, newSpawnpoint, Quaternion.identity);
+            newSpawnpoint = spawnpoint + new Vector3(0, -(height / 2), 0);
+            Instantiate(horCorridorBlocker, newSpawnpoint, Quaternion.identity);
+            newSpawnpoint = spawnpoint + new Vector3((width / 2) - 1, 0, 0);
+            Instantiate(vertCorridorBlocker, newSpawnpoint, Quaternion.identity);
+            newSpawnpoint = spawnpoint + new Vector3(-(width / 2), 0, 0);
+            Instantiate(vertCorridorBlocker, newSpawnpoint, Quaternion.identity);
             roomBoundsCollider.enabled = false;
         }
 

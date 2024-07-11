@@ -6239,7 +6239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b95756380077d41aafbca519fbd5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  corridorBlocker: {fileID: 7170004746263583874, guid: faf3ee809ea4d70428c664e86992405c, type: 3}
+  horCorridorBlocker: {fileID: 7170004746263583874, guid: 6430ae4856767474bb9076d2ba6aadd8, type: 3}
+  vertCorridorBlocker: {fileID: 7170004746263583874, guid: faf3ee809ea4d70428c664e86992405c, type: 3}
   playerEntered: 0
 --- !u!61 &551209462416432897
 BoxCollider2D:
