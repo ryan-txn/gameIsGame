@@ -48,3 +48,4 @@ MonoBehaviour:
   - {fileID: 7617298862169958062, guid: 51281fca61575534d9dca147b60a0180, type: 3}
   _minimumSpawnTime: 2
   _maximumSpawnTime: 5
+  _maxSpawnCount: 5

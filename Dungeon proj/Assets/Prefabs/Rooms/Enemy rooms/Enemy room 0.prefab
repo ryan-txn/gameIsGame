@@ -6240,6 +6240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   corridorBlocker: {fileID: 7170004746263583874, guid: faf3ee809ea4d70428c664e86992405c, type: 3}
+  playerEntered: 0
 --- !u!61 &551209462416432897
 BoxCollider2D:
   m_ObjectHideFlags: 0

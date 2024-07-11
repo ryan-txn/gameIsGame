@@ -6,12 +6,12 @@ using UnityEngine.Tilemaps;
 
 public class DetectPlayerEntry : MonoBehaviour
 {
-    private bool hasEntered = false;
-
     private BoxCollider2D roomBoundsCollider;
 
     [SerializeField]
     private GameObject corridorBlocker;
+
+    public bool playerEntered = false;
 
     private void Start()
     {
@@ -27,8 +27,8 @@ public class DetectPlayerEntry : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            hasEntered = true;
             Debug.Log("Player entered a room");
+            playerEntered = true;
             Tilemap roomWalls = FindTilemapWithTag(gameObject, "Wall");
             roomWalls.CompressBounds();
             int height = roomWalls.size.y;
@@ -51,7 +51,6 @@ public class DetectPlayerEntry : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            hasEntered = true;
             Debug.Log("Player exited a room");
         }
     }

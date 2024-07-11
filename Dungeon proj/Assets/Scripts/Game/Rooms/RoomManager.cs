@@ -22,9 +22,11 @@ public class RoomManager : MonoBehaviour
     private GameObject firstRoom;
     private GameObject secondRoom;
 
-    private readonly string wallTilemapTag = "Wall";
+    private readonly string WALL_STRING = "Wall";
 
-    private int fixedRoomDistance = 30;
+    private readonly int fixedRoomDistance = 30;
+    private readonly int corrWidth = 4;
+
 
     private void Awake()
     {
@@ -45,7 +47,7 @@ public class RoomManager : MonoBehaviour
         Vector3Int direction = ReturnDirection(positionIndex);
         room_distance = FindDistanceRooms(firstRoom, secondRoom, direction);
         corr_distance = FindDistanceCorr(secondRoom, direction);
-        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, wallTilemapTag, corr_distance);
+        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, WALL_STRING, corr_distance);
 
         positionIndex = currentDirections[Random.Range(0, currentDirections.Count)];
         currentDirections.Remove(positionIndex);
@@ -56,7 +58,7 @@ public class RoomManager : MonoBehaviour
         direction = ReturnDirection(positionIndex);
         room_distance = FindDistanceRooms(firstRoom, secondRoom, direction);
         corr_distance = FindDistanceCorr(secondRoom, direction);
-        spawnedRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, wallTilemapTag, corr_distance);
+        spawnedRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, WALL_STRING, corr_distance);
 
         positionIndex = currentDirections[Random.Range(0, currentDirections.Count)];
         currentDirections.Remove(positionIndex);
@@ -66,7 +68,7 @@ public class RoomManager : MonoBehaviour
         direction = ReturnDirection(positionIndex);
         room_distance = FindDistanceRooms(firstRoom, secondRoom, direction);
         corr_distance = FindDistanceCorr(secondRoom, direction);
-        spawnedRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, wallTilemapTag, corr_distance);
+        spawnedRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, WALL_STRING, corr_distance);
 
         positionIndex = currentDirections[Random.Range(0, currentDirections.Count)];
         firstRoom = rootRoom;
@@ -75,7 +77,7 @@ public class RoomManager : MonoBehaviour
         direction = ReturnDirection(positionIndex);
         room_distance = FindDistanceRooms(firstRoom, secondRoom, direction);
         corr_distance = FindDistanceCorr(secondRoom, direction);
-        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, wallTilemapTag, corr_distance);
+        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, WALL_STRING, corr_distance);
 
         currentDirections = new List<int> { 0, 1, 2, 3 };
         currentDirections.RemoveAt(3 - positionIndex); //remove opposite index option
@@ -86,7 +88,7 @@ public class RoomManager : MonoBehaviour
         direction = ReturnDirection(positionIndex);
         room_distance = FindDistanceRooms(firstRoom, secondRoom, direction);
         corr_distance = FindDistanceCorr(secondRoom, direction);
-        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, wallTilemapTag, corr_distance);
+        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, WALL_STRING, corr_distance);
     }
 
     // Method to find a Tilemap with a specific tag in the children of a GameObject
@@ -114,8 +116,8 @@ public class RoomManager : MonoBehaviour
 
     int FindDistanceRooms(GameObject firstRoom, GameObject secondRoom, Vector3 direction)
     {
-        Tilemap firstTilemap = FindTilemapWithTag(firstRoom, wallTilemapTag);
-        Tilemap secondTilemap = FindTilemapWithTag(secondRoom, wallTilemapTag);
+        Tilemap firstTilemap = FindTilemapWithTag(firstRoom, WALL_STRING);
+        Tilemap secondTilemap = FindTilemapWithTag(secondRoom, WALL_STRING);
         int distance;
         if (direction == new Vector3Int(0, 1, 0) || direction == new Vector3Int(0, -1, 0))
         {
@@ -140,7 +142,7 @@ public class RoomManager : MonoBehaviour
 
     int FindDistanceCorr(GameObject Room, Vector3 direction)
     {
-        Tilemap Tilemap = FindTilemapWithTag(Room, wallTilemapTag);
+        Tilemap Tilemap = FindTilemapWithTag(Room, WALL_STRING);
         int distance;
         Tilemap.CompressBounds();
         int RoomHeight = Tilemap.size.y;
@@ -171,11 +173,11 @@ public class RoomManager : MonoBehaviour
         GameObject RoomInstance = Instantiate(secondRoom, currentRoomSpawn, Quaternion.identity);
 
         //delete first room walls
-        Tilemap firstRoomWalls = FindTilemapWithTag(firstRoom, wallTilemapTag);
+        Tilemap firstRoomWalls = FindTilemapWithTag(firstRoom, WALL_STRING);
         firstRoomWalls.CompressBounds();
         int firstRoomDimension;
 
-        Tilemap secondRoomWalls = FindTilemapWithTag(RoomInstance, wallTilemapTag);
+        Tilemap secondRoomWalls = FindTilemapWithTag(RoomInstance, WALL_STRING);
         secondRoomWalls.CompressBounds();
         int secondRoomDimension;
 
@@ -192,11 +194,11 @@ public class RoomManager : MonoBehaviour
 
             corridor = horCorridor;
         }
-        Delete2RoomWalls(firstRoomWalls, firstRoomDimension, direction);
+        DeleteRoomWalls(firstRoomWalls, firstRoomDimension, direction);
 
         //delete second room walls
         Vector3Int oppDirection = direction * -1;
-        Delete2RoomWalls(secondRoomWalls, secondRoomDimension, oppDirection);
+        DeleteRoomWalls(secondRoomWalls, secondRoomDimension, oppDirection);
 
         //spawn corridor
         Vector3 corrSpawnPoint = currentRoomSpawn - (direction * corrDistance);
@@ -210,33 +212,75 @@ public class RoomManager : MonoBehaviour
         return RoomInstance;
     }
 
-    void Delete2RoomWalls(Tilemap roomWalls, int roomDimension, Vector3Int direction)
+    void DeleteRoomWalls(Tilemap roomWalls, int roomDimension, Vector3Int direction)
     {
-        Vector3Int Gap1 = new Vector3Int(0, 0, 0);
-        Vector3Int Gap2;
+        Vector3Int Gap = new Vector3Int(0, 0, 0);
+
+
 
         if (direction == new Vector3Int(0, 1, 0))
         {
-            Gap1 += direction * ((roomDimension / 2) - 1);
-            Gap2 = Gap1 + new Vector3Int(-1, 0, 0);
+            Gap += direction * ((roomDimension / 2) - 1); // initial spawnpoint
+            Vector3Int tempGap = Gap;
+            for (int i = 0; i < corrWidth / 2; i++)
+            {
+                roomWalls.SetTile(tempGap, null);
+                tempGap += new Vector3Int(1, 0, 0);
+            }
+            tempGap = Gap;
+            for (int i = 0; i <= corrWidth / 2; i++)
+            {
+                roomWalls.SetTile(tempGap, null);
+                tempGap -= new Vector3Int(1, 0, 0);
+            }
         }
         else if (direction == new Vector3Int(0, -1, 0))
         {
-            Gap1 += direction * ((roomDimension / 2));
-            Gap2 = Gap1 + new Vector3Int(-1, 0, 0);
+            Gap += direction * ((roomDimension / 2)); // initial spawnpoint
+            Vector3Int tempGap = Gap;
+            for (int i = 0; i < corrWidth / 2; i++)
+            {
+                roomWalls.SetTile(tempGap, null);
+                tempGap += new Vector3Int(1, 0, 0);
+            }
+            tempGap = Gap;
+            for (int i = 0; i <= corrWidth / 2; i++)
+            {
+                roomWalls.SetTile(tempGap, null);
+                tempGap -= new Vector3Int(1, 0, 0);
+            }
         }
         else if (direction == new Vector3Int(1, 0, 0))
         {
-            Gap1 += direction * ((roomDimension / 2) - 1);
-            Gap2 = Gap1 + new Vector3Int(0, -1, 0);
+            Gap += direction * ((roomDimension / 2) - 1); // initial spawnpoint
+            Vector3Int tempGap = Gap;
+            for (int i = 0; i < corrWidth / 2; i++)
+            {
+                roomWalls.SetTile(tempGap, null);
+                tempGap += new Vector3Int(0, 1, 0);
+            }
+            tempGap = Gap;
+            for (int i = 0; i <= corrWidth / 2; i++)
+            {
+                roomWalls.SetTile(tempGap, null);
+                tempGap -= new Vector3Int(0, 1, 0);
+            }
         }
         else
         {
-            Gap1 += direction * ((roomDimension / 2));
-            Gap2 = Gap1 + new Vector3Int(0, -1, 0);
+            Gap += direction * ((roomDimension / 2)); // initial spawnpoint
+            Vector3Int tempGap = Gap;
+            for (int i = 0; i < corrWidth / 2; i++)
+            {
+                roomWalls.SetTile(tempGap, null);
+                tempGap += new Vector3Int(0, 1, 0);
+            }
+            tempGap = Gap;
+            for (int i = 0; i <= corrWidth / 2; i++)
+            {
+                roomWalls.SetTile(tempGap, null);
+                tempGap -= new Vector3Int(0, 1, 0);
+            }
         }
-
-        roomWalls.SetTile(Gap1, null);
-        roomWalls.SetTile(Gap2, null);
     }
 }
