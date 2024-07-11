@@ -42,17 +42,10 @@ public class Bullet : MonoBehaviour
     */
 
     private Rigidbody2D _rigidbody2D;
-    private float _initialSpeed;
 
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-    }
-
-    private void FixedUpdate()
-    {
-        _initialSpeed = _rigidbody2D.velocity.magnitude;
-        _rigidbody2D.velocity = _rigidbody2D.velocity;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -86,10 +79,6 @@ public class Bullet : MonoBehaviour
                 if (_bounceCount > _maxNumberOfBounces)
                 {
                     Destroy(gameObject); // Destroy bullet after reaching max bounces
-                }
-                else
-                {
-                    Bounce(collision);
                 }
             }
             else
@@ -138,30 +127,6 @@ public class Bullet : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _explosionRadius);
     }
-
-    private void Bounce(Collision2D collision)
-    {
-        if (_rigidbody2D != null)
-        {
-            // Get reflection vector using normal of contact point
-            Vector2 reflectDirection = Vector2.Reflect(_rigidbody2D.velocity.normalized, collision.contacts[0].normal);
-
-            // Blend the incoming direction with the reflected direction
-            float blendFactor = 0.7f; // Adjust this to smooth out the bounce angle
-            Vector2 smoothedDirection = Vector2.Lerp(_rigidbody2D.velocity.normalized, reflectDirection, blendFactor).normalized;
-
-            _rigidbody2D.velocity = smoothedDirection * (_initialSpeed * 0.75f);
-
-            StartCoroutine(DestroyAfterTime());
-        }
-    }
-
-    private IEnumerator DestroyAfterTime()
-    {
-        yield return new WaitForSeconds(3.0f);
-        Destroy(gameObject);
-    }
-
 
 
     /*    private void DestroyWhenOffScreen() 
