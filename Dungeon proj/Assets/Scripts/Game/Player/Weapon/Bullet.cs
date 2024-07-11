@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private int _damage;
 
+    //EXPLOSIVE BULLET ATTRIBUTES
     [SerializeField]
     private bool _isExplosive = false;
 
@@ -23,6 +24,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private LayerMask _enemyLayerMask; // Layer mask for enemies
 
+    //BOUNCY BULLET ATTRIBUTES
     [SerializeField]
     private bool _isBouncy = false;
 
