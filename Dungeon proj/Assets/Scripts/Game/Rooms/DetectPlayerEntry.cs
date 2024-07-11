@@ -42,7 +42,7 @@ public class DetectPlayerEntry : MonoBehaviour
             Instantiate(corridorBlocker, newSpawnpoint, Quaternion.identity);
             newSpawnpoint = spawnpoint + new Vector3(-(width / 2) - 1, 0, 0);
             Instantiate(corridorBlocker, newSpawnpoint, Quaternion.identity);
-
+            roomBoundsCollider.enabled = false;
         }
 
     }

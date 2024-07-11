@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4810585030369227880}
   - component: {fileID: 5426100577817876193}
   - component: {fileID: 5186452511335898359}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Wall Tilemap
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1140,7 +1140,7 @@ GameObject:
   - component: {fileID: 3277821598559268262}
   - component: {fileID: 3404385814220528382}
   - component: {fileID: 1912990151829309378}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Ground Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6189,7 +6189,7 @@ GameObject:
   - component: {fileID: 5428234368424026177}
   - component: {fileID: 106259786332142864}
   - component: {fileID: 551209462416432897}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Enemy room 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6299,7 +6299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 29196973021456921, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4018637960553979842, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6365,7 +6365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 29196973021456921, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4018637960553979842, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
       propertyPath: m_LocalPosition.x
