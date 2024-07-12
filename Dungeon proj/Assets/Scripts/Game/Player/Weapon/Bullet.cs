@@ -50,7 +50,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Wall") || collision.collider.GetComponent<EnemyMovement>())
+        if (collision.collider.CompareTag("Wall") || collision.collider.CompareTag("Enemy"))
         {
             HandleCollision(collision);
         }
@@ -58,7 +58,7 @@ public class Bullet : MonoBehaviour
 
     private void HandleCollision(Collision2D collision)
     {
-        if (collision.collider.GetComponent<EnemyMovement>())
+        if (collision.collider.CompareTag("Enemy"))
         {
             HealthController healthController = collision.collider.GetComponent<HealthController>();
             healthController.TakeDamage(_damage);
