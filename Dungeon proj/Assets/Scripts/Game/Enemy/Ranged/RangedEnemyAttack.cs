@@ -22,6 +22,11 @@ public class RangedEnemyAttack : MonoBehaviour
 
     [SerializeField]
     private bool _isSpreadShot;
+    
+    [SerializeField]
+    private int numberOfProjectiles = 12; // Total number of projectiles including the main one
+    [SerializeField]
+    private float spreadAngle = 30f; // Angle between each projectile
 
     private float lastFireTime;
     private PlayerAwarenessController _playerAwarenessController;
@@ -92,9 +97,6 @@ public class RangedEnemyAttack : MonoBehaviour
 
     private void FireSpreadShot()
     {
-        int numberOfProjectiles = 12; // Total number of projectiles including the main one
-        float spreadAngle = 30f; // Angle between each projectile
-
         Vector2 directionToPlayer = _playerAwarenessController.DirectionToPlayer;
         float baseAngle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
 

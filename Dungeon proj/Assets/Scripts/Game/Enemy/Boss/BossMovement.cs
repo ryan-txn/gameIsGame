@@ -19,9 +19,6 @@ public class BossMovement : MonoBehaviour
     private GameObject _enemyPrefab;
 
     [SerializeField]
-    private GameObject _enemySpawnerPrefab;
-
-    [SerializeField]
     private Transform[] _spawnPoints;
 
     [SerializeField]
@@ -32,9 +29,10 @@ public class BossMovement : MonoBehaviour
 
     private float _lastSpawnTime;
 
-    private List<GameObject> _spawners;
-
     private Animator _animator;
+
+    [SerializeField]
+    private LayerMask _enemyLayerMask; // Layer mask for enemies for death explosion
 
     private void Awake()
     {
@@ -43,14 +41,7 @@ public class BossMovement : MonoBehaviour
         _targetDirection = transform.up; // initial target direction will be the way it's currently facing
         _animator = GetComponentInChildren<Animator>();
         _rangedEnemyAttack = GetComponent<RangedEnemyAttack>();
-
-        //for each spawn point, create a spawner to add to _spawners list
-        _spawners = new List<GameObject>();
-        foreach (var spawnPoint in _spawnPoints)
-        {
-            GameObject gummySpawner = Instantiate(_enemySpawnerPrefab, spawnPoint.position, spawnPoint.rotation);
-            _spawners.Add(gummySpawner);
-        }
+        _healthController = GetComponent<HealthController>();
     }
 
     void FixedUpdate()
@@ -73,7 +64,11 @@ public class BossMovement : MonoBehaviour
     {
         _isIdle = true; // Boss is stationary
 
+        if (Time.time - _lastSpawnTime >= _spawnIntervalPhaseOne)
+        {
             SpawnEnemies();
+            _lastSpawnTime = Time.time;
+        }
 
     }
 
@@ -83,8 +78,13 @@ public class BossMovement : MonoBehaviour
         UpdateTargetDirection();
         SetVelocity();
 
-        SpawnEnemies();
+        if (Time.time - _lastSpawnTime >= _spawnIntervalPhaseTwo)
+        {
+            SpawnEnemies();
+            _lastSpawnTime = Time.time;
+        }
     }
+
     private void SetVelocity() 
     {
         if (!_isIdle)
@@ -96,6 +96,7 @@ public class BossMovement : MonoBehaviour
             _rigidbody.velocity = Vector2.zero; // Set velocity to zero while idle
         }
     }
+
     private void UpdateTargetDirection()
     {
         if (_playerAwarenessController.AwareOfPlayer)
@@ -107,12 +108,30 @@ public class BossMovement : MonoBehaviour
 
     private void SpawnEnemies()
     {
-        foreach (var spawner in _spawners)
+        foreach (var spawnPoint in _spawnPoints)
         {
-            var enemySpawner = spawner.GetComponent<EnemySpawner>();
-            if (enemySpawner != null)
+            Instantiate(_enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        }
+    }
+    
+    //Called under healthcontroller onDied() Event
+    public void DeathExplosion()
+    {
+        float _explosionRadius = 50.0f;
+
+        //Hit enemies in the set explosion radius
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _explosionRadius, _enemyLayerMask);
+        foreach (Collider2D collider in colliders)
+        {
+            Debug.Log("Collider detected: " + collider.gameObject.name);
+            var enemy = collider.GetComponent<EnemyMovement>();
+
+            Rigidbody2D rb = collider.GetComponent<Rigidbody2D>();
+            HealthController healthController = collider.GetComponent<HealthController>();
+
+            if (healthController != null && rb != null && enemy != null)
             {
-                enemySpawner.enabled = true; // Activate the spawner
+                healthController.TakeDamage(50f);
             }
         }
     }
