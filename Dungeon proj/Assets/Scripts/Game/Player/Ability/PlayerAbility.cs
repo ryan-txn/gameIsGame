@@ -4,7 +4,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerAbility : MonoBehaviour
 {
+    [SerializeField]
     private bool _abilityUnlocked = false;
+    
     private bool _useAbility;
     private bool _canUseAbility = true;
 

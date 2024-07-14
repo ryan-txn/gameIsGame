@@ -83,7 +83,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _isBouncy: 1
-  _maxNumberOfBounces: 1
+  _maxNumberOfBounces: 2
 --- !u!58 &1657836255662868277
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -93,7 +93,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 649121753725581618}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 02672e0826e8ffc4e9ea1a56a7a4e477, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

@@ -13,7 +13,6 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 _targetDirection;
     private float _changeDirectionCooldown; // time to change direction
     private float _wallDetectionCooldown; // time to change direction when colliding with wall
-    private Camera _camera;
     private bool _isIdle; // Flag to track idle state
     private float _idleTimer; // Timer for idle duration
 
@@ -25,7 +24,6 @@ public class EnemyMovement : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _playerAwarenessController = GetComponent<PlayerAwarenessController>();
         _targetDirection = transform.up; // initial target direction will be the way it's currently facing
-        _camera = Camera.main;
         _animator = GetComponentInChildren<Animator>();
         _rangedEnemyAttack = GetComponent<RangedEnemyAttack>(); // Get reference to RangedEnemyAttack if it exists
     }

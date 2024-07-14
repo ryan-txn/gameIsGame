@@ -5968,7 +5968,7 @@ MonoBehaviour:
   dashPower: 28
   dashDuration: 0.25
   dashCooldown: 1
-  invincibilityDuration: 0.4
+  invincibilityDuration: 0.5
   flashColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0.9490196}
   numberOfFlashes: 1
 --- !u!70 &384172905
@@ -6175,6 +6175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97aa120771641d943a157edfbe009f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _abilityUnlocked: 0
   _abilityBar: {fileID: 133439709}
 --- !u!1 &387270966
 GameObject:
@@ -6758,6 +6759,7 @@ GameObject:
   - component: {fileID: 637883540}
   - component: {fileID: 637883543}
   - component: {fileID: 637883544}
+  - component: {fileID: 637883545}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6875,7 +6877,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -6896,6 +6898,23 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &637883545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637883539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 65169c999580613448b9c62df9e2541f, type: 2}
 --- !u!1 &684654597
 GameObject:
   m_ObjectHideFlags: 0
@@ -15713,7 +15732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1647491232
 Transform:
   m_ObjectHideFlags: 0
@@ -15922,7 +15941,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1691516339
 Transform:
   m_ObjectHideFlags: 0
