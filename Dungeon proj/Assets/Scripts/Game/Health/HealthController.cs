@@ -91,4 +91,9 @@ public class HealthController : MonoBehaviour
         _currentHealth +=amountToAdd;
         OnHealthChanged.Invoke();
     }
+
+    public void DecreaseEnemyCount()
+    {
+        EnemyCounter.RemoveEnemy();
+    }
 }

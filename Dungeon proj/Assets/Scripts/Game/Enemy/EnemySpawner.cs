@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
     private GameObject _enemyPrefab;
 
     [SerializeField]
-    private int _maxSpawnCount = 5;
+    private int _maxSpawnCount;
 
     private int _spawnCount = 0;
 

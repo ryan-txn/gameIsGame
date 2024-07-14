@@ -16,7 +16,14 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         coinController = player.GetComponent<CoinController>();
-        coinController.ChangeCoinAmt(DataManager.playerData.coins);
+        if (DataManager.playerData == null)
+        {
+            Debug.Log("no save file");
+        } 
+        else
+        {
+            coinController.ChangeCoinAmt(DataManager.playerData.coins);
+        }
     }
 
 

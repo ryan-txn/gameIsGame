@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.Tilemaps;
 
 public class DetectPlayerEntry : MonoBehaviour
@@ -14,11 +15,19 @@ public class DetectPlayerEntry : MonoBehaviour
     [SerializeField]
     private GameObject vertCorridorBlocker;
 
+    [SerializeField]
+    private int enmyCount;
+
     public bool playerEntered = false;
+
+    GameObject corrBlocker1;
+    GameObject corrBlocker2;
+    GameObject corrBlocker3;
+    GameObject corrBlocker4;
 
     private void Start()
     {
-        // Assume room bounds collider is a larger collider representing the room's bounds
+        // room bounds collider is a larger collider representing the room's bounds
         roomBoundsCollider = GetComponent<BoxCollider2D>();
         if (roomBoundsCollider == null)
         {
@@ -38,23 +47,38 @@ public class DetectPlayerEntry : MonoBehaviour
             int width = roomWalls.size.x;
             Vector3 spawnpoint = transform.position;
             Vector3 newSpawnpoint = spawnpoint + new Vector3(0, (height / 2) - 1, 0);
-            Instantiate(horCorridorBlocker, newSpawnpoint, Quaternion.identity);
+            corrBlocker1 = Instantiate(horCorridorBlocker, newSpawnpoint, Quaternion.identity);
             newSpawnpoint = spawnpoint + new Vector3(0, -(height / 2), 0);
-            Instantiate(horCorridorBlocker, newSpawnpoint, Quaternion.identity);
+            corrBlocker2 = Instantiate(horCorridorBlocker, newSpawnpoint, Quaternion.identity);
             newSpawnpoint = spawnpoint + new Vector3((width / 2) - 1, 0, 0);
-            Instantiate(vertCorridorBlocker, newSpawnpoint, Quaternion.identity);
+            corrBlocker3 = Instantiate(vertCorridorBlocker, newSpawnpoint, Quaternion.identity);
             newSpawnpoint = spawnpoint + new Vector3(-(width / 2), 0, 0);
-            Instantiate(vertCorridorBlocker, newSpawnpoint, Quaternion.identity);
+            corrBlocker4 = Instantiate(vertCorridorBlocker, newSpawnpoint, Quaternion.identity);
             roomBoundsCollider.enabled = false;
+            EnemyCounter.SetEnemies(10);
         }
 
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+/*    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("Player exited a room");
+
+        }
+    }*/
+
+    private void Update()
+    {
+        if (playerEntered && EnemyCounter.GetEnemyCount() == 0)
+        {
+            Destroy(corrBlocker1);
+            Destroy(corrBlocker2);
+            Destroy(corrBlocker3);
+            Destroy(corrBlocker4);
+            Debug.Log("doors opened");
+            playerEntered = false;
         }
     }
 
