@@ -30,6 +30,9 @@ public class DetectPlayerEntry : MonoBehaviour
     [SerializeField]
     private float duration;
 
+    [SerializeField]
+    private float fade_duration;
+
     GameObject corrBlocker1;
     GameObject corrBlocker2;
     GameObject corrBlocker3;
@@ -89,13 +92,12 @@ public class DetectPlayerEntry : MonoBehaviour
             playerEntered = false;
             if (_infoMessageUI != null)
             {
-                _infoMessageUI.UpdateMessage(_doorsOpenedString);
+                _infoMessageUI.UpdateMessage(_doorsOpenedString, fade_duration, duration, fade_duration);
             }
-            StartCoroutine(ClearMessageAfterTime(duration));
         }
     }
 
-    private IEnumerator ClearMessageAfterTime(float duration)
+/*    private IEnumerator ClearMessageAfterTime(float duration)
     {
         yield return new WaitForSeconds(duration);
         if (_infoMessageUI != null)
@@ -103,7 +105,7 @@ public class DetectPlayerEntry : MonoBehaviour
             _infoMessageUI.ClearMessage();
             Debug.Log(duration + " seconds passed since leaving");
         }
-    }
+    }*/
 
     Tilemap FindTilemapWithTag(GameObject parent, string tag)
     {

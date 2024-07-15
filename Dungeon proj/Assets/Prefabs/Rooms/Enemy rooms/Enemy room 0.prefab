@@ -4485,6 +4485,7 @@ MonoBehaviour:
   playerEntered: 0
   playerExited: 0
   duration: 3
+  fade_duration: 0.5
 --- !u!61 &551209462416432897
 BoxCollider2D:
   m_ObjectHideFlags: 0
