@@ -24,7 +24,9 @@ public class RoomManager : MonoBehaviour
 
     private readonly string WALL_STRING = "Wall";
 
-    private readonly int fixedRoomDistance = 30;
+    [SerializeField]
+    private int fixedRoomDistance;
+
     private readonly int corrWidth = 4;
 
 

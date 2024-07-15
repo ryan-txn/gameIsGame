@@ -8287,6 +8287,7 @@ MonoBehaviour:
   vertCorridor: {fileID: 7170004746263583874, guid: 670e733b4e997ff48b6cb3fb621282f9, type: 3}
   horCorridor: {fileID: 7170004746263583874, guid: 1d5a447b3faaec74cb19db4058ecb0c0, type: 3}
   firstRoom: {fileID: 9562248}
+  fixedRoomDistance: 26
 --- !u!4 &1295583374
 Transform:
   m_ObjectHideFlags: 0
@@ -9567,6 +9568,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBarForegroundImage: {fileID: 377159578}
+  _healthBarBackgroundImage: {fileID: 0}
+  _text: {fileID: 0}
 --- !u!1 &1835887103
 GameObject:
   m_ObjectHideFlags: 0
