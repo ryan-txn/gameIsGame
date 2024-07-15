@@ -22,7 +22,7 @@ public class RangedEnemyAttack : MonoBehaviour
 
     [SerializeField]
     private bool _isSpreadShot;
-    
+
     [SerializeField]
     private int numberOfProjectiles = 12; // Total number of projectiles including the main one
     [SerializeField]
