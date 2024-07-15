@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Tilemaps;
 
@@ -16,9 +17,18 @@ public class DetectPlayerEntry : MonoBehaviour
     private GameObject vertCorridorBlocker;
 
     [SerializeField]
-    private int enmyCount;
+    private string _doorsOpenedString;
 
+    private InfoMessageUI _infoMessageUI;
+
+    [HideInInspector]
     public bool playerEntered = false;
+
+    [HideInInspector]
+    public bool playerExited = false;
+
+    [SerializeField]
+    private float duration;
 
     GameObject corrBlocker1;
     GameObject corrBlocker2;
@@ -32,6 +42,12 @@ public class DetectPlayerEntry : MonoBehaviour
         if (roomBoundsCollider == null)
         {
             Debug.Log("no collider");
+        }
+
+        _infoMessageUI = GameObject.Find("Info message").GetComponent<InfoMessageUI>();
+        if (_infoMessageUI == null)
+        {
+            Debug.LogError("no info message component");
         }
     }
 
@@ -54,24 +70,16 @@ public class DetectPlayerEntry : MonoBehaviour
             corrBlocker3 = Instantiate(vertCorridorBlocker, newSpawnpoint, Quaternion.identity);
             newSpawnpoint = spawnpoint + new Vector3(-(width / 2), 0, 0);
             corrBlocker4 = Instantiate(vertCorridorBlocker, newSpawnpoint, Quaternion.identity);
-            roomBoundsCollider.enabled = false;
+
+            roomBoundsCollider.enabled = false; //delete collider
             EnemyCounter.SetEnemies(10);
         }
 
     }
 
-/*    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log("Player exited a room");
-
-        }
-    }*/
-
     private void Update()
     {
-        if (playerEntered && EnemyCounter.GetEnemyCount() == 0)
+        if (playerEntered && EnemyCounter.GetEnemyCount() == 0) //checking for player killed all enemies
         {
             Destroy(corrBlocker1);
             Destroy(corrBlocker2);
@@ -79,6 +87,21 @@ public class DetectPlayerEntry : MonoBehaviour
             Destroy(corrBlocker4);
             Debug.Log("doors opened");
             playerEntered = false;
+            if (_infoMessageUI != null)
+            {
+                _infoMessageUI.UpdateMessage(_doorsOpenedString);
+            }
+            StartCoroutine(ClearMessageAfterTime(duration));
+        }
+    }
+
+    private IEnumerator ClearMessageAfterTime(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        if (_infoMessageUI != null)
+        {
+            _infoMessageUI.ClearMessage();
+            Debug.Log(duration + " seconds passed since leaving");
         }
     }
 
