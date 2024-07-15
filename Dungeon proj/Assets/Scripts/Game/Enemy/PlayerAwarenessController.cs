@@ -59,7 +59,7 @@ public class PlayerAwarenessController : MonoBehaviour
             // Check if enough time has passed since the last awareness
             if (Time.time - _lastAwareTime > _lossAwarenessDelay)
             {
-                if (AwareOfPlayer)
+                if (AwareOfPlayer && _enemyMovement != null)
                 {
                     _enemyMovement.OnPlayerLeaveAwareness();
                 }
