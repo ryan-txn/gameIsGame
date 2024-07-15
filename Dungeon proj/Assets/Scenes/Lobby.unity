@@ -7471,6 +7471,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBarForegroundImage: {fileID: 1316551091}
+  _healthBarBackgroundImage: {fileID: 0}
+  _text: {fileID: 0}
 --- !u!1 &905931311
 GameObject:
   m_ObjectHideFlags: 0
@@ -8680,7 +8682,7 @@ Animator:
   m_GameObject: {fileID: 1146215862}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 658db40d38bbd6343b24be61a60f0778, type: 2}
+  m_Controller: {fileID: 9100000, guid: fc42a3c78d16b5b45b70e9b88f1bef4d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -8732,12 +8734,12 @@ SpriteRenderer:
   m_SortingLayerID: 942863389
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -676498697, guid: 3d8354c4f45287c42b60d9246481d0e3, type: 3}
+  m_Sprite: {fileID: -676498697, guid: a1635714e300fa348a8d0a5722f60583, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.605, y: 1.09}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

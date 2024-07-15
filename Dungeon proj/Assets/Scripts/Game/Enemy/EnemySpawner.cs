@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -46,6 +47,11 @@ public class EnemySpawner : MonoBehaviour
                 Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
                 SetTimeUntilSpawn();
                 _spawnCount++;
+            }
+            else if (_spawnCount == _maxSpawnCount)
+            {
+                //GameObject portal = GetComponentInChildren<GameObject>();
+                Destroy(gameObject);
             }
         }
     }
