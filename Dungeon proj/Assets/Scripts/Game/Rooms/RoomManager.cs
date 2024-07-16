@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -9,6 +10,12 @@ public class RoomManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] enemyRoomPrefabs;
+
+    [SerializeField]
+    private GameObject[] branchRoomPrefabs;
+    private readonly int CHEST_ROOM_INDEX = 0;
+    private readonly int SHOP_ROOM_INDEX = 1;
+
 
     [SerializeField]
     private GameObject vertCorridor;
@@ -20,6 +27,7 @@ public class RoomManager : MonoBehaviour
 
     [SerializeField]
     private GameObject firstRoom;
+
     private GameObject secondRoom;
 
     private readonly string WALL_STRING = "Wall";
@@ -28,6 +36,7 @@ public class RoomManager : MonoBehaviour
     private int fixedRoomDistance;
 
     private readonly int corrWidth = 4;
+    private readonly int rootRoomCount = 2;
 
 
     private void Awake()
@@ -38,59 +47,60 @@ public class RoomManager : MonoBehaviour
     private void GenerateDungeon()
     {
         List<int> currentDirections = new List<int> { 0, 1, 2, 3 };
-
-        int positionIndex = Random.Range(0, currentDirections.Count); //get position from 0-3
-        currentDirections.RemoveAt(3 - positionIndex); //remove opposite index option
-        secondRoom = enemyRoomPrefabs[0];
-        GameObject rootRoom;
-        bool isRoot = true;
-        int room_distance;
+        int positionIndex;
+        GameObject rootRoom = null;
+        GameObject spawnedRoom = null;
+        Vector3Int direction;
+        bool isRoot;
         int corr_distance;
-        Vector3Int direction = ReturnDirection(positionIndex);
-        room_distance = FindDistanceRooms(firstRoom, secondRoom, direction);
-        corr_distance = FindDistanceCorr(secondRoom, direction);
-        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, WALL_STRING, corr_distance);
+        int chestSpawnFromRoot = Random.Range(0, rootRoomCount);
+        int shopSpawnFromRoot = Random.Range(0, rootRoomCount);
+        int i;
 
-        positionIndex = currentDirections[Random.Range(0, currentDirections.Count)];
-        currentDirections.Remove(positionIndex);
-        firstRoom = rootRoom;
-        secondRoom = enemyRoomPrefabs[1];
-        GameObject spawnedRoom;
-        isRoot = false;
+
+        // spawn first enemy room from start room
+        positionIndex = currentDirections[Random.Range(0, currentDirections.Count)]; //get position from 0-3
+        currentDirections.Remove(3 - positionIndex); //remove opposite index option
+        secondRoom = enemyRoomPrefabs[0];
+        isRoot = true;
         direction = ReturnDirection(positionIndex);
-        room_distance = FindDistanceRooms(firstRoom, secondRoom, direction);
         corr_distance = FindDistanceCorr(secondRoom, direction);
-        spawnedRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, WALL_STRING, corr_distance);
+        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, corr_distance);
+        i = 0;
 
-        positionIndex = currentDirections[Random.Range(0, currentDirections.Count)];
-        currentDirections.Remove(positionIndex);
-        firstRoom = rootRoom;
-        secondRoom = enemyRoomPrefabs[2];
-        isRoot = false;
-        direction = ReturnDirection(positionIndex);
-        room_distance = FindDistanceRooms(firstRoom, secondRoom, direction);
-        corr_distance = FindDistanceCorr(secondRoom, direction);
-        spawnedRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, WALL_STRING, corr_distance);
+        // spawn chest room from first enemy room
+        if (chestSpawnFromRoot == i) SpawnBranchRoom(ref currentDirections, ref positionIndex, ref rootRoom, ref spawnedRoom, ref direction, ref isRoot, ref corr_distance, CHEST_ROOM_INDEX);
+        //spawn shop room from first enemy room
+        if (shopSpawnFromRoot == i) SpawnBranchRoom(ref currentDirections, ref positionIndex, ref rootRoom, ref spawnedRoom, ref direction, ref isRoot, ref corr_distance, SHOP_ROOM_INDEX);
 
+        //spawn second enemy room from first enemy room
         positionIndex = currentDirections[Random.Range(0, currentDirections.Count)];
         firstRoom = rootRoom;
         secondRoom = enemyRoomPrefabs[0];
         isRoot = true;
         direction = ReturnDirection(positionIndex);
-        room_distance = FindDistanceRooms(firstRoom, secondRoom, direction);
         corr_distance = FindDistanceCorr(secondRoom, direction);
-        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, WALL_STRING, corr_distance);
+        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, corr_distance);
+        i++;
 
         currentDirections = new List<int> { 0, 1, 2, 3 };
-        currentDirections.RemoveAt(3 - positionIndex); //remove opposite index option
+        currentDirections.Remove(3 - positionIndex);
+
+
+        // spawn chest room from second enemy room
+        if (chestSpawnFromRoot == i) SpawnBranchRoom(ref currentDirections, ref positionIndex, ref rootRoom, ref spawnedRoom, ref direction, ref isRoot, ref corr_distance, CHEST_ROOM_INDEX);
+        //spawn shop room from second enemy room
+        if (shopSpawnFromRoot == i) SpawnBranchRoom(ref currentDirections, ref positionIndex, ref rootRoom, ref spawnedRoom, ref direction, ref isRoot, ref corr_distance, SHOP_ROOM_INDEX);
+
+        //spawn third enemy room from second enemy room
+        //currentDirections.Remove(3 - positionIndex); //remove opposite index option
         positionIndex = currentDirections[Random.Range(0, currentDirections.Count)]; //get position from 0-3
         firstRoom = rootRoom;
         secondRoom = enemyRoomPrefabs[0];
         isRoot = true;
         direction = ReturnDirection(positionIndex);
-        room_distance = FindDistanceRooms(firstRoom, secondRoom, direction);
         corr_distance = FindDistanceCorr(secondRoom, direction);
-        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, WALL_STRING, corr_distance);
+        rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, corr_distance);
     }
 
     // Method to find a Tilemap with a specific tag in the children of a GameObject
@@ -116,7 +126,7 @@ public class RoomManager : MonoBehaviour
         else return new Vector3Int(0, -1, 0);
     }
 
-    int FindDistanceRooms(GameObject firstRoom, GameObject secondRoom, Vector3 direction)
+    int FindDistanceRooms(GameObject firstRoom, GameObject secondRoom, Vector3 direction) //length of both rooms height/2 OR width/2 added together
     {
         Tilemap firstTilemap = FindTilemapWithTag(firstRoom, WALL_STRING);
         Tilemap secondTilemap = FindTilemapWithTag(secondRoom, WALL_STRING);
@@ -157,12 +167,12 @@ public class RoomManager : MonoBehaviour
         return distance;
     }
 
-    GameObject SpawnRoom(Vector3Int direction, bool isRoot, GameObject firstRoom, GameObject secondRoom, int distanceFromFirstRoom,
-                string wallTilemapTag, int corrDistance)
+    GameObject SpawnRoom(Vector3Int direction, bool isRoot, GameObject firstRoom, GameObject secondRoom,
+                         int distanceFromFirstRoom, int corrDistance)
     {
         GameObject corridor;
 
-        //spawn in second room
+        //if is root update root spawn location
         if (isRoot)
         {
             rootRoomSpawn += direction * distanceFromFirstRoom;
@@ -218,11 +228,9 @@ public class RoomManager : MonoBehaviour
     {
         Vector3Int Gap = new Vector3Int(0, 0, 0);
 
-
-
         if (direction == new Vector3Int(0, 1, 0))
         {
-            Gap += direction * ((roomDimension / 2) - 1); // initial spawnpoint
+            Gap += direction * ((roomDimension / 2) - 1);
             Vector3Int tempGap = Gap;
             for (int i = 0; i < corrWidth / 2; i++)
             {
@@ -238,7 +246,7 @@ public class RoomManager : MonoBehaviour
         }
         else if (direction == new Vector3Int(0, -1, 0))
         {
-            Gap += direction * ((roomDimension / 2)); // initial spawnpoint
+            Gap += direction * ((roomDimension / 2));
             Vector3Int tempGap = Gap;
             for (int i = 0; i < corrWidth / 2; i++)
             {
@@ -254,7 +262,7 @@ public class RoomManager : MonoBehaviour
         }
         else if (direction == new Vector3Int(1, 0, 0))
         {
-            Gap += direction * ((roomDimension / 2) - 1); // initial spawnpoint
+            Gap += direction * ((roomDimension / 2) - 1);
             Vector3Int tempGap = Gap;
             for (int i = 0; i < corrWidth / 2; i++)
             {
@@ -270,7 +278,7 @@ public class RoomManager : MonoBehaviour
         }
         else
         {
-            Gap += direction * ((roomDimension / 2)); // initial spawnpoint
+            Gap += direction * ((roomDimension / 2));
             Vector3Int tempGap = Gap;
             for (int i = 0; i < corrWidth / 2; i++)
             {
@@ -285,4 +293,18 @@ public class RoomManager : MonoBehaviour
             }
         }
     }
+
+    void SpawnBranchRoom(ref List<int> currentDirections, ref int positionIndex, ref GameObject rootRoom, ref GameObject spawnedRoom,
+                         ref Vector3Int direction, ref bool isRoot, ref int corr_distance, int branchRoomIndex)
+    {
+        positionIndex = currentDirections[Random.Range(0, currentDirections.Count)];
+        currentDirections.Remove(positionIndex);
+        firstRoom = rootRoom;
+        secondRoom = branchRoomPrefabs[branchRoomIndex];
+        isRoot = false;
+        direction = ReturnDirection(positionIndex);
+        corr_distance = FindDistanceCorr(secondRoom, direction);
+        spawnedRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, corr_distance);
+    }
+
 }
