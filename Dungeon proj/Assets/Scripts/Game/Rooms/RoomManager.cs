@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class RoomManager : MonoBehaviour
 {
@@ -108,7 +109,13 @@ public class RoomManager : MonoBehaviour
 
         //update portal
         SceneTransition sceneTransition = rootRoom.transform.GetChild(0).GetComponent<SceneTransition>();
-        sceneTransition._sceneToLoad = "Level 1-2";
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+        string nextSceneName = SceneUtility.GetScenePathByBuildIndex(nextSceneIndex);
+        nextSceneName = System.IO.Path.GetFileNameWithoutExtension(nextSceneName);
+
+        // Set the scene to load to the next scene
+        sceneTransition._sceneToLoad = nextSceneName;
     }
 
     // Method to find a Tilemap with a specific tag in the children of a GameObject
