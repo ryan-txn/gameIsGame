@@ -13,6 +13,10 @@ public class RoomManager : MonoBehaviour
 
     [SerializeField]
     private GameObject[] branchRoomPrefabs;
+
+    [SerializeField]
+    private GameObject portalRoom;
+
     private readonly int CHEST_ROOM_INDEX = 0;
     private readonly int SHOP_ROOM_INDEX = 1;
 
@@ -96,11 +100,15 @@ public class RoomManager : MonoBehaviour
         //currentDirections.Remove(3 - positionIndex); //remove opposite index option
         positionIndex = currentDirections[Random.Range(0, currentDirections.Count)]; //get position from 0-3
         firstRoom = rootRoom;
-        secondRoom = enemyRoomPrefabs[0];
+        secondRoom = portalRoom;
         isRoot = true;
         direction = ReturnDirection(positionIndex);
         corr_distance = FindDistanceCorr(secondRoom, direction);
         rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, corr_distance);
+
+        //update portal
+        SceneTransition sceneTransition = rootRoom.transform.GetChild(0).GetComponent<SceneTransition>();
+        sceneTransition._sceneToLoad = "Level 1-2";
     }
 
     // Method to find a Tilemap with a specific tag in the children of a GameObject
