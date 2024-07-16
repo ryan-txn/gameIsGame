@@ -939,7 +939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e0ccd4e1744adc47a20941921572a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: '[E] ENTER DUNGEON'
+  message: '[E] NEXT LEVEL'
 --- !u!58 &4997403023895719097
 CircleCollider2D:
   m_ObjectHideFlags: 0
