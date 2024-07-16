@@ -19,6 +19,9 @@ public class DetectPlayerEntry : MonoBehaviour
     [SerializeField]
     private string _doorsOpenedString;
 
+    [SerializeField]
+    private int _enemyCount = 10;
+
     private InfoMessageUI _infoMessageUI;
 
     [HideInInspector]
@@ -75,7 +78,7 @@ public class DetectPlayerEntry : MonoBehaviour
             corrBlocker4 = Instantiate(vertCorridorBlocker, newSpawnpoint, Quaternion.identity);
 
             roomBoundsCollider.enabled = false; //delete collider
-            EnemyCounter.SetEnemies(10);
+            EnemyCounter.SetEnemies(_enemyCount);
         }
 
     }

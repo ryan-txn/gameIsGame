@@ -36,6 +36,9 @@ public class BossMovement : MonoBehaviour
     [SerializeField]
     private float _spawnIntervalPhaseTwo;
 
+    [SerializeField]
+    private float _maxNumOfGummyToSpawn = 20;
+
     private float _lastSpawnTime;
 
     [SerializeField]
@@ -60,7 +63,7 @@ public class BossMovement : MonoBehaviour
     {
         SetAnimation();
 
-        if(_healthController.currentHealthNum == 0)
+        if (_healthController.currentHealthNum == 0)
         {
             _isDead = true;
         }
@@ -127,7 +130,7 @@ public class BossMovement : MonoBehaviour
         }
     }
 
-    private void SetVelocity() 
+    private void SetVelocity()
     {
         if (!_isIdle)
         {
@@ -164,10 +167,20 @@ public class BossMovement : MonoBehaviour
     {
         foreach (var spawnPoint in _spawnPoints)
         {
-            Instantiate(_enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+            int currentEnemyCount = EnemyCounter.GetEnemyCount();
+
+            if (currentEnemyCount < _maxNumOfGummyToSpawn)
+            {
+                Instantiate(_enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+                EnemyCounter.SetEnemies(currentEnemyCount += 1);
+            }
+            else
+            {
+                Debug.Log("Max Gummy number reached");
+            }
         }
     }
-    
+
     //Called under healthcontroller onDied() Event
     public void DeathExplosion()
     {
