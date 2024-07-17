@@ -9,7 +9,13 @@ public class PlayerSwingWeapon : MonoBehaviour
     private int _damage;
 
     [SerializeField]
+    private float _staminaCostPerShot;
+
+    [SerializeField]
     private float _swingDuration;
+
+    [SerializeField]
+    private float _swingCooldown = 0.2f;
 
     [SerializeField]
     private Transform _weaponTransform;
@@ -17,13 +23,16 @@ public class PlayerSwingWeapon : MonoBehaviour
     [SerializeField]
     private float _swingAngle;
 
+    private bool _canSwing;
     public bool _isSwinging;
     private float _swingStartTime;
+    private float _lastSwingTime;
     private Quaternion _initialRotation;
     private Quaternion _targetRotation;
     private bool _swingBack;
 
     private CapsuleCollider2D _capsuleCollider;
+    private StaminaController _staminaController;
 
 
     private void Awake()
@@ -37,10 +46,24 @@ public class PlayerSwingWeapon : MonoBehaviour
         {
             Debug.Log("Capsule collider not set!");
         }
+
+        _staminaController = GetComponentInParent<StaminaController>();
     }
 
     private void Update()
     {
+        if (!_isSwinging && _canSwing && _staminaController.currentStaminaNum >= _staminaCostPerShot)
+        {
+            float timeSinceLastSwing = Time.time - _lastSwingTime;
+
+            if (timeSinceLastSwing >= _swingCooldown)
+            {
+                StartSwing();
+                
+                _canSwing = false;
+            }
+        }
+
         if (_isSwinging)
         {
             _capsuleCollider.enabled = true;
@@ -72,7 +95,7 @@ public class PlayerSwingWeapon : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (_isSwinging && collision.GetComponent<EnemyMovement>())
+        if (_isSwinging && collision.CompareTag("Enemy"))
         {
             HealthController healthController = collision.GetComponent<HealthController>();
             healthController.TakeDamage(_damage);
@@ -83,6 +106,8 @@ public class PlayerSwingWeapon : MonoBehaviour
     {
         if (!_isSwinging)
         {
+            _staminaController.ConsumeStamina(_staminaCostPerShot);
+
             _isSwinging = true;
             _swingStartTime = Time.time;
             _swingBack = false;
@@ -102,6 +127,7 @@ public class PlayerSwingWeapon : MonoBehaviour
     private void EndSwing()
     {
         _isSwinging = false;
+        _lastSwingTime = Time.time;
 /*        _weaponTransform.localRotation = _initialRotation; // Reset rotation
         transform.localPosition = _initialPosition; // Reset position*/
     }
@@ -120,10 +146,7 @@ public class PlayerSwingWeapon : MonoBehaviour
     {
         if (!PauseMenu.isPaused)
         {
-            if (inputValue.isPressed)
-            {
-                StartSwing();
-            }
+            _canSwing = inputValue.isPressed;
         }
     }
 }

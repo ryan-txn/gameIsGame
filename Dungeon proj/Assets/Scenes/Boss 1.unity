@@ -9322,7 +9322,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 20
+  _staminaCostPerShot: 0
   _swingDuration: 0.2
+  _swingCooldown: 0.2
   _weaponTransform: {fileID: 57057313}
   _swingAngle: 100
   _isSwinging: 0
