@@ -66,4 +66,10 @@ public class EnemySpawner : MonoBehaviour
         int index = Random.Range(0, _enemyList.Count);
         _enemyPrefab = _enemyList[index];
     }
+
+    public int GetMaxSpawnCount()
+    {
+        return _maxSpawnCount;
+    }
+
 }

@@ -19,8 +19,7 @@ public class DetectPlayerEntry : MonoBehaviour
     [SerializeField]
     private string _doorsOpenedString;
 
-    [SerializeField]
-    private int _enemyCount = 10;
+    private int _enemyCount = 0;
 
     private InfoMessageUI _infoMessageUI;
 
@@ -54,6 +53,12 @@ public class DetectPlayerEntry : MonoBehaviour
         if (_infoMessageUI == null)
         {
             Debug.LogError("no info message component");
+        }
+
+        EnemySpawner[] enemySpawners = GetComponentsInChildren<EnemySpawner>();
+        foreach (EnemySpawner spawner in enemySpawners)
+        {
+            _enemyCount += spawner.GetMaxSpawnCount();
         }
     }
 
@@ -99,16 +104,6 @@ public class DetectPlayerEntry : MonoBehaviour
             }
         }
     }
-
-/*    private IEnumerator ClearMessageAfterTime(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        if (_infoMessageUI != null)
-        {
-            _infoMessageUI.ClearMessage();
-            Debug.Log(duration + " seconds passed since leaving");
-        }
-    }*/
 
     Tilemap FindTilemapWithTag(GameObject parent, string tag)
     {

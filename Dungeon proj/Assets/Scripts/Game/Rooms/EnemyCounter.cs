@@ -8,9 +8,6 @@ public static class EnemyCounter
 {
     private static int enemyCount;
 
-    // Event that can be subscribed to for detecting when all enemies are killed
-    //public static event Action OnAllEnemiesKilled;
-
     public static void SetEnemies(int count)
     {
         enemyCount = count;
@@ -26,7 +23,6 @@ public static class EnemyCounter
         else if (enemyCount < 0)
         {
             Debug.Log("Enemy count is less than expected");
-            //OnAllEnemiesKilled.Invoke();
         }
     }
 

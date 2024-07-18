@@ -67,7 +67,7 @@ public class RoomManager : MonoBehaviour
         // spawn first enemy room from start room
         positionIndex = currentDirections[Random.Range(0, currentDirections.Count)]; //get position from 0-3
         currentDirections.Remove(3 - positionIndex); //remove opposite index option
-        secondRoom = enemyRoomPrefabs[0];
+        secondRoom = enemyRoomPrefabs[RandomEnemyRoomIndex()];
         isRoot = true;
         direction = ReturnDirection(positionIndex);
         corr_distance = FindDistanceCorr(secondRoom, direction);
@@ -82,7 +82,7 @@ public class RoomManager : MonoBehaviour
         //spawn second enemy room from first enemy room
         positionIndex = currentDirections[Random.Range(0, currentDirections.Count)];
         firstRoom = rootRoom;
-        secondRoom = enemyRoomPrefabs[0];
+        secondRoom = enemyRoomPrefabs[RandomEnemyRoomIndex()];
         isRoot = true;
         direction = ReturnDirection(positionIndex);
         corr_distance = FindDistanceCorr(secondRoom, direction);
@@ -326,5 +326,10 @@ public class RoomManager : MonoBehaviour
 
         //set the scene to load to the next scene
         sceneTransition._sceneToLoad = nextSceneName;
+    }
+
+    int RandomEnemyRoomIndex()
+    {
+        return Random.Range(0, enemyRoomPrefabs.Length);
     }
 }
