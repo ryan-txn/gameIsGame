@@ -22,4 +22,9 @@ public class MainMenu : MonoBehaviour
 
         }
     }
+
+    public void ResetSave()
+    {
+        DataManager.saveSystem.ResetSave();
+    }
 }

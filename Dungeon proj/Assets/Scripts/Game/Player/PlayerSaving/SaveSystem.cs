@@ -51,4 +51,41 @@ public class SaveSystem
             return null;
         }
     }
+
+    public void ResetSave()
+    {
+        string path = Application.persistentDataPath + "/savefile.sigma";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            PlayerData data = formatter.Deserialize(stream) as PlayerData;
+            stream.Close();
+
+            if (data != null)
+            {
+                data.coins = 0;
+                data.max_health = 100;
+                data.curr_health = 100;
+                data.max_stamina = 200;
+                data.curr_stamina = 200;
+
+                stream = new FileStream(path, FileMode.Create);
+                formatter.Serialize(stream, data);
+                stream.Close();
+
+                Debug.Log("Save file reset successfully.");
+            }
+            else
+            {
+                Debug.LogError("Failed to deserialize the save file.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Save file not found in " + path);
+        }
+    }
+
 }
