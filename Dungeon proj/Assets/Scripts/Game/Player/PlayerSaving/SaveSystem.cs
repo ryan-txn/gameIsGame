@@ -8,6 +8,8 @@ public class SaveSystem
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/savefile.sigma";
+        Debug.Log("Save file path: " + path); // Log the path for debugging
+
         FileStream stream = new FileStream(path, FileMode.Create);
 
         PlayerData data = new PlayerData
