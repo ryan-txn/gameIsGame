@@ -99,6 +99,8 @@ public class PlayerSwingWeapon : MonoBehaviour
         {
             HealthController healthController = collision.GetComponent<HealthController>();
             healthController.TakeDamage(_damage);
+
+            FindObjectOfType<AudioManager>().PlaySFX("Bonk hit sound");
         }
     }
 
