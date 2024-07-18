@@ -45,7 +45,7 @@ public class LaserShoot : MonoBehaviour
 
     void Update()
     {
-        if ((_fireContinuously || _fireSingle) && _staminaController.currentStaminaNum >= _staminaCostPerShot)
+        if ((_fireContinuously || _fireSingle) && _staminaController._currentStamina >= _staminaCostPerShot)
         {
 
             ShootLaser();

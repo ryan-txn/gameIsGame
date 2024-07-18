@@ -14,12 +14,12 @@ public class HpNumUI : MonoBehaviour
 
     public void UpdateHealthNum(HealthController healthController)
     {
-        _healthText.text = $"{healthController.currentHealthNum} /{healthController.maxHealthNum}"; //$ allows {} to be embedded within ""
+        _healthText.text = $"{healthController._currentHealth} /{healthController._maximumHealth}"; //$ allows {} to be embedded within ""
     }
 
     public void UpdateUpgradeMenu(HealthController healthController)
     {
-        _healthText.text = $"MAX HEALTH: {healthController.maxHealthNum}";        
+        _healthText.text = $"MAX HEALTH: {healthController._maximumHealth}";        
     }
    
 }

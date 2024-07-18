@@ -9,23 +9,13 @@ public class HealthController : MonoBehaviour
     [SerializeField]
     public float _currentHealth;
     [SerializeField]
-    private float _maximumHealth;
+    public float _maximumHealth;
     public float RemainingHealthPercentage
     {
         get
         {
             return _currentHealth / _maximumHealth;
         }
-    }
-
-    public float currentHealthNum
-    {
-        get {return _currentHealth;}
-    }
-
-    public float maxHealthNum
-    {
-        get {return _maximumHealth;}
     }
 
     //invincibility frames
@@ -88,12 +78,30 @@ public class HealthController : MonoBehaviour
     public void AddMaxHealth(float amountToAdd)
     {
         _maximumHealth += amountToAdd;
-        _currentHealth +=amountToAdd;
+        _currentHealth += amountToAdd;
+        OnHealthChanged.Invoke();
+    }
+
+    public void UpdateMaxHealth(float newMaxHealth)
+    {
+        _maximumHealth = newMaxHealth;
+        OnHealthChanged.Invoke();
+    }
+
+    public void UpdateCurrHealth(float newCurrHealth)
+    {
+        _currentHealth = newCurrHealth;
         OnHealthChanged.Invoke();
     }
 
     public void DecreaseEnemyCount()
     {
         EnemyCounter.RemoveEnemy();
+    }
+
+    public void ResetHealth()
+    {
+        _currentHealth = _maximumHealth;
+        OnHealthChanged.Invoke();
     }
 }

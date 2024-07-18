@@ -6,5 +6,8 @@ using UnityEngine;
 public class PlayerData
 {
     public int coins;
-    public float health;
+    public float max_health;
+    public float curr_health;
+    public float max_stamina;
+    public float curr_stamina;
 }

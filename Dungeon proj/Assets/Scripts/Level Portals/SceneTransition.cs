@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class SceneTransition : MonoBehaviour
 {
@@ -12,10 +13,15 @@ public class SceneTransition : MonoBehaviour
     private bool _doorAccessed;
     private bool _collided;
 
+    private CoinController coinController;
+    private HealthController healthController;
+    private StaminaController staminaController;
+
     private void Update()
     {
         if (_collided && _doorAccessed)
         {
+            UpdatePlayerData();
             SceneManager.LoadScene( _sceneToLoad );
         }
     }
@@ -41,5 +47,29 @@ public class SceneTransition : MonoBehaviour
     private void OnInteract(InputValue inputValue)
     {
         _doorAccessed = inputValue.isPressed;
+    }
+
+    private void UpdatePlayerData()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+
+        if (player == null)
+        {
+            Debug.LogError("erm.. Player not found... what the sigma...");
+        }
+        else
+        {
+            //update coins
+            coinController = player.GetComponent<CoinController>();
+            DataManager.playerData.coins = coinController.coinAmt;
+            //update max and current health
+            healthController = player.GetComponent<HealthController>();
+            DataManager.playerData.curr_health = healthController._currentHealth;
+            DataManager.playerData.max_health = healthController._maximumHealth;
+            //update max and current stamina
+            staminaController = player.GetComponent<StaminaController>();
+            DataManager.playerData.curr_stamina = staminaController._currentStamina;
+            DataManager.playerData.max_stamina = staminaController._maximumStamina;
+        }
     }
 }

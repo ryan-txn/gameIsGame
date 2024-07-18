@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
 
@@ -108,14 +109,7 @@ public class RoomManager : MonoBehaviour
         rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, corr_distance);
 
         //update portal
-        SceneTransition sceneTransition = rootRoom.transform.GetChild(0).GetComponent<SceneTransition>();
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextSceneIndex = currentSceneIndex + 1;
-        string nextSceneName = SceneUtility.GetScenePathByBuildIndex(nextSceneIndex);
-        nextSceneName = System.IO.Path.GetFileNameWithoutExtension(nextSceneName);
-
-        // Set the scene to load to the next scene
-        sceneTransition._sceneToLoad = nextSceneName;
+        UpdateNextScene(rootRoom);
     }
 
     // Method to find a Tilemap with a specific tag in the children of a GameObject
@@ -322,4 +316,15 @@ public class RoomManager : MonoBehaviour
         spawnedRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, corr_distance);
     }
 
+    void UpdateNextScene(GameObject rootRoom)
+    {
+        SceneTransition sceneTransition = rootRoom.transform.GetChild(0).GetComponent<SceneTransition>();
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+        string nextSceneName = SceneUtility.GetScenePathByBuildIndex(nextSceneIndex);
+        nextSceneName = System.IO.Path.GetFileNameWithoutExtension(nextSceneName);
+
+        //set the scene to load to the next scene
+        sceneTransition._sceneToLoad = nextSceneName;
+    }
 }

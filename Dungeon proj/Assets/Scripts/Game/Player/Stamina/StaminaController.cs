@@ -10,7 +10,7 @@ public class StaminaController : MonoBehaviour
     public float _currentStamina;
 
     [SerializeField]
-    private float _maximumStamina;
+    public float _maximumStamina;
 
     public float RemainingStaminaPercentage
     {
@@ -20,15 +20,12 @@ public class StaminaController : MonoBehaviour
         }
     }
 
-    public float currentStaminaNum
+    public float CurrentStaminaNum
     {
         get {return (float)Math.Round(_currentStamina, 1); }
     }
 
-    public float maxStaminaNum
-    {
-        get {return _maximumStamina; }
-    }
+
 
     public UnityEvent OnStaminaChanged;
 
@@ -65,7 +62,25 @@ public class StaminaController : MonoBehaviour
     public void AddMaxStamina(float amountToAdd)
     {
         _maximumStamina += amountToAdd;
-        _currentStamina +=amountToAdd;
+        _currentStamina += amountToAdd;
         OnStaminaChanged.Invoke();
-    }    
+    }
+
+    public void UpdateMaxStamina(float newMaxStamina)
+    {
+        _maximumStamina = newMaxStamina;
+        OnStaminaChanged.Invoke();
+    }
+
+    public void UpdateCurrStamina(float newCurrStamina)
+    {
+        _currentStamina = newCurrStamina;
+        OnStaminaChanged.Invoke();
+    }
+
+    public void ResetStamina()
+    {
+        _currentStamina = _maximumStamina;
+        OnStaminaChanged.Invoke();
+    }
 }

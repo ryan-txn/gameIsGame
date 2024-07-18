@@ -9301,6 +9301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneToLoad: Level 1-1
+  player: {fileID: 384172894}
 --- !u!114 &1254521956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15032,7 +15033,7 @@ MonoBehaviour:
   - {fileID: 6756175940945520477, guid: 459a755421d49444296acba2c2501985, type: 3}
   - {fileID: 6756175940945520477, guid: a934a7f5e77415a42ab80642c7acc6d5, type: 3}
   - {fileID: 6756175940945520477, guid: a19d83dcb78b3e147ba750c48ce5cc3a, type: 3}
-  weaponUI: {fileID: 0}
+  weaponUI: {fileID: 1164303150}
 --- !u!114 &1496780608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16143,7 +16144,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 20
+  _staminaCostPerShot: 0
   _swingDuration: 0.2
+  _swingCooldown: 0.2
   _weaponTransform: {fileID: 1496780609}
   _swingAngle: 100
   _isSwinging: 0

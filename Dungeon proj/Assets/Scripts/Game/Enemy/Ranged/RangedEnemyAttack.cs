@@ -46,7 +46,7 @@ public class RangedEnemyAttack : MonoBehaviour
     {
         float timeSinceLastFire = Time.time - lastFireTime;
 
-        if (_playerAwarenessController.AwareOfPlayer && timeSinceLastFire >= _timeBetweenShots && _enemyHealthController.currentHealthNum != 0)
+        if (_playerAwarenessController.AwareOfPlayer && timeSinceLastFire >= _timeBetweenShots && _enemyHealthController._currentHealth != 0)
         {
             StartCoroutine(ShootCoroutine());
             lastFireTime = Time.time;

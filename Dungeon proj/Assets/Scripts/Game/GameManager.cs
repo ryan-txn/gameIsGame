@@ -12,17 +12,18 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
     private CoinController coinController;
+    private HealthController healthController;
+    private StaminaController staminaController;
 
-    private void Awake()
+    private void Start()
     {
-        coinController = player.GetComponent<CoinController>();
         if (DataManager.playerData == null)
         {
-            Debug.Log("no save file");
-        } 
+            Debug.Log("no player data file! (new save or lobby wasnt entered or logic bug)");
+        }
         else
         {
-            coinController.ChangeCoinAmt(DataManager.playerData.coins);
+            UpdatePlayerData();
         }
     }
 
@@ -40,6 +41,29 @@ public class GameManager : MonoBehaviour
 
     public void Save()
     {
-        DataManager.saveSystem.SavePlayer(coinController);
+        DataManager.saveSystem.SavePlayer(coinController, staminaController, healthController);
+    }
+
+    public void OnLevelCleared()
+    {
+        DataManager.playerData.coins = coinController.coinAmt;
+    }
+
+    private void UpdatePlayerData()
+    {
+        //update coins in scene
+        coinController = player.GetComponent<CoinController>();
+        coinController.ChangeCoinAmt(DataManager.playerData.coins);
+        Debug.Log("yokai!! coin controller coin amount is " + coinController.coinAmt);
+        //update current and max health in scene
+        healthController = player.GetComponent<HealthController>();
+        healthController.UpdateCurrHealth(DataManager.playerData.curr_health);
+        healthController.UpdateMaxHealth(DataManager.playerData.max_health);
+        Debug.Log("yokai!! health controller current health is " + healthController._currentHealth + ", max health is " + healthController._maximumHealth);
+        //update current and max stamina in scene
+        staminaController = player.GetComponent<StaminaController>();
+        staminaController.UpdateCurrStamina(DataManager.playerData.curr_stamina);
+        staminaController.UpdateMaxStamina(DataManager.playerData.max_stamina);
+        Debug.Log("yokai!! stamina controller current stamina is " + staminaController._currentStamina + ", max stamina is " + staminaController._maximumStamina);
     }
 }

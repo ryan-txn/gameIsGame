@@ -38,7 +38,7 @@ public class PlayerShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((_fireContinuously || _fireSingle) && _staminaController.currentStaminaNum >= _staminaCostPerShot)
+        if ((_fireContinuously || _fireSingle) && _staminaController._currentStamina >= _staminaCostPerShot)
         {
             float timeSinceLastFire = Time.time - _lastFireTime;
             

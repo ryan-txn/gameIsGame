@@ -63,7 +63,7 @@ public class BossMovement : MonoBehaviour
     {
         SetAnimation();
 
-        if (_healthController.currentHealthNum == 0)
+        if (_healthController._currentHealth == 0)
         {
             _isDead = true;
         }

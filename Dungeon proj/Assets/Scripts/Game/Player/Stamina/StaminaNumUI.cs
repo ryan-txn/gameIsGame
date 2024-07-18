@@ -14,11 +14,11 @@ public class StaminaNumUI : MonoBehaviour
 
     public void UpdateStaminaNum(StaminaController staminaController)
     {
-        _staminaText.text = $"{staminaController.currentStaminaNum} / {staminaController.maxStaminaNum}"; //$ allows {} to be embedded within ""
+        _staminaText.text = $"{staminaController.CurrentStaminaNum} / {staminaController._maximumStamina}"; //$ allows {} to be embedded within ""
     }
 
     public void UpdateUpgradeMenu(StaminaController staminaController)
     {
-        _staminaText.text = $"MAX STAMINA: {staminaController.maxStaminaNum}"; //$ allows {} to be embedded within ""
+        _staminaText.text = $"MAX STAMINA: {staminaController._maximumStamina}"; //$ allows {} to be embedded within ""
     }
 }

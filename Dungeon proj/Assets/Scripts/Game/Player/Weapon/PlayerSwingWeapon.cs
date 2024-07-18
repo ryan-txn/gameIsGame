@@ -52,7 +52,7 @@ public class PlayerSwingWeapon : MonoBehaviour
 
     private void Update()
     {
-        if (!_isSwinging && _canSwing && _staminaController.currentStaminaNum >= _staminaCostPerShot)
+        if (!_isSwinging && _canSwing && _staminaController._currentStamina >= _staminaCostPerShot)
         {
             float timeSinceLastSwing = Time.time - _lastSwingTime;
 
