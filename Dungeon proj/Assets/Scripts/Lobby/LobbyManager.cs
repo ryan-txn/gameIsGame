@@ -9,12 +9,14 @@ public class LobbyManager : MonoBehaviour
     private CoinController coinController;
     private HealthController healthController;
     private StaminaController staminaController;
+    private PlayerMovement playerMovement;
 
     private void Start()
     {
         coinController = player.GetComponent<CoinController>();
         healthController = player.GetComponent<HealthController>();
         staminaController = player.GetComponent<StaminaController>();
+        playerMovement = player.GetComponent<PlayerMovement>();
         Load();
     }
 
@@ -26,11 +28,11 @@ public class LobbyManager : MonoBehaviour
         healthController.ResetHealth();
         staminaController.UpdateMaxStamina(DataManager.playerData.max_stamina);
         staminaController.ResetStamina();
-
+        playerMovement.UpdateSpeed(DataManager.playerData.speed);
 
         Debug.Log("loaded coins are " + coinController.coinAmt);
         Debug.Log("loaded max_health is " + healthController._maximumHealth);
         Debug.Log("loaded max_stamina is " + staminaController._maximumStamina);
-
+        Debug.Log("loaded speed is " + playerMovement.GetSpeed());
     }
 }

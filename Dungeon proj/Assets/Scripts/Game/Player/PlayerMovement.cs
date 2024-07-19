@@ -131,9 +131,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public float GetSpeed()
+    {
+        return _speed;
+    }
+
     public void IncreaseSpeed(int amountToAdd)
     {
         _speed += amountToAdd;
+    }
+
+    public void UpdateSpeed(float newSpeed)
+    {
+        _speed = newSpeed;
     }
 
     public void TriggerDash()

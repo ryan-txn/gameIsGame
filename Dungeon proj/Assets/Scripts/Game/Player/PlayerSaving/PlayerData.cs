@@ -10,4 +10,6 @@ public class PlayerData
     public float curr_health;
     public float max_stamina;
     public float curr_stamina;
+    public float speed;
+    //public bool hasDash;
 }
