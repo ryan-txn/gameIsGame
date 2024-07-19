@@ -136,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
         return _speed;
     }
 
-    public void IncreaseSpeed(int amountToAdd)
+    public void IncreaseSpeed(float amountToAdd)
     {
         _speed += amountToAdd;
     }

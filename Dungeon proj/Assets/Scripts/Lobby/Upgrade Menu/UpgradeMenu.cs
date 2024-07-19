@@ -36,13 +36,22 @@ public class UpgradeMenu : MonoBehaviour
     [SerializeField]
     float staminaIncAmount = 20f;
     [SerializeField]
-    int speedIncAmount = 1;
+    float speedIncAmount = 1f;
 
     [SerializeField]
     private int abilityUnlockCost = 0;
 
+    //Upgrade values
+    private float originalHealthNum = 100f;
+    private float originalStaminaNum = 200f;
+    private float originalSpeedNum = 6f;
 
-    // Upgrade limits and counters
+    private float potentialHealthNum;
+    private float potentialStaminaNum;
+    private float potentialSpeedNum;
+
+
+    // Upgrade limits and countdown counters
     private int healthUpgradeLimit = 3;
     private int staminaUpgradeLimit = 3;
     private int speedUpgradeLimit = 3;
@@ -84,6 +93,22 @@ public class UpgradeMenu : MonoBehaviour
         staminaUpgradeButtonText = staminaUpgradeButton.GetComponentInChildren<TMP_Text>();
         speedUpgradeButtonText = speedUpgradeButton.GetComponentInChildren<TMP_Text>();
         abilityUnlockButtonText = abilityUnlockButton.GetComponentInChildren<TMP_Text>();
+
+    }
+
+    private void InitialiseCounter()
+    {
+        potentialHealthNum = originalHealthNum + healthUpgradeLimit * healthIncAmount;
+        potentialStaminaNum = originalStaminaNum + staminaUpgradeLimit * staminaIncAmount;
+        potentialSpeedNum = originalSpeedNum + speedUpgradeLimit * speedIncAmount;
+
+        healthUpgradeCount = (int) ((potentialHealthNum - _healthController._currentHealth) / healthIncAmount);
+        staminaUpgradeCount = (int) ((potentialStaminaNum - _staminaController.CurrentStaminaNum) / staminaIncAmount);
+        speedUpgradeCount =  (int) ((potentialSpeedNum - _playerMovementScript.playerSpeedStat) / speedIncAmount);
+
+        Debug.Log("health upgrade countdown:" + healthUpgradeCount);
+        Debug.Log("stamina upgrade countdown:" + staminaUpgradeCount);
+        Debug.Log("speed upgrade countdown:" + speedUpgradeCount);
     }
 
     void Update()
@@ -99,39 +124,41 @@ public class UpgradeMenu : MonoBehaviour
 
     public void UpgradeHealth()
     {
-        if (_coinController.coinAmt >= upgradeCost && healthUpgradeCount <= healthUpgradeLimit)
+        if (_coinController.coinAmt >= upgradeCost && healthUpgradeCount > 0)
         {
             _coinController.DeductCoinAmt(upgradeCost);
             _healthController.AddMaxHealth(healthIncAmount);
             Debug.Log("Max health upgraded");
 
-            healthUpgradeCount++;
+            InitialiseCounter();
             UpdateButtonStates();
         }
     }
 
     public void UpgradeStamina()
     {
-        if (_coinController.coinAmt >= upgradeCost && staminaUpgradeCount <= staminaUpgradeLimit)
+        if (_coinController.coinAmt >= upgradeCost && staminaUpgradeCount > 0)
         {
             _coinController.DeductCoinAmt(upgradeCost);
             _staminaController.AddMaxStamina(staminaIncAmount);
             Debug.Log("Max stamina upgraded");
 
             staminaUpgradeCount++;
+            InitialiseCounter();
             UpdateButtonStates();
         }
     }
 
     public void UpgradeSpeed()
     {
-        if (_coinController.coinAmt >= upgradeCost && speedUpgradeCount <= speedUpgradeLimit)
+        if (_coinController.coinAmt >= upgradeCost && speedUpgradeCount > 0)
         {
             _coinController.DeductCoinAmt(upgradeCost);
             _playerMovementScript.IncreaseSpeed(speedIncAmount);
             Debug.Log("Max speed upgraded");
 
             speedUpgradeCount++;
+            InitialiseCounter();
             UpdateButtonStates();
         }
     }
@@ -155,28 +182,28 @@ public class UpgradeMenu : MonoBehaviour
         // Disable buttons if limits are reached
 
         //HEALTH
-        if (healthUpgradeCount >= healthUpgradeLimit)
+        if (healthUpgradeCount <= 0)
         {
             healthUpgradeButtonText.text = "MAXED";
             healthUpgradeButton.interactable = false;
         }
 
         //STAMINA
-        if (staminaUpgradeCount >= staminaUpgradeLimit)
+        if (staminaUpgradeCount <= 0)
         {
             staminaUpgradeButtonText.text = "MAXED";
             staminaUpgradeButton.interactable = false;
         }
 
         //SPEED
-        if (speedUpgradeCount >= speedUpgradeLimit)
+        if (speedUpgradeCount <= 0)
         {
             speedUpgradeButtonText.text = "MAXED";
             speedUpgradeButton.interactable = false;
         }
 
         //ABILITY
-        if (healthUpgradeCount + staminaUpgradeCount + speedUpgradeCount >= 5)
+        if (healthUpgradeCount + staminaUpgradeCount + speedUpgradeCount <= 4)
         {
             abilityDescriptionText.color = Color.white;
             abilityUnlockButton.interactable = true;
@@ -209,6 +236,9 @@ public class UpgradeMenu : MonoBehaviour
 
     public void OpenMenu()
     {
+        InitialiseCounter();
+        UpdateButtonStates();
+
         _upgradeMenu.SetActive(true);
         Time.timeScale = 0f; //pauses background
         _menuIsOpen = true;
