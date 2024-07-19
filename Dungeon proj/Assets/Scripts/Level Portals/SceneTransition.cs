@@ -16,6 +16,7 @@ public class SceneTransition : MonoBehaviour
     private CoinController coinController;
     private HealthController healthController;
     private StaminaController staminaController;
+    private PlayerMovement playerMovement;
 
     private void Update()
     {
@@ -70,6 +71,9 @@ public class SceneTransition : MonoBehaviour
             staminaController = player.GetComponent<StaminaController>();
             DataManager.playerData.curr_stamina = staminaController._currentStamina;
             DataManager.playerData.max_stamina = staminaController._maximumStamina;
+            //update speed
+            playerMovement = player.GetComponent<PlayerMovement>();
+            DataManager.playerData.speed = playerMovement.GetSpeed();
         }
     }
 }

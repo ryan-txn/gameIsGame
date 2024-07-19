@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private CoinController coinController;
     private HealthController healthController;
     private StaminaController staminaController;
+    private PlayerMovement playerMovement;
 
     private void Start()
     {
@@ -41,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     public void Save()
     {
-        DataManager.saveSystem.SavePlayer(coinController, staminaController, healthController);
+        DataManager.saveSystem.SavePlayer(coinController, staminaController, healthController, playerMovement);
     }
 
     public void OnLevelCleared()
@@ -65,5 +66,9 @@ public class GameManager : MonoBehaviour
         staminaController.UpdateCurrStamina(DataManager.playerData.curr_stamina);
         staminaController.UpdateMaxStamina(DataManager.playerData.max_stamina);
         Debug.Log("yokai!! stamina controller current stamina is " + staminaController._currentStamina + ", max stamina is " + staminaController._maximumStamina);
+        //update speed in scene
+        playerMovement = player.GetComponent<PlayerMovement>();
+        playerMovement.UpdateSpeed(DataManager.playerData.speed);
+        Debug.Log("yokai!! player movement speed is " + playerMovement.GetSpeed());
     }
 }
