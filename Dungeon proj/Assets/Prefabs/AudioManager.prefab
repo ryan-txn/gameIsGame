@@ -50,6 +50,11 @@ MonoBehaviour:
     volume: 0.03
     pitch: 1
     source: {fileID: 0}
+  - name: Level 1 music
+    clip: {fileID: 8300000, guid: 53a430c765f3e074fb070a9f604b1f5b, type: 3}
+    volume: 0.72
+    pitch: 1
+    source: {fileID: 0}
   sfxSounds:
   - name: Title
     clip: {fileID: 8300000, guid: 4cee05a017680f74d951ad0d1bd72c30, type: 3}
@@ -70,4 +75,9 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 1dfd091c7fba72749aa3ee13675088d7, type: 3}
     volume: 1
     pitch: 1
+    source: {fileID: 0}
+  - name: Weapon pickup
+    clip: {fileID: 8300000, guid: a82f0c0bb388946429da9399895e2d9f, type: 3}
+    volume: 1
+    pitch: 1.3
     source: {fileID: 0}

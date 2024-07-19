@@ -34,6 +34,7 @@ public class AudioManager : MonoBehaviour
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
 
+            s.source.loop = true;
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
         }
@@ -119,6 +120,7 @@ public class AudioManager : MonoBehaviour
                 break;
 
             case "Boss 1":
+                StopMusic();
                 PlayMusic("Boss 1 music");
                 break;
   

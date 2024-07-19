@@ -141,6 +141,7 @@ public class PlayerWeaponController : MonoBehaviour
         weaponSlots[activeWeaponIndex].SetActive(true);
 
         weaponUI.UpdateWeaponUI(weaponSlots, activeWeaponIndex);
+        FindObjectOfType<AudioManager>().PlaySFX("Weapon pickup");
     }
 
     private int GetWeaponIndex(GameObject weapon)
@@ -166,6 +167,8 @@ public class PlayerWeaponController : MonoBehaviour
         weaponSlots[activeWeaponIndex].SetActive(true); // equip the new weapon
 
         weaponUI.UpdateWeaponUI(weaponSlots, activeWeaponIndex);
+
+        FindObjectOfType<AudioManager>().PlaySFX("Weapon pickup");
     }
 
     public bool IsWeaponInInventory(int weaponIndex)
