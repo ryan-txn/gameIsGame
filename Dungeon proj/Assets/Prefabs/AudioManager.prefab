@@ -61,3 +61,13 @@ MonoBehaviour:
     volume: 0.82
     pitch: 1
     source: {fileID: 0}
+  - name: Chest open
+    clip: {fileID: 8300000, guid: 4755c127f03eaf94aaef1ed6c1133378, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Button click
+    clip: {fileID: 8300000, guid: 1dfd091c7fba72749aa3ee13675088d7, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}

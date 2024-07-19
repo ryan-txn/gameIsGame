@@ -71,7 +71,7 @@ public class AudioManager : MonoBehaviour
 
         if (sound == null)
         {
-            Debug.Log("'" + sfxName + "' music not found");
+            Debug.Log("'" + sfxName + "' sound not found");
         }
         else
         {

@@ -36,6 +36,9 @@ public class ChestBehaviour : MonoBehaviour
             _collectableSpawner.SpawnCollectable(_spawnPoint.position, CollectableSpawner.SpawnType.Weapon);
             _collider.enabled = false;
             Debug.Log("spawned weapon");
+
+            FindObjectOfType<AudioManager>().PlaySFX("Chest open");
+            Debug.Log("Chest open sound played");
         }
     }
 
