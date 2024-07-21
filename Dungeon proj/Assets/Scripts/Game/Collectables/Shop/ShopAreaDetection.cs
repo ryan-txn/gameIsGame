@@ -23,6 +23,9 @@ public class ShopAreaDetection : MonoBehaviour
             textBubble.SetActive(true);
             textBubbleContent.enabled = true;
             Debug.Log("Player entered the shop area.");
+
+            //Play sound on enter
+            FindObjectOfType<AudioManager>().PlaySFX("Enter shop sfx");
         }
     }
 

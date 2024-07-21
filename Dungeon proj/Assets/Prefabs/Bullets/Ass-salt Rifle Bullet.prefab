@@ -75,6 +75,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 10
+  onShootSfx: Assalt sfx
+  onHitSfx: 
   _isExplosive: 0
   _explosionRadius: 2
   _explosionForce: 200

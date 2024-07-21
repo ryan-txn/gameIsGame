@@ -52,7 +52,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Level 1 music
     clip: {fileID: 8300000, guid: 53a430c765f3e074fb070a9f604b1f5b, type: 3}
-    volume: 0.72
+    volume: 0.45
     pitch: 1
     source: {fileID: 0}
   sfxSounds:
@@ -80,4 +80,29 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: a82f0c0bb388946429da9399895e2d9f, type: 3}
     volume: 1
     pitch: 1.3
+    source: {fileID: 0}
+  - name: Assalt sfx
+    clip: {fileID: 8300000, guid: 57359f4819c477847b1871b047bd37e9, type: 3}
+    volume: 0.21
+    pitch: 1
+    source: {fileID: 0}
+  - name: Peastol sfx
+    clip: {fileID: 8300000, guid: 1fad31cec5353f44cac9660b2d859481, type: 3}
+    volume: 0.49
+    pitch: 1
+    source: {fileID: 0}
+  - name: Bubblegum sfx
+    clip: {fileID: 8300000, guid: ed634decf6ae2a248ac0309952adb61c, type: 3}
+    volume: 0.49
+    pitch: 1
+    source: {fileID: 0}
+  - name: Enter shop sfx
+    clip: {fileID: 8300000, guid: eae7d2ab0b3fe25428cc6ca7453e3bdc, type: 3}
+    volume: 0.49
+    pitch: 1
+    source: {fileID: 0}
+  - name: Honey sfx
+    clip: {fileID: 8300000, guid: 293d4986a71ab9c46bf3851b8a4d4026, type: 3}
+    volume: 0.22
+    pitch: 0.83
     source: {fileID: 0}

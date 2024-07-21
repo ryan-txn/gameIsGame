@@ -75,6 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 10
+  onShootSfx: Peastol sfx
   _isExplosive: 0
   _explosionRadius: 2
   _explosionForce: 200

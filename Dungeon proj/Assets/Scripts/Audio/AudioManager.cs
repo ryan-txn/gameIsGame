@@ -91,6 +91,20 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PauseMusic(string musicName)
+    {
+        Sound sound = Array.Find(musicSounds, x => x.name == musicName);
+
+        if (sound == null)
+        {
+            Debug.Log("'" + musicName + "' music not found");
+        }
+        else
+        {
+            sound.source.Pause();
+        }
+    }
+
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded; // unsubscribe from unity event

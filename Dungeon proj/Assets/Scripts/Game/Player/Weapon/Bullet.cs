@@ -8,6 +8,9 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private int _damage;
 
+    [SerializeField]
+    private string onShootSfx;
+
     //EXPLOSIVE BULLET ATTRIBUTES
     [SerializeField]
     private bool _isExplosive = false;
@@ -46,6 +49,10 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        if (onShootSfx!= null)
+        {
+            FindObjectOfType<AudioManager>().PlaySFX(onShootSfx);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
