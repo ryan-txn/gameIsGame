@@ -28,7 +28,7 @@ public class PlayerWeaponController : MonoBehaviour
     public WeaponUI weaponUI;
 
     private InputAction scrollAction;
-    
+
     #region - Enable / Disable methods for scroll input -
     private void OnEnable()
     {
@@ -52,6 +52,9 @@ public class PlayerWeaponController : MonoBehaviour
         weaponSlots = new GameObject[INVENTORY_SIZE]; //2 Inventory slots array
         weaponParent = transform;
 
+        int [] _testIndex = {0};
+        LoadWeaponSlots(_testIndex);
+    /*
         // Initialize the active weapon and add it into weaponslot inventory
         for (int i = 0; i < weaponParent.childCount; i++)
         {
@@ -62,14 +65,15 @@ public class PlayerWeaponController : MonoBehaviour
                 break; // Exit loop after finding the initially active weapon
             }
         }
-        
+
         weaponUI.UpdateWeaponUI(weaponSlots, activeWeaponIndex);
+    */
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void CollectWeapon(GameObject weaponObj)
@@ -86,7 +90,7 @@ public class PlayerWeaponController : MonoBehaviour
 
         // Find the weapon in the weaponParent
         Transform newWeaponTransform = weaponParent.GetChild(weaponIndex);
-        
+
         if (newWeaponTransform == null)
         {
             Debug.LogError("Weapon not found in the weaponParent.");
@@ -94,7 +98,7 @@ public class PlayerWeaponController : MonoBehaviour
         }
 
         GameObject newWeapon = newWeaponTransform.gameObject;
-        
+
         // Check if the weapon is already in the inventory
         if (IsWeaponInInventory(weaponIndex))
         {
@@ -108,7 +112,7 @@ public class PlayerWeaponController : MonoBehaviour
             {
                 weaponSlots[i] = newWeapon;
                 SwitchWeapon(i);
-                Destroy(weaponObj); 
+                Destroy(weaponObj);
                 return;
             }
         }
@@ -117,7 +121,7 @@ public class PlayerWeaponController : MonoBehaviour
         if (GetWeaponCount() == weaponSlots.Length)
         {
             ReplaceWeapon(newWeapon, weaponIndex);
-            Destroy(weaponObj); 
+            Destroy(weaponObj);
         }
         newWeapon.transform.SetParent(weaponParent);
         newWeapon.transform.localRotation = Quaternion.identity;
@@ -126,9 +130,8 @@ public class PlayerWeaponController : MonoBehaviour
     // Unequip current weapon and instantiate a weapon collectable
     private void ReplaceWeapon(GameObject newWeapon, int weaponIndex)
     {
-
         if (weaponSlots != null)
-        {        
+        {
             int oldWeaponIndex = GetWeaponIndex(weaponSlots[activeWeaponIndex]);
             Instantiate(collectibleWeaponPrefabs[oldWeaponIndex], transform.position, Quaternion.identity);
             // Deactivate the current weapon
@@ -195,12 +198,74 @@ public class PlayerWeaponController : MonoBehaviour
         }
         return count;
     }
-    
+
+    // Returns an int array of weapon indexes currently in the player's inventory
+    public int[] GetInventoryIndexes()
+    {
+        int[] indexes = new int[weaponSlots.Length];
+
+        for (int i = 0; i < weaponSlots.Length; i++)
+        {
+            if (weaponSlots[i] != null)
+            {
+                // Finds the index of the weapon in weaponParent
+                indexes[i] = GetWeaponIndex(weaponSlots[i]);
+
+                Debug.Log("Weapon index of " + weaponSlots[i] + " in parent is: " + indexes[i]);
+            }
+            else
+            {
+                indexes[i] = -1; // No weapon in this slot
+            }
+        }
+        return indexes;
+    }
+
+    public void LoadWeaponSlots(int[] weaponIndexes)
+    {
+        bool firstWeaponIsSet = false;
+
+        for (int i = 0; i < weaponIndexes.Length; i++)
+        {
+            if (weaponIndexes[i] != -1)
+            {
+                int weaponIndex = weaponIndexes[i];
+
+                Transform weaponTransform = weaponParent.GetChild(weaponIndex);
+                GameObject weapon = weaponTransform.gameObject;
+
+                // Set first weapon loaded to be active, second to be inactive
+                if (firstWeaponIsSet == false)
+                {
+                    weapon.SetActive(true); 
+                    activeWeaponIndex = 0;
+
+                    firstWeaponIsSet = true;
+                    Debug.Log("Weapon at index: " + weaponIndex + " loaded. Set as active.");
+                }
+                else 
+                {
+                    weapon.SetActive(false);
+                    Debug.Log("Weapon at index: " + weaponIndex + " loaded. Set as inactive.");
+                }
+                
+                weaponSlots[i] = weapon;
+            }
+            else
+            {
+                weaponSlots[i] = null; // No weapon in this slot
+            }
+        }
+
+        weaponUI.UpdateWeaponUI(weaponSlots, activeWeaponIndex);
+    }
+
+
     //player input weaponswitch on mouse scroll
     private void WeaponSwitch(InputAction.CallbackContext context)
     {
         // Only can weapon switch if you have more than 1 weapon in inventory
-        if (!PauseMenu.isPaused && GetWeaponCount() > 1) 
+        if (!PauseMenu.isPaused && GetWeaponCount() > 1)
         {
             Vector2 scrollValue = context.ReadValue<Vector2>();
             if (scrollValue.y != 0)
