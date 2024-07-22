@@ -8654,6 +8654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c78adb6b27e8f264aaebbf167487f174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onShootSfx: 
   defaultDistRay: 100
   _gunOffset: {fileID: 1241473983}
   _lineRenderer: {fileID: 1377073905}
