@@ -52,9 +52,9 @@ public class PlayerWeaponController : MonoBehaviour
         weaponSlots = new GameObject[INVENTORY_SIZE]; //2 Inventory slots array
         weaponParent = transform;
 
-        int [] _testIndex = {0};
-        LoadWeaponSlots(_testIndex);
-    /*
+        /*        int [] _testIndex = {0};
+                LoadWeaponSlots(_testIndex);*/
+
         // Initialize the active weapon and add it into weaponslot inventory
         for (int i = 0; i < weaponParent.childCount; i++)
         {
@@ -67,7 +67,7 @@ public class PlayerWeaponController : MonoBehaviour
         }
 
         weaponUI.UpdateWeaponUI(weaponSlots, activeWeaponIndex);
-    */
+
     }
 
     // Update is called once per frame
@@ -230,8 +230,12 @@ public class PlayerWeaponController : MonoBehaviour
             if (weaponIndexes[i] != -1)
             {
                 int weaponIndex = weaponIndexes[i];
-
+                if (weaponParent != null)
+                {
+                    Debug.Log("no weapon parent");
+                }
                 Transform weaponTransform = weaponParent.GetChild(weaponIndex);
+
                 GameObject weapon = weaponTransform.gameObject;
 
                 // Set first weapon loaded to be active, second to be inactive
@@ -260,6 +264,24 @@ public class PlayerWeaponController : MonoBehaviour
         weaponUI.UpdateWeaponUI(weaponSlots, activeWeaponIndex);
     }
 
+    public void ClearWeaponSLots()
+    {
+        int[] indexesInParent = GetInventoryIndexes();
+
+        for (int i = 0; i < weaponSlots.Length; i++)
+        {
+            if (weaponSlots[i] != null)
+            {
+                int index = indexesInParent[i];
+                Transform weaponTransform = weaponParent.GetChild(index);
+                GameObject weapon = weaponTransform.gameObject;
+
+                weapon.SetActive(false);
+                weaponSlots[i] = null;
+            }
+        }
+        Debug.Log("Weaponslots cleared & weapons unequipped");
+    }
 
     //player input weaponswitch on mouse scroll
     private void WeaponSwitch(InputAction.CallbackContext context)

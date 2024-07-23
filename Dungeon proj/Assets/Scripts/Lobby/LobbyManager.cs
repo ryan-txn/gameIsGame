@@ -10,6 +10,7 @@ public class LobbyManager : MonoBehaviour
     private HealthController healthController;
     private StaminaController staminaController;
     private PlayerMovement playerMovement;
+    private PlayerWeaponController playerWeaponController;
 
     private void Start()
     {
@@ -17,6 +18,7 @@ public class LobbyManager : MonoBehaviour
         healthController = player.GetComponent<HealthController>();
         staminaController = player.GetComponent<StaminaController>();
         playerMovement = player.GetComponent<PlayerMovement>();
+        playerWeaponController = player.GetComponentInChildren<PlayerWeaponController>();
         Load();
     }
 
@@ -29,6 +31,7 @@ public class LobbyManager : MonoBehaviour
         staminaController.UpdateMaxStamina(DataManager.playerData.max_stamina);
         staminaController.ResetStamina();
         playerMovement.UpdateSpeed(DataManager.playerData.speed);
+        playerWeaponController.LoadWeaponSlots(DataManager.playerData.weapons);
 
         Debug.Log("loaded coins are " + coinController.coinAmt);
         Debug.Log("loaded max_health is " + healthController._maximumHealth);

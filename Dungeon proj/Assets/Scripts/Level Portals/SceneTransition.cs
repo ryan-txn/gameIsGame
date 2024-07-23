@@ -17,6 +17,7 @@ public class SceneTransition : MonoBehaviour
     private HealthController healthController;
     private StaminaController staminaController;
     private PlayerMovement playerMovement;
+    private PlayerWeaponController playerWeaponController;
 
     private void Update()
     {
@@ -74,6 +75,9 @@ public class SceneTransition : MonoBehaviour
             //update speed
             playerMovement = player.GetComponent<PlayerMovement>();
             DataManager.playerData.speed = playerMovement.GetSpeed();
+            //update weapons
+            playerWeaponController = player.GetComponentInChildren<PlayerWeaponController>();
+            DataManager.playerData.weapons = playerWeaponController.GetInventoryIndexes();
         }
     }
 }

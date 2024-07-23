@@ -11,5 +11,6 @@ public class PlayerData
     public float max_stamina;
     public float curr_stamina;
     public float speed;
+    public int[] weapons;
     //public bool hasDash;
 }

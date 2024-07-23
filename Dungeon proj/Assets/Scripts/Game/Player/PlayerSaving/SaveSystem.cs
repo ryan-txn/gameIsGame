@@ -5,13 +5,15 @@ using System;
 
 public class SaveSystem
 {
-    public void SavePlayer(CoinController playerCoins, StaminaController staminaController, HealthController healthController, PlayerMovement playerMovement)
+    public void SavePlayer(CoinController playerCoins, StaminaController staminaController, 
+                           HealthController healthController, PlayerMovement playerMovement, 
+                           PlayerWeaponController playerWeaponController)
     {
         string path = Application.persistentDataPath + "/savefile.sigma";
         Debug.Log("Save file path: " + path); // Log the path for debugging
 
-        try
-        {
+/*        try
+        {*/
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Create);
 
@@ -23,6 +25,7 @@ public class SaveSystem
                 max_stamina = staminaController._maximumStamina,
                 curr_stamina = staminaController._currentStamina,
                 speed = playerMovement.GetSpeed(),
+                weapons = playerWeaponController.GetInventoryIndexes(),
             };
 
             Debug.Log("Saved coins are " + data.coins);
@@ -34,11 +37,11 @@ public class SaveSystem
 
             formatter.Serialize(stream, data);
             stream.Close();
-        }
+/*        }
         catch (Exception exception)
         {
             Debug.LogError("Error saving player data: " + exception.Message);
-        }
+        }*/
 
     }
 
@@ -102,6 +105,7 @@ public class SaveSystem
                     data.max_stamina = 200;
                     data.curr_stamina = 200;
                     data.speed = 6;
+                    data.weapons = null;
 
                     stream = new FileStream(path, FileMode.Create);
                     formatter.Serialize(stream, data);
