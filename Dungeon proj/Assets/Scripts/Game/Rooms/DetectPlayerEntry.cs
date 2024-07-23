@@ -19,6 +19,7 @@ public class DetectPlayerEntry : MonoBehaviour
     [SerializeField]
     private string _doorsOpenedString;
 
+    [SerializeField]
     private int _enemyCount = 0;
 
     private InfoMessageUI _infoMessageUI;
