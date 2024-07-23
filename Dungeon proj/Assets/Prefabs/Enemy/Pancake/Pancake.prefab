@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.13, y: -0.051, z: 0}
-  m_LocalScale: {x: 0.43, y: 0.43, z: 0.43}
+  m_LocalScale: {x: 0.51, y: 0.51, z: 0.51}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6178371942024666961}
@@ -131,7 +131,7 @@ Transform:
   m_GameObject: {fileID: 1312685419210793314}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.026, y: 0.005, z: 0}
+  m_LocalPosition: {x: 0.001, y: -0.009, z: 0}
   m_LocalScale: {x: 0.81144, y: 0.81144, z: 0.81144}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -147,7 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6178371942024666961}
   - component: {fileID: 7629316642225931625}
-  - component: {fileID: 4488764086988274523}
+  - component: {fileID: 5512307095994947077}
   - component: {fileID: 5240419878180326412}
   - component: {fileID: 3450350230769496793}
   - component: {fileID: -369622680052293847}
@@ -173,7 +173,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8, y: 3, z: 0}
-  m_LocalScale: {x: 1.77, y: 1.77, z: 1.77}
+  m_LocalScale: {x: 1.11, y: 1.11, z: 1.11}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6476681306298437514}
@@ -207,8 +207,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &4488764086988274523
-CapsuleCollider2D:
+--- !u!61 &5512307095994947077
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -239,9 +239,19 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.012921344, y: -0.078955345}
-  m_Size: {x: 0.5930273, y: 0.59302753}
-  m_Direction: 0
+  m_Offset: {x: -0.024349868, y: -0.100106776}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.83225405, y: 0.48593867}
+  m_EdgeRadius: 0
 --- !u!114 &5240419878180326412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +321,7 @@ MonoBehaviour:
           m_StringArgument: OnDie
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4488764086988274523}
+      - m_Target: {fileID: 5512307095994947077}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6

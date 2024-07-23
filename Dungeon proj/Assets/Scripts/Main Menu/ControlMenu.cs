@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 public class ControlMenu : MonoBehaviour
 {
     public GameObject controlMenu;
-    public static bool isActive;
+    public static bool isActive = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        controlMenu.SetActive(false); 
+        
     }
 
     // Update is called once per frame
@@ -34,6 +34,7 @@ public class ControlMenu : MonoBehaviour
     {
         controlMenu.SetActive(true);
         isActive = true;
+        Debug.Log("Control panel set active");
     }
 
     public void ResumeGame()
