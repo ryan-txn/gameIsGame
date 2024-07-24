@@ -14,7 +14,7 @@ public class PlayerData
     public float curr_stamina;
 
     public float speed;
-    public bool can_use_ability;
+    public bool ability;
 
     public int[] weapons;
 }

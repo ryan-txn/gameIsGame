@@ -16,8 +16,8 @@ public class AbilityBarUI : MonoBehaviour
     void Start()
     {
         // Hide the ability UI until it is unlocked
-        _abilityBarBackgroundImage.fillAmount = 0f; 
-        _abilityImage.fillAmount = 0f; 
+        //_abilityBarBackgroundImage.fillAmount = 0f; 
+        //_abilityImage.fillAmount = 0f; 
     }
 
     public void UpdateAbilityBar(float fillAmount)

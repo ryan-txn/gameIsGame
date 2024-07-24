@@ -7,8 +7,10 @@ public class PlayerAbility : MonoBehaviour
     [SerializeField]
     private bool _abilityUnlocked = false;
     
-    private bool _useAbility;
-    private bool _canUseAbility = true;
+    private bool _useAbility; // if input value is pressed
+    private bool _canUseAbility = true; // if cooldown is 0
+
+    public bool _isAbilityBought; //for player loading
 
     private float _cooldownTimer;
     private float _cooldownDuration;
@@ -23,6 +25,7 @@ public class PlayerAbility : MonoBehaviour
         _playerMovement = GetComponent<PlayerMovement>();
         _cooldownDuration = _playerMovement.DashCooldownDuration;
     }
+
 
     void Update()
     {
@@ -66,11 +69,15 @@ public class PlayerAbility : MonoBehaviour
 
     public bool CanUseAbility()
     {
-        return _canUseAbility;
+        return _isAbilityBought;
     }
 
     public void UpdateCanUseAbility(bool setAs)
     {
-        _canUseAbility = setAs;
+        _isAbilityBought = setAs;
+        if (_isAbilityBought)
+        {
+            AbilityUnlocked();
+        }
     }
 }

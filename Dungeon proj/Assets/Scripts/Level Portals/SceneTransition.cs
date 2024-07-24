@@ -18,6 +18,7 @@ public class SceneTransition : MonoBehaviour
     private StaminaController staminaController;
     private PlayerMovement playerMovement;
     private PlayerWeaponController playerWeaponController;
+    private PlayerAbility playerAbility;
 
     private void Update()
     {
@@ -75,7 +76,8 @@ public class SceneTransition : MonoBehaviour
             //update speed and can use ability
             playerMovement = player.GetComponent<PlayerMovement>();
             DataManager.playerData.speed = playerMovement.GetSpeed();
-            DataManager.playerData.can_use_ability = playerMovement.CanUseAbility();
+            playerAbility = player.GetComponent<PlayerAbility>();
+            DataManager.playerData.ability = playerAbility.CanUseAbility();
             //update weapons
             playerWeaponController = player.GetComponentInChildren<PlayerWeaponController>();
             if (_sceneToLoad == "Level 1-1")

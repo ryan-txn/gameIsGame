@@ -7,7 +7,7 @@ public class SaveSystem
 {
     public void SavePlayer(CoinController playerCoins, StaminaController staminaController, 
                            HealthController healthController, PlayerMovement playerMovement, 
-                           PlayerWeaponController playerWeaponController)
+                           PlayerWeaponController playerWeaponController, PlayerAbility playerAbility)
     {
         string path = Application.persistentDataPath + "/savefile.sigma";
         Debug.Log("Save file path: " + path); // Log the path for debugging
@@ -26,7 +26,7 @@ public class SaveSystem
                 curr_stamina = staminaController._currentStamina,
                 speed = playerMovement.GetSpeed(),
                 weapons = playerWeaponController.GetInventoryIndexes(),
-                can_use_ability = playerMovement.CanUseAbility(),
+                ability = playerAbility.CanUseAbility(),
             };
 
             Debug.Log("Saved coins are " + data.coins);
@@ -107,7 +107,7 @@ public class SaveSystem
                     data.curr_stamina = 200;
                     data.speed = 6;
                     data.weapons = null;
-                    data.can_use_ability = false;
+                    data.ability = false;
 
                     stream = new FileStream(path, FileMode.Create);
                     formatter.Serialize(stream, data);

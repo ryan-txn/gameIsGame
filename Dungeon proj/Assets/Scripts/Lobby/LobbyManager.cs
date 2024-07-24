@@ -40,9 +40,8 @@ public class LobbyManager : MonoBehaviour
 
         playerMovement.UpdateSpeed(DataManager.playerData.speed);
         Debug.Log("loaded speed is " + playerMovement.GetSpeed());
-        playerMovement.UpdateCanUseAbility(DataManager.playerData.can_use_ability);
-        playerAbility.UpdateCanUseAbility(DataManager.playerData.can_use_ability);
-        Debug.Log("loaded ability bool is " + playerMovement.CanUseAbility());
+        playerAbility.UpdateCanUseAbility(DataManager.playerData.ability);
+        Debug.Log("loaded ability bool is " + playerAbility.CanUseAbility());
 
         //playerWeaponController.LoadWeaponSlots(DataManager.playerData.weapons);
     }

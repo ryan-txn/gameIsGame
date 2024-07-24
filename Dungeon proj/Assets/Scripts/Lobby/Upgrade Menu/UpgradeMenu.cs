@@ -173,6 +173,7 @@ public class UpgradeMenu : MonoBehaviour
 
             abilityUnlocked = true;
             _playerAbilityScript.AbilityUnlocked();
+            _playerAbilityScript.UpdateCanUseAbility(true); // for player saving
             UpdateButtonStates();
         }
     }
@@ -209,7 +210,7 @@ public class UpgradeMenu : MonoBehaviour
             abilityUnlockButton.interactable = true;
         }
 
-        if (abilityUnlocked)
+        if (abilityUnlocked || _playerAbilityScript.CanUseAbility())
         {
             abilityUnlockButtonText.text = "UNLOCKED";
             abilityUnlockButton.interactable = false;

@@ -189,14 +189,4 @@ public class PlayerMovement : MonoBehaviour
         _canUseAbility = true;
         Debug.Log("Dash cooldown ended");
     }
-
-    public bool CanUseAbility()
-    {
-        return _canUseAbility;
-    }
-
-    public void UpdateCanUseAbility(bool setAs)
-    {
-        _canUseAbility = setAs;
-    }
 }

@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         playerWeaponController.ClearWeaponSLots();
         //int[] peastolSet = { 0 };
         //playerWeaponController.LoadWeaponSlots(peastolSet);
-        DataManager.saveSystem.SavePlayer(coinController, staminaController, healthController, playerMovement, playerWeaponController);
+        DataManager.saveSystem.SavePlayer(coinController, staminaController, healthController, playerMovement, playerWeaponController, playerAbility);
     }
 
     public void OnLevelCleared()
@@ -78,9 +78,8 @@ public class GameManager : MonoBehaviour
         //update speed and canuseability in scene
         playerMovement.UpdateSpeed(DataManager.playerData.speed);
         Debug.Log("yokai!! player movement speed is " + playerMovement.GetSpeed());
-        playerMovement.UpdateCanUseAbility(DataManager.playerData.can_use_ability);
-        playerAbility.UpdateCanUseAbility(DataManager.playerData.can_use_ability);
-        Debug.Log("yokai!! player can use ability bool is " + playerMovement.CanUseAbility());
+        playerAbility.UpdateCanUseAbility(DataManager.playerData.ability);
+        Debug.Log("yokai!! player can use ability bool is " + playerAbility.CanUseAbility());
 
         //update weapons in scene
         playerWeaponController.LoadWeaponSlots(DataManager.playerData.weapons);
