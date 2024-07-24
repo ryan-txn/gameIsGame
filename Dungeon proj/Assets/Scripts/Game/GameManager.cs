@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private StaminaController staminaController;
     private PlayerMovement playerMovement;
     private PlayerWeaponController playerWeaponController;
+    private PlayerAbility playerAbility;
 
     private void Start()
     {
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
         staminaController = player.GetComponent<StaminaController>();
         playerMovement = player.GetComponent<PlayerMovement>();
         playerWeaponController = player.GetComponentInChildren<PlayerWeaponController>();
+        playerAbility = player.GetComponent<PlayerAbility>();
 
         if (DataManager.playerData == null)
         {
@@ -73,9 +75,13 @@ public class GameManager : MonoBehaviour
         staminaController.UpdateCurrStamina(DataManager.playerData.curr_stamina);
         staminaController.UpdateMaxStamina(DataManager.playerData.max_stamina);
         Debug.Log("yokai!! stamina controller current stamina is " + staminaController._currentStamina + ", max stamina is " + staminaController._maximumStamina);
-        //update speed in scene
+        //update speed and canuseability in scene
         playerMovement.UpdateSpeed(DataManager.playerData.speed);
         Debug.Log("yokai!! player movement speed is " + playerMovement.GetSpeed());
+        playerMovement.UpdateCanUseAbility(DataManager.playerData.can_use_ability);
+        playerAbility.UpdateCanUseAbility(DataManager.playerData.can_use_ability);
+        Debug.Log("yokai!! player can use ability bool is " + playerMovement.CanUseAbility());
+
         //update weapons in scene
         playerWeaponController.LoadWeaponSlots(DataManager.playerData.weapons);
     }

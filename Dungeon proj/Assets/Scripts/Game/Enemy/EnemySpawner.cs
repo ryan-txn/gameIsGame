@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private float _maximumSpawnTime;
 
-    private float _timeUntilSpawn;
+    private float _timeUntilSpawn = 0;
     private GameObject _enemyPrefab;
 
     [SerializeField]
@@ -27,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetTimeUntilSpawn();  
+        //SetTimeUntilSpawn();  
         RandomiseEnemy();
         GameObject enemyRoom = transform.parent.gameObject;
 

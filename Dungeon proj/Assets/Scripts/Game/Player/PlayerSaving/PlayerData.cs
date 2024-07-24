@@ -6,11 +6,15 @@ using UnityEngine;
 public class PlayerData
 {
     public int coins;
+
     public float max_health;
     public float curr_health;
+
     public float max_stamina;
     public float curr_stamina;
+
     public float speed;
+    public bool can_use_ability;
+
     public int[] weapons;
-    //public bool hasDash;
 }

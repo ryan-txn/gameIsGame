@@ -26,6 +26,7 @@ public class SaveSystem
                 curr_stamina = staminaController._currentStamina,
                 speed = playerMovement.GetSpeed(),
                 weapons = playerWeaponController.GetInventoryIndexes(),
+                can_use_ability = playerMovement.CanUseAbility(),
             };
 
             Debug.Log("Saved coins are " + data.coins);
@@ -106,6 +107,7 @@ public class SaveSystem
                     data.curr_stamina = 200;
                     data.speed = 6;
                     data.weapons = null;
+                    data.can_use_ability = false;
 
                     stream = new FileStream(path, FileMode.Create);
                     formatter.Serialize(stream, data);

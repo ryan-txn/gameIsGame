@@ -72,9 +72,10 @@ public class SceneTransition : MonoBehaviour
             staminaController = player.GetComponent<StaminaController>();
             DataManager.playerData.curr_stamina = staminaController._currentStamina;
             DataManager.playerData.max_stamina = staminaController._maximumStamina;
-            //update speed
+            //update speed and can use ability
             playerMovement = player.GetComponent<PlayerMovement>();
             DataManager.playerData.speed = playerMovement.GetSpeed();
+            DataManager.playerData.can_use_ability = playerMovement.CanUseAbility();
             //update weapons
             playerWeaponController = player.GetComponentInChildren<PlayerWeaponController>();
             DataManager.playerData.weapons = playerWeaponController.GetInventoryIndexes();

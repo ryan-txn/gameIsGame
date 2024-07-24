@@ -63,4 +63,14 @@ public class PlayerAbility : MonoBehaviour
             _useAbility = inputValue.isPressed;
         }
     }
+
+    public bool CanUseAbility()
+    {
+        return _canUseAbility;
+    }
+
+    public void UpdateCanUseAbility(bool setAs)
+    {
+        _canUseAbility = setAs;
+    }
 }
