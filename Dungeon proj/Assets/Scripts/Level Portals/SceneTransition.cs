@@ -78,7 +78,15 @@ public class SceneTransition : MonoBehaviour
             DataManager.playerData.can_use_ability = playerMovement.CanUseAbility();
             //update weapons
             playerWeaponController = player.GetComponentInChildren<PlayerWeaponController>();
-            DataManager.playerData.weapons = playerWeaponController.GetInventoryIndexes();
+            if (_sceneToLoad == "Level 1-1")
+            {
+                int[] peastolSet = { 0 };
+                DataManager.playerData.weapons = peastolSet;
+            }
+            else
+            {
+                DataManager.playerData.weapons = playerWeaponController.GetInventoryIndexes();
+            }
         }
     }
 }

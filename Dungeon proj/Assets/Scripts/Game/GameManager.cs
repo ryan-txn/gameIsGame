@@ -52,8 +52,8 @@ public class GameManager : MonoBehaviour
     public void Save()
     {
         playerWeaponController.ClearWeaponSLots();
-        int[] peastolSet = { 0 };
-        playerWeaponController.LoadWeaponSlots(peastolSet);
+        //int[] peastolSet = { 0 };
+        //playerWeaponController.LoadWeaponSlots(peastolSet);
         DataManager.saveSystem.SavePlayer(coinController, staminaController, healthController, playerMovement, playerWeaponController);
     }
 

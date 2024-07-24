@@ -53,7 +53,8 @@ public class PlayerWeaponController : MonoBehaviour
         weaponParent = transform;
 
         /*        int [] _testIndex = {0};
-                LoadWeaponSlots(_testIndex);*/
+                LoadWeaponSlots(_testIndex);
+        
 
         // Initialize the active weapon and add it into weaponslot inventory
         for (int i = 0; i < weaponParent.childCount; i++)
@@ -65,6 +66,8 @@ public class PlayerWeaponController : MonoBehaviour
                 break; // Exit loop after finding the initially active weapon
             }
         }
+        */
+        
 
         weaponUI.UpdateWeaponUI(weaponSlots, activeWeaponIndex);
 
@@ -230,7 +233,7 @@ public class PlayerWeaponController : MonoBehaviour
             if (weaponIndexes[i] != -1)
             {
                 int weaponIndex = weaponIndexes[i];
-                if (weaponParent != null)
+                if (weaponParent == null)
                 {
                     Debug.Log("no weapon parent");
                 }

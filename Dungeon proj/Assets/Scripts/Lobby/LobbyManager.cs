@@ -44,6 +44,6 @@ public class LobbyManager : MonoBehaviour
         playerAbility.UpdateCanUseAbility(DataManager.playerData.can_use_ability);
         Debug.Log("loaded ability bool is " + playerMovement.CanUseAbility());
 
-        playerWeaponController.LoadWeaponSlots(DataManager.playerData.weapons);
+        //playerWeaponController.LoadWeaponSlots(DataManager.playerData.weapons);
     }
 }

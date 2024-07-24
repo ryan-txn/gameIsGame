@@ -4562,6 +4562,7 @@ MonoBehaviour:
   horCorridorBlocker: {fileID: 7170004746263583874, guid: 6430ae4856767474bb9076d2ba6aadd8, type: 3}
   vertCorridorBlocker: {fileID: 7170004746263583874, guid: faf3ee809ea4d70428c664e86992405c, type: 3}
   _doorsOpenedString: ROOM CLEARED.
+  _enemyCount: 0
   playerEntered: 0
   playerExited: 0
   duration: 3
