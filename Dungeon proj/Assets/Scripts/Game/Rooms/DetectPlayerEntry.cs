@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Tilemaps;
+using UnityEngine.EventSystems;
 
 public class DetectPlayerEntry : MonoBehaviour
 {
@@ -36,10 +37,10 @@ public class DetectPlayerEntry : MonoBehaviour
     [SerializeField]
     private float fade_duration;
 
-    GameObject corrBlocker1;
-    GameObject corrBlocker2;
-    GameObject corrBlocker3;
-    GameObject corrBlocker4;
+    private GameObject corrBlocker1;
+    private GameObject corrBlocker2;
+    private GameObject corrBlocker3;
+    private GameObject corrBlocker4;
 
     private void Start()
     {
@@ -102,6 +103,10 @@ public class DetectPlayerEntry : MonoBehaviour
             if (_infoMessageUI != null)
             {
                 _infoMessageUI.UpdateMessage(_doorsOpenedString, fade_duration, duration, fade_duration);
+            }
+            else
+            {
+                Debug.LogError("info message not assigned");
             }
         }
     }

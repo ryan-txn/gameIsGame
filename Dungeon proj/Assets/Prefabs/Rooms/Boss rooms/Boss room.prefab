@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1315112367435634505}
   - component: {fileID: 6371823167828003352}
   - component: {fileID: 6823670089278564361}
+  - component: {fileID: 1087399106725266893}
   m_Layer: 0
   m_Name: Boss room
   m_TagString: Untagged
@@ -62,8 +63,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horCorridorBlocker: {fileID: 7170004746263583874, guid: 6430ae4856767474bb9076d2ba6aadd8, type: 3}
   vertCorridorBlocker: {fileID: 7170004746263583874, guid: faf3ee809ea4d70428c664e86992405c, type: 3}
-  enmyCount: 0
+  _doorsOpenedString: 
+  _enemyCount: 0
   playerEntered: 0
+  playerExited: 0
+  duration: 0
+  fade_duration: 0
 --- !u!61 &6823670089278564361
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -109,6 +114,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 20.8, y: 20.8}
   m_EdgeRadius: 0
+--- !u!114 &1087399106725266893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4221060920558070666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd48858daed8fc34faed83c09359ad0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portal: {fileID: 5135489299040578147, guid: 91dd26b67e0dc2243a5d64cfb058804b, type: 3}
 --- !u!1 &6493886906278727262
 GameObject:
   m_ObjectHideFlags: 0

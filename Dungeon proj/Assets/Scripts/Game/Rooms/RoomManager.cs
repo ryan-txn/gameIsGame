@@ -98,7 +98,7 @@ public class RoomManager : MonoBehaviour
         //spawn shop room from second enemy room
         if (shopSpawnFromRoot == i) SpawnBranchRoom(ref currentDirections, ref positionIndex, ref rootRoom, ref spawnedRoom, ref direction, ref isRoot, ref corr_distance, SHOP_ROOM_INDEX);
 
-        //spawn third enemy room from second enemy room
+        //spawn portal room from second enemy room
         //currentDirections.Remove(3 - positionIndex); //remove opposite index option
         positionIndex = currentDirections[Random.Range(0, currentDirections.Count)]; //get position from 0-3
         firstRoom = rootRoom;
@@ -108,8 +108,9 @@ public class RoomManager : MonoBehaviour
         corr_distance = FindDistanceCorr(secondRoom, direction);
         rootRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, corr_distance);
 
-        //update portal
-        UpdateNextScene(rootRoom);
+        //update which screne portal loads
+        SceneTransition sceneTransition = rootRoom.transform.Find("Portal").GetComponent<SceneTransition>();
+        sceneTransition.UpdateSceneToLoadString();
     }
 
     // Method to find a Tilemap with a specific tag in the children of a GameObject
@@ -316,17 +317,6 @@ public class RoomManager : MonoBehaviour
         spawnedRoom = SpawnRoom(direction, isRoot, firstRoom, secondRoom, fixedRoomDistance, corr_distance);
     }
 
-    void UpdateNextScene(GameObject rootRoom)
-    {
-        SceneTransition sceneTransition = rootRoom.transform.GetChild(0).GetComponent<SceneTransition>();
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextSceneIndex = currentSceneIndex + 1;
-        string nextSceneName = SceneUtility.GetScenePathByBuildIndex(nextSceneIndex);
-        nextSceneName = System.IO.Path.GetFileNameWithoutExtension(nextSceneName);
-
-        //set the scene to load to the next scene
-        sceneTransition._sceneToLoad = nextSceneName;
-    }
 
     int RandomEnemyRoomIndex()
     {

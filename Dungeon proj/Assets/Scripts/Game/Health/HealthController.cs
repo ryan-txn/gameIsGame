@@ -27,6 +27,8 @@ public class HealthController : MonoBehaviour
 
     public UnityEvent OnHealthChanged; //want to invoke when health is added or removed, then reflect on health bar UI
 
+    private GameObject bossRoom;
+
     public void TakeDamage(float damageAmount)
     {
         if (_currentHealth == 0) 
@@ -103,5 +105,21 @@ public class HealthController : MonoBehaviour
     {
         _currentHealth = _maximumHealth;
         OnHealthChanged.Invoke();
+    }
+
+    public void SpawnPortal()
+    {
+        
+        SpawnPortal spawnPortal = FindObjectOfType<SpawnPortal>();
+        if (spawnPortal != null)
+        {
+            GameObject Portal = spawnPortal.Spawn();
+            SceneTransition sceneTransition = Portal.GetComponent<SceneTransition>();
+            sceneTransition.UpdateSceneToLoadString();
+        }
+        else
+        {
+            Debug.Log("Spawn Portal not found - either not boss room or error");
+        }
     }
 }

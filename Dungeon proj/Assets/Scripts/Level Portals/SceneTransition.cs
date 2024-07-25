@@ -91,4 +91,21 @@ public class SceneTransition : MonoBehaviour
             }
         }
     }
+
+    public void UpdateSceneToLoadString()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log("current build index " + currentSceneIndex);
+        int nextSceneIndex = currentSceneIndex + 1;
+        Debug.Log("next build index " + nextSceneIndex);
+
+        string nextSceneName = SceneUtility.GetScenePathByBuildIndex(nextSceneIndex);
+        Debug.Log("next scene path " + nextSceneName);
+
+        nextSceneName = System.IO.Path.GetFileNameWithoutExtension(nextSceneName);
+        Debug.Log("loading in scene " + nextSceneName);
+
+        //set the scene to load to the next scene
+        _sceneToLoad = nextSceneName;
+    }
 }
