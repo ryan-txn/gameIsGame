@@ -17,9 +17,14 @@ public class EnemyAttack : MonoBehaviour
         //if collide into player,
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ignore Laser") && collision.gameObject.CompareTag("Player"))
         {
+            var attackAnimation = GetComponent<MeleeAttackAnimation>();
+            if (attackAnimation != null)
+            {
+                attackAnimation.StartAttackAnimation();
+            }
+
             //call healthcontroller class and use take damage method
             var healthController = collision.gameObject.GetComponent<HealthController>();
-
             healthController.TakeDamage(_damageAmount);
             Debug.Log("Enemy hit player");
         }
