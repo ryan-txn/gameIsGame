@@ -14,6 +14,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private float _maximumSpawnTime;
 
+    [SerializeField]
     private float _timeUntilSpawn = 0;
     private GameObject _enemyPrefab;
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Tilemaps;
@@ -41,6 +42,12 @@ public class DetectPlayerEntry : MonoBehaviour
     private GameObject corrBlocker2;
     private GameObject corrBlocker3;
     private GameObject corrBlocker4;
+
+    [SerializeField]
+    private LayerMask _enemyLayerMask;
+
+    public UnityEvent EnterBossRoom;
+    public UnityEvent BossRoomClear;
 
     private void Start()
     {
@@ -86,13 +93,18 @@ public class DetectPlayerEntry : MonoBehaviour
 
             roomBoundsCollider.enabled = false; //delete collider
             EnemyCounter.SetEnemies(_enemyCount);
+
+            Debug.Log("DetectPlayerEntry: enemy counter is " + _enemyCount);
+
+
+            EnterBossRoom.Invoke(); //Boss room event
         }
 
     }
 
     private void Update()
     {
-        if (playerEntered && EnemyCounter.GetEnemyCount() == 0) //checking for player killed all enemies
+        if (playerEntered && EnemyCounter.GetEnemyCount() <= 0) //checking for player killed all enemies
         {
             Destroy(corrBlocker1);
             Destroy(corrBlocker2);
@@ -108,6 +120,8 @@ public class DetectPlayerEntry : MonoBehaviour
             {
                 Debug.LogError("info message not assigned");
             }
+
+            BossRoomClear.Invoke(); //Boss room event
         }
     }
 
@@ -123,5 +137,27 @@ public class DetectPlayerEntry : MonoBehaviour
         }
         Debug.LogError("no wall tilemap found");
         return null;
+    }
+
+    public void DeathExplosion()
+    {
+        Debug.Log("Death explosion complete");
+        float _explosionRadius = 50.0f;
+
+        //Hit enemies in the set explosion radius
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _explosionRadius, _enemyLayerMask);
+        foreach (Collider2D collider in colliders)
+        {
+            Debug.Log("Collider detected: " + collider.gameObject.name);
+            var enemy = collider.GetComponent<EnemyMovement>();
+
+            Rigidbody2D rb = collider.GetComponent<Rigidbody2D>();
+            HealthController healthController = collider.GetComponent<HealthController>();
+
+            if (healthController != null && rb != null && enemy != null)
+            {
+                healthController.TakeDamage(50f);
+            }
+        }
     }
 }

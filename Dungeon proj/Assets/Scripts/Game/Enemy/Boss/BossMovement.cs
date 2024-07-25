@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BossMovement : MonoBehaviour
 {
+    private bool _bossIsActivated;
+
     [SerializeField]
     private float _speed;
     private bool _isIdle;
@@ -41,9 +43,6 @@ public class BossMovement : MonoBehaviour
 
     private float _lastSpawnTime;
 
-    [SerializeField]
-    private LayerMask _enemyLayerMask; // Layer mask for enemies for death explosion
-
     private Animator _animator;
 
     private void Awake()
@@ -63,24 +62,29 @@ public class BossMovement : MonoBehaviour
     {
         SetAnimation();
 
-        if (_healthController._currentHealth == 0)
+        if (_bossIsActivated)
         {
-            _isDead = true;
+            if (_healthController._currentHealth == 0)
+            {
+                _isDead = true;
+            }
+
+            // Different boss phases if half health
+            if (_healthController.RemainingHealthPercentage > 0.5f)
+            {
+                PhaseOne();
+            }
+            else if (!_transitionDone)
+            {
+                StartCoroutine(TransitionToPhaseTwo());
+            }
+            else
+            {
+                PhaseTwo();
+            }
         }
 
-        // Different boss phases if half health
-        if (_healthController.RemainingHealthPercentage > 0.5f)
-        {
-            PhaseOne();
-        }
-        else if (!_transitionDone)
-        {
-            StartCoroutine(TransitionToPhaseTwo());
-        }
-        else
-        {
-            PhaseTwo();
-        }
+
 
     }
 
@@ -181,31 +185,15 @@ public class BossMovement : MonoBehaviour
         }
     }
 
-    //Called under healthcontroller onDied() Event
-    public void DeathExplosion()
-    {
-        float _explosionRadius = 50.0f;
-
-        //Hit enemies in the set explosion radius
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _explosionRadius, _enemyLayerMask);
-        foreach (Collider2D collider in colliders)
-        {
-            Debug.Log("Collider detected: " + collider.gameObject.name);
-            var enemy = collider.GetComponent<EnemyMovement>();
-
-            Rigidbody2D rb = collider.GetComponent<Rigidbody2D>();
-            HealthController healthController = collider.GetComponent<HealthController>();
-
-            if (healthController != null && rb != null && enemy != null)
-            {
-                healthController.TakeDamage(50f);
-            }
-        }
-    }
-
     private void SetAnimation()
     {
         _animator.SetBool("IsIdle", _isIdle);
         _animator.SetBool("IsTransitioning", _isTransitioning);
+    }
+
+    public void ActivateBoss()
+    {
+        _bossIsActivated = true;
+        Debug.Log("Boss is activated");
     }
 }

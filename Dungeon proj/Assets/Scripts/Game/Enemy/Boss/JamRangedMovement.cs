@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 
 public class JamRangedMovement : MonoBehaviour
 {
+    private bool _bossIsActivated = false;
+
     [SerializeField]
     private float _speed;
     private bool _isIdle;
@@ -38,21 +40,25 @@ public class JamRangedMovement : MonoBehaviour
     private void FixedUpdate()
     {
         SetAnimation();
-        //UpdateTargetDirection();
-        if (_isIdle)
+        if (_bossIsActivated)
         {
-            _idleTimer -= Time.deltaTime;
-            if (_idleTimer <= 0)
+            //UpdateTargetDirection();
+            if (_isIdle)
             {
-                _isIdle = false;
+                _idleTimer -= Time.deltaTime;
+                if (_idleTimer <= 0)
+                {
+                    _isIdle = false;
+                }
+            }
+            else
+            {
+                SetVelocity();
+                UpdateSpriteDirection();
+                HandleRandomDirectionChange();
             }
         }
-        else
-        {
-            SetVelocity();
-            UpdateSpriteDirection();
-            HandleRandomDirectionChange();
-        }
+
     }
 
     private void SetAnimation()
@@ -92,7 +98,7 @@ public class JamRangedMovement : MonoBehaviour
         }
     }
 
-    private void SetVelocity() 
+    private void SetVelocity()
     {
         if (IsShooting())
         {
@@ -122,11 +128,12 @@ public class JamRangedMovement : MonoBehaviour
         }
     }
 
-    // Turn the other way if walk into wall
+    // Turn the other way if walk into wall or player or other boss
     private void OnCollisionStay2D(Collision2D collision)
     {
         _wallDetectionCooldown -= Time.deltaTime;
-        if (collision.gameObject.GetComponent<TilemapCollider2D>() && _wallDetectionCooldown <= 0)
+        if ((collision.gameObject.GetComponent<TilemapCollider2D>() || collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player"))
+                && _wallDetectionCooldown <= 0)
         {
             _targetDirection = -_targetDirection;
             _wallDetectionCooldown = 1f;
@@ -141,5 +148,11 @@ public class JamRangedMovement : MonoBehaviour
             _idleTimer = 2f; // Set idle timer for 2 seconds
             _targetDirection = -_targetDirection;
         }
+    }
+
+    public void ActivateBoss()
+    {
+        _bossIsActivated = true;
+        Debug.Log("Boss is activated");
     }
 }

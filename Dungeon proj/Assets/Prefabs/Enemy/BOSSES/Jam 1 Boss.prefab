@@ -281,8 +281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71fa3189250af8d42b2bb98dbe35d78f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentHealth: 20
-  _maximumHealth: 200
+  _currentHealth: 450
+  _maximumHealth: 450
   OnDied:
     m_PersistentCalls:
       m_Calls:
@@ -451,14 +451,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9869ed42928d4e14da1c527aa7fec338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 649121753725581618, guid: 193acf6168565a2478b84b3baf305dcf, type: 3}
+  _bulletPrefab: {fileID: 649121753725581618, guid: a590f4443e214de4494d18e9e4e4c4a3, type: 3}
   _timeBetweenShots: 1.25
-  bulletSpeed: 4
+  bulletSpeed: 3.8
   _bulletFirePoint: {fileID: 2154825517223488661}
   _shootAnimationDuration: 0.4
   _isSpreadShot: 1
-  numberOfProjectiles: 3
-  spreadAngle: 10
+  numberOfProjectiles: 5
+  spreadAngle: 14
 --- !u!114 &-7129544875174113270
 MonoBehaviour:
   m_ObjectHideFlags: 0
