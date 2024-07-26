@@ -11,10 +11,12 @@ public class PlayerCollectableBehaviour : MonoBehaviour, interfaceCollectableBeh
     {
         if (_isCoin)
         {
+            FindObjectOfType<AudioManager>().PlaySFX("Coin sfx");
             player.GetComponent<CoinController>().AddCoinAmt(1);
         }
         else
         {
+            FindObjectOfType<AudioManager>().PlaySFX("Stamina sfx");
             player.GetComponent<StaminaController>().RecoverStamina(10);
         }
     }

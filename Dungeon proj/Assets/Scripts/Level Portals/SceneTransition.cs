@@ -24,6 +24,11 @@ public class SceneTransition : MonoBehaviour
     {
         if (_collided && _doorAccessed)
         {
+            if (_sceneToLoad != "MainMenu" && _sceneToLoad != "Lobby")
+            {
+                FindObjectOfType<AudioManager>().PlaySFX("Portal sfx");
+            }
+            
             UpdatePlayerData();
             SceneManager.LoadScene( _sceneToLoad );
         }

@@ -106,3 +106,43 @@ MonoBehaviour:
     volume: 0.22
     pitch: 0.83
     source: {fileID: 0}
+  - name: Coin sfx
+    clip: {fileID: 8300000, guid: 4e6a18d319dfdb544ba8d9a444ff5d6d, type: 3}
+    volume: 0.275
+    pitch: 1
+    source: {fileID: 0}
+  - name: Stamina sfx
+    clip: {fileID: 8300000, guid: 2100263553715ce4285bb150fe41c8b5, type: 3}
+    volume: 0.9
+    pitch: 1
+    source: {fileID: 0}
+  - name: Health sfx
+    clip: {fileID: 8300000, guid: 42522ed8a194a364eae038fc9a7cfe17, type: 3}
+    volume: 0.8
+    pitch: 1
+    source: {fileID: 0}
+  - name: Dash sfx
+    clip: {fileID: 8300000, guid: 539c3bcff9ced554286c8d9a413904f8, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+  - name: Pause sfx
+    clip: {fileID: 8300000, guid: 3e0596b699803314d97164f5ebd34da2, type: 3}
+    volume: 0.75
+    pitch: 1
+    source: {fileID: 0}
+  - name: Unpause sfx
+    clip: {fileID: 8300000, guid: af950ba4d35f6d6488272c13dcc44786, type: 3}
+    volume: 0.65
+    pitch: 1
+    source: {fileID: 0}
+  - name: Enemy die sfx
+    clip: {fileID: 8300000, guid: 1708c3a40f74d6d47a00f72667d11d6c, type: 3}
+    volume: 0.3
+    pitch: 1
+    source: {fileID: 0}
+  - name: Portal sfx
+    clip: {fileID: 8300000, guid: d1a199d60ca00c744a1c727fd68be864, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}

@@ -29,6 +29,9 @@ public class HealthController : MonoBehaviour
 
     private GameObject bossRoom;
 
+    [SerializeField]
+    public string dieSfx;
+
     public void TakeDamage(float damageAmount)
     {
         if (_currentHealth == 0) 
@@ -121,5 +124,10 @@ public class HealthController : MonoBehaviour
         {
             Debug.Log("Spawn Portal not found - either not boss room or error");
         }
+    }
+
+    public void PlayDieSFX()
+    {
+        FindObjectOfType<AudioManager>().PlaySFX(dieSfx);
     }
 }

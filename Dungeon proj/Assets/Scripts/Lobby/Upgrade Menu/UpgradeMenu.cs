@@ -244,6 +244,8 @@ public class UpgradeMenu : MonoBehaviour
         Time.timeScale = 0f; //pauses background
         _menuIsOpen = true;
         _weaponParent.SetActive(false);
+
+        FindObjectOfType<AudioManager>().PlaySFX("Enter shop sfx");
     }
 
     public void CloseMenu()

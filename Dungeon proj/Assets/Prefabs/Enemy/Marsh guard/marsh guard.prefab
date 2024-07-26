@@ -371,6 +371,18 @@ MonoBehaviour:
           m_StringArgument: OnDie
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6402856309588444279}
+        m_TargetAssemblyTypeName: HealthController, Assembly-CSharp
+        m_MethodName: PlayDieSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: OnDie
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDamaged:
     m_PersistentCalls:
       m_Calls:
@@ -389,6 +401,7 @@ MonoBehaviour:
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
+  dieSfx: Enemy die sfx
 --- !u!114 &33876769468005023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,6 +445,8 @@ MonoBehaviour:
   _bulletFirePoint: {fileID: 1912321221332843624}
   _shootAnimationDuration: 1
   _isSpreadShot: 1
+  numberOfProjectiles: 12
+  spreadAngle: 30
 --- !u!114 &3356042810094577946
 MonoBehaviour:
   m_ObjectHideFlags: 0

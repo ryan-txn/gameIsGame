@@ -176,7 +176,10 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Rigidbody velocity set to: " + _rigidbody.velocity);
 
         _invincibilityController.StartInvincibility(invincibilityDuration, flashColor, numberOfFlashes);
-        _trailRenderer.emitting = true;        
+        _trailRenderer.emitting = true;
+
+        //Play sound effect
+        FindObjectOfType<AudioManager>().PlaySFX("Dash sfx");        
 
         yield return new WaitForSeconds(dashDuration);
 

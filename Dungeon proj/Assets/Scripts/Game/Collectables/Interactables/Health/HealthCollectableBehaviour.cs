@@ -9,6 +9,7 @@ public class HealthCollectableBehaviour : MonoBehaviour, interfaceCollectableBeh
 
     public void OnCollected(GameObject player)
     {
+        FindObjectOfType<AudioManager>().PlaySFX("Health sfx");
         player.GetComponent<HealthController>().AddHealth(_healthAmount);
     }
 }
