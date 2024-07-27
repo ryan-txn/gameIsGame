@@ -233,6 +233,14 @@ public class AudioManager : MonoBehaviour
                 //Play music method is used in ActivateBoss method in jamrangedmovement script, assigned to DetectPlayerEntry Event
                 //FadeOutMusic method is used in FadeBossMusic method in boss2roomcontroller script, assigned to DetectPlayerEntry Event
                 break;
+
+            case "Level 3-1":
+                PlayMusic("Level 3 music");
+                break;
+
+            case "Boss 3":
+                FadeOutMusic("Level 3 music", 3);
+                break;
   
             default:
                 //PlayMusic("DefaultTheme"); 

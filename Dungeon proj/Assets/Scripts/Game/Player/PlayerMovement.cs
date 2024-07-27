@@ -52,6 +52,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private int numberOfFlashes = 1; // Number of flashes during invincibility
 
+    private Color _originalColor = Color.white; //to return to original color after invincibility/dash
+    private SpriteRenderer _spriteRenderer; 
+
     private void Awake() 
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -61,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
         //Dash components
         _invincibilityController = GetComponent<InvincibilityController>();
         _trailRenderer = GetComponent<TrailRenderer>();
+
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Update()
@@ -186,6 +191,7 @@ public class PlayerMovement : MonoBehaviour
         SetPlayerVelocity(); // Reset velocity after dash
         _trailRenderer.emitting = false;
         _isDashing = false;
+        _spriteRenderer.color = _originalColor;
         Debug.Log("Dash ended");
 
         yield return new WaitForSeconds(dashCooldown);
