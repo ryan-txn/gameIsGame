@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 740fb9159e39e0347b76593435e951cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSounds:
+  musicSoundsList1:
   - name: Lobby music
     clip: {fileID: 8300000, guid: aec45fbdd7834a744a71541fbf660be2, type: 3}
-    volume: 0.2
+    volume: 0.25
     pitch: 1
     source: {fileID: 0}
   - name: Level 1 music
@@ -57,7 +57,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Boss 1 music
     clip: {fileID: 8300000, guid: e65f199071f8c8442abccc67e0910461, type: 3}
-    volume: 0.4
+    volume: 0.35
     pitch: 1
     source: {fileID: 0}
   - name: Level 2 music
@@ -67,7 +67,13 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Boss 2 music
     clip: {fileID: 8300000, guid: 4d52b8b2b712a434d94d6a8804dac529, type: 3}
-    volume: 0.3
+    volume: 0.35
+    pitch: 1
+    source: {fileID: 0}
+  musicSoundsList2:
+  - name: Lobby music
+    clip: {fileID: 8300000, guid: a22082da985fb074fada0e50e17cbd2c, type: 3}
+    volume: 0.1
     pitch: 1
     source: {fileID: 0}
   sfxSounds:
@@ -153,7 +159,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Enemy die sfx
     clip: {fileID: 8300000, guid: 1708c3a40f74d6d47a00f72667d11d6c, type: 3}
-    volume: 0.3
+    volume: 0.2
     pitch: 1
     source: {fileID: 0}
   - name: Portal sfx

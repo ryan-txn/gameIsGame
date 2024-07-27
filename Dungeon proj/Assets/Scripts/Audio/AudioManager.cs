@@ -7,13 +7,20 @@ using UnityEngine.SceneManagement;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
-    public Sound[] musicSounds, sfxSounds;
+    public Sound[] musicSoundsList1, musicSoundsList2, sfxSounds;
+    private enum MusicList { List1, List2 }// Enum to keep track of the currently active music list
+    private MusicList currentMusicList = MusicList.List1;
+
+    private Sound[] activeMusicSounds; // Array based on the selected music list
 
     private void Awake()
     {
         //make sound sliders and settings from audiomanager reflect to actual audiosource
         InitializeMusic();
         InitializeSFX();
+
+        //make the active list to be list 1 initially
+        activeMusicSounds = musicSoundsList1;
 
         if (Instance == null)
         {
@@ -27,10 +34,21 @@ public class AudioManager : MonoBehaviour
             return;
         }
     }
-
+    
+    //Initialise both music lists
     private void InitializeMusic()
     {
-        foreach (Sound s in musicSounds)
+        foreach (Sound s in musicSoundsList1)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+
+            s.source.loop = true;
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+        }
+
+        foreach (Sound s in musicSoundsList2)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
@@ -55,7 +73,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(string musicName)
     {
-        Sound sound = Array.Find(musicSounds, x => x.name == musicName);
+        Sound sound = Array.Find(activeMusicSounds, x => x.name == musicName);
 
         if (sound == null)
         {
@@ -84,7 +102,7 @@ public class AudioManager : MonoBehaviour
     //Stops all music
     public void StopMusic()
     {
-        foreach(Sound s in musicSounds)
+        foreach(Sound s in activeMusicSounds)
         {
             if(s.source.isPlaying)
             {
@@ -96,7 +114,7 @@ public class AudioManager : MonoBehaviour
     //Pauses that specific music track
     public void PauseMusic(string musicName)
     {
-        Sound sound = Array.Find(musicSounds, x => x.name == musicName);
+        Sound sound = Array.Find(activeMusicSounds, x => x.name == musicName);
 
         if (sound == null)
         {
@@ -111,7 +129,7 @@ public class AudioManager : MonoBehaviour
     // Fades out music track then stops it
     public void FadeOutMusic(string musicName, float duration)
     {
-        Sound sound = Array.Find(musicSounds, x => x.name == musicName);
+        Sound sound = Array.Find(activeMusicSounds, x => x.name == musicName);
 
         if (sound == null)
         {
@@ -137,6 +155,40 @@ public class AudioManager : MonoBehaviour
         audioSource.Stop();
         audioSource.volume = startVolume; // Reset the volume for future use
     }
+
+    // Method to switch to music list 1
+    public void SelectMusicList1()
+    {
+        if (currentMusicList != MusicList.List1)
+        {
+            StopMusic(); // Stop any currently playing music
+            currentMusicList = MusicList.List1;
+            activeMusicSounds = musicSoundsList1; // Switch the active list
+            Debug.Log("Switched to Music List 1");
+        }
+    }
+
+    // Method to switch to music list 2
+    public void SelectMusicList2()
+    {
+        if (currentMusicList != MusicList.List2)
+        {
+            StopMusic(); // Stop any currently playing music
+            currentMusicList = MusicList.List2;
+            activeMusicSounds = musicSoundsList2; // Switch the active list
+            Debug.Log("Switched to Music List 2");
+        }
+    }
+
+    public string GetCurrentList()
+    {
+        if (currentMusicList == MusicList.List2)
+        {
+            return "PLAYLIST 2";
+        }
+        return "PLAYLIST 1";
+    }
+
 
     private void OnDestroy()
     {

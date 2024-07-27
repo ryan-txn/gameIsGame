@@ -45,7 +45,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Ambient: 0.5
+    - _Ambient: 0
     - _Bevel: 0.5
     - _BevelClamp: 0
     - _BevelOffset: 0
@@ -64,7 +64,7 @@ Material:
     - _GlowOuter: 0.3
     - _GlowPower: 0.85
     - _GradientScale: 6
-    - _LightAngle: 3.1416
+    - _LightAngle: 3.45
     - _MaskSoftnessX: 0
     - _MaskSoftnessY: 0
     - _OutlineSoftness: 0

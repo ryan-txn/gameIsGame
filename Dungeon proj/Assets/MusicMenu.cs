@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class ControlMenu : MonoBehaviour
+public class MusicMenu : MonoBehaviour
 {
-    public GameObject controlMenu;
+    public GameObject musicMenu;
+    public GameObject uiPanel;
     public static bool isActive = false;
 
     // Start is called before the first frame update
@@ -32,15 +32,27 @@ public class ControlMenu : MonoBehaviour
 
     public void LoadMenu()
     {
-        controlMenu.SetActive(true);
+        musicMenu.SetActive(true);
+        uiPanel.SetActive(false);
         isActive = true;
-        Debug.Log("Control panel set active");
+        Debug.Log("Music panel set active");
     }
 
     public void ResumeGame()
     {
-        controlMenu.SetActive(false);
+        musicMenu.SetActive(false);
+        uiPanel.SetActive(true);
         isActive = false;
-        Debug.Log("Control panel set inactive");
+        Debug.Log("Music panel set inactive");
+    }
+
+    public void ChooseSWPlaylist()
+    {
+        FindObjectOfType<AudioManager>().SelectMusicList1();
+    }
+
+    public void ChooseRyanPlaylist()
+    {
+        FindObjectOfType<AudioManager>().SelectMusicList2();
     }
 }
