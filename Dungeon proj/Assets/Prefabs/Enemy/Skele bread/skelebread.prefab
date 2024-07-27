@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5f114c6de164a34380a319355b85caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
+  _speed: 1.5
 --- !u!114 &3450350230769496793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,8 +294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71fa3189250af8d42b2bb98dbe35d78f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentHealth: 10
-  _maximumHealth: 10
+  _currentHealth: 30
+  _maximumHealth: 30
   OnDied:
     m_PersistentCalls:
       m_Calls:

@@ -400,6 +400,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  dieSfx: 
 --- !u!114 &9151394906933917479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,13 +453,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 649121753725581618, guid: a590f4443e214de4494d18e9e4e4c4a3, type: 3}
-  _timeBetweenShots: 1.25
-  bulletSpeed: 3.8
+  _timeBetweenShots: 1.5
+  bulletSpeed: 3.5
   _bulletFirePoint: {fileID: 2154825517223488661}
   _shootAnimationDuration: 0.4
   _isSpreadShot: 1
   numberOfProjectiles: 5
-  spreadAngle: 14
+  spreadAngle: 16
 --- !u!114 &-7129544875174113270
 MonoBehaviour:
   m_ObjectHideFlags: 0

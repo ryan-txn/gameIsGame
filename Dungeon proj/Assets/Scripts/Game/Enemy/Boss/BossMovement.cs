@@ -194,6 +194,12 @@ public class BossMovement : MonoBehaviour
     public void ActivateBoss()
     {
         _bossIsActivated = true;
-        Debug.Log("Boss is activated");
+        FindObjectOfType<AudioManager>().PlayMusic("Boss 1 music");
+        Debug.Log("Boss is activated, now playing boss music");
+    }
+
+    public void FadeBossMusic()
+    {
+        FindObjectOfType<AudioManager>().FadeOutMusic("Boss 1 music", 5);
     }
 }

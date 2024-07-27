@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -80,6 +81,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    //Stops all music
     public void StopMusic()
     {
         foreach(Sound s in musicSounds)
@@ -91,6 +93,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    //Pauses that specific music track
     public void PauseMusic(string musicName)
     {
         Sound sound = Array.Find(musicSounds, x => x.name == musicName);
@@ -103,6 +106,36 @@ public class AudioManager : MonoBehaviour
         {
             sound.source.Pause();
         }
+    }
+
+    // Fades out music track then stops it
+    public void FadeOutMusic(string musicName, float duration)
+    {
+        Sound sound = Array.Find(musicSounds, x => x.name == musicName);
+
+        if (sound == null)
+        {
+            Debug.Log("'" + musicName + "' music not found");
+        }
+        else
+        {
+            StartCoroutine(FadeOutCoroutine(sound.source, duration));
+        }
+    }
+
+    // Coroutine to fade out the volume over time
+    private IEnumerator FadeOutCoroutine(AudioSource audioSource, float duration)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / duration;
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume; // Reset the volume for future use
     }
 
     private void OnDestroy()
@@ -134,8 +167,19 @@ public class AudioManager : MonoBehaviour
                 break;
 
             case "Boss 1":
-                StopMusic();
-                PlayMusic("Boss 1 music");
+                FadeOutMusic("Level 1 music", 3);
+                //Play music method is used in ActivateBoss method in bossmovement script, assigned to DetectPlayerEntry Event
+                //FadeOutMusic method is used in FadeBossMusic method in bossmovement script, assigned to DetectPlayerEntry Event
+                break;
+
+            case "Level 2-1":
+                PlayMusic("Level 2 music");
+                break;
+            
+            case "Boss 2":
+                FadeOutMusic("Level 2 music", 3);
+                //Play music method is used in ActivateBoss method in jamrangedmovement script, assigned to DetectPlayerEntry Event
+                //FadeOutMusic method is used in FadeBossMusic method in boss2roomcontroller script, assigned to DetectPlayerEntry Event
                 break;
   
             default:

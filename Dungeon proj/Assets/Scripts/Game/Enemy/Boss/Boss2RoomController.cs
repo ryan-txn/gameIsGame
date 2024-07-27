@@ -86,4 +86,9 @@ public class Boss2RoomController : MonoBehaviour
             _spawnersActive = false;
         }
     }
+
+    public void FadeBossMusic()
+    {
+        FindObjectOfType<AudioManager>().FadeOutMusic("Boss 2 music", 5);
+    }
 }

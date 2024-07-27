@@ -6724,12 +6724,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horCorridorBlocker: {fileID: 7170004746263583874, guid: 6430ae4856767474bb9076d2ba6aadd8, type: 3}
   vertCorridorBlocker: {fileID: 7170004746263583874, guid: faf3ee809ea4d70428c664e86992405c, type: 3}
-  _doorsOpenedString: ROOM CLEARED.
+  _doorsOpenedString: ROOM CLEARED
   _enemyCount: 0
   playerEntered: 0
   playerExited: 0
   duration: 3
   fade_duration: 0.5
+  _enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  EnterBossRoom:
+    m_PersistentCalls:
+      m_Calls: []
+  BossRoomClear:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &551209462416432897
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6843,6 +6852,22 @@ PrefabInstance:
       propertyPath: _maxSpawnCount
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.data[0]
+      value: 
+      objectReference: {fileID: 7142303272250041979, guid: dabf18361fdf19a4998f9d8a12152eb3, type: 3}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.data[1]
+      value: 
+      objectReference: {fileID: 7617298862169958062, guid: 51281fca61575534d9dca147b60a0180, type: 3}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.data[2]
+      value: 
+      objectReference: {fileID: 7142303272250041979, guid: d3085dc518135d948bc1c455e58af41b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6921,6 +6946,22 @@ PrefabInstance:
       propertyPath: _maxSpawnCount
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.data[0]
+      value: 
+      objectReference: {fileID: 7142303272250041979, guid: dabf18361fdf19a4998f9d8a12152eb3, type: 3}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.data[1]
+      value: 
+      objectReference: {fileID: 7617298862169958062, guid: 51281fca61575534d9dca147b60a0180, type: 3}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.data[2]
+      value: 
+      objectReference: {fileID: 7142303272250041979, guid: d3085dc518135d948bc1c455e58af41b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6999,6 +7040,22 @@ PrefabInstance:
       propertyPath: _maxSpawnCount
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.data[0]
+      value: 
+      objectReference: {fileID: 7142303272250041979, guid: dabf18361fdf19a4998f9d8a12152eb3, type: 3}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.data[1]
+      value: 
+      objectReference: {fileID: 7617298862169958062, guid: 51281fca61575534d9dca147b60a0180, type: 3}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.data[2]
+      value: 
+      objectReference: {fileID: 7142303272250041979, guid: d3085dc518135d948bc1c455e58af41b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7077,6 +7134,22 @@ PrefabInstance:
       propertyPath: _maxSpawnCount
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.data[0]
+      value: 
+      objectReference: {fileID: 7142303272250041979, guid: dabf18361fdf19a4998f9d8a12152eb3, type: 3}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.data[1]
+      value: 
+      objectReference: {fileID: 7617298862169958062, guid: 51281fca61575534d9dca147b60a0180, type: 3}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.data[2]
+      value: 
+      objectReference: {fileID: 7142303272250041979, guid: d3085dc518135d948bc1c455e58af41b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7153,8 +7226,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
       propertyPath: _maxSpawnCount
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.data[0]
+      value: 
+      objectReference: {fileID: 7142303272250041979, guid: dabf18361fdf19a4998f9d8a12152eb3, type: 3}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.data[1]
+      value: 
+      objectReference: {fileID: 7617298862169958062, guid: 51281fca61575534d9dca147b60a0180, type: 3}
+    - target: {fileID: 5346264245304467836, guid: 61270a22aa5b424409ddc213c590ff87, type: 3}
+      propertyPath: _enemyList.Array.data[2]
+      value: 
+      objectReference: {fileID: 7142303272250041979, guid: d3085dc518135d948bc1c455e58af41b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
