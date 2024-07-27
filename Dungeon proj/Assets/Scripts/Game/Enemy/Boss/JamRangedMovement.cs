@@ -153,6 +153,7 @@ public class JamRangedMovement : MonoBehaviour
     public void ActivateBoss()
     {
         _bossIsActivated = true;
+        FindObjectOfType<AudioManager>().PlayMusic("Boss 2 music");
         Debug.Log("Boss is activated");
     }
 }

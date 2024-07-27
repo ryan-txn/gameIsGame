@@ -29,7 +29,6 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         //SetTimeUntilSpawn();  
-        RandomiseEnemy();
         GameObject enemyRoom = transform.parent.gameObject;
 
         // Access a script/component on the parent GameObject
@@ -45,6 +44,7 @@ public class EnemySpawner : MonoBehaviour
 
             if (_timeUntilSpawn <= 0 && _spawnCount < _maxSpawnCount)
             {
+                RandomiseEnemy();
                 Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
                 SetTimeUntilSpawn();
                 _spawnCount++;

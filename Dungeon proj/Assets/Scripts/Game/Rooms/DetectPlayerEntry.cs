@@ -96,6 +96,7 @@ public class DetectPlayerEntry : MonoBehaviour
 
             Debug.Log("DetectPlayerEntry: enemy counter is " + _enemyCount);
 
+            FindObjectOfType<AudioManager>().PlaySFX("Door close sfx");
 
             EnterBossRoom.Invoke(); //Boss room event
         }
