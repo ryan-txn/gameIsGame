@@ -19,6 +19,8 @@ public class UpgradeMenu : MonoBehaviour
     private PlayerMovement _playerMovementScript;
     private PlayerAbility _playerAbilityScript;
 
+    private LobbyManager _lobbyManager;
+
 
     private bool _menuInteracted;
     private bool _collided;
@@ -89,6 +91,8 @@ public class UpgradeMenu : MonoBehaviour
         _playerMovementScript = _player.GetComponent<PlayerMovement>();
         _playerAbilityScript = _player.GetComponent<PlayerAbility>();
 
+        _lobbyManager = FindObjectOfType<LobbyManager>();
+
         healthUpgradeButtonText = healthUpgradeButton.GetComponentInChildren<TMP_Text>();
         staminaUpgradeButtonText = staminaUpgradeButton.GetComponentInChildren<TMP_Text>();
         speedUpgradeButtonText = speedUpgradeButton.GetComponentInChildren<TMP_Text>();
@@ -130,6 +134,7 @@ public class UpgradeMenu : MonoBehaviour
             _healthController.AddMaxHealth(healthIncAmount);
             Debug.Log("Max health upgraded");
 
+            _lobbyManager.Save();
             InitialiseCounter();
             UpdateButtonStates();
         }
@@ -146,6 +151,8 @@ public class UpgradeMenu : MonoBehaviour
             staminaUpgradeCount++;
             InitialiseCounter();
             UpdateButtonStates();
+
+            _lobbyManager.Save();
         }
     }
 
@@ -160,6 +167,8 @@ public class UpgradeMenu : MonoBehaviour
             speedUpgradeCount++;
             InitialiseCounter();
             UpdateButtonStates();
+
+            _lobbyManager.Save();
         }
     }
 
@@ -175,6 +184,8 @@ public class UpgradeMenu : MonoBehaviour
             _playerAbilityScript.AbilityUnlocked();
             _playerAbilityScript.UpdateCanUseAbility(true); // for player saving
             UpdateButtonStates();
+
+            _lobbyManager.Save();
         }
     }
 
