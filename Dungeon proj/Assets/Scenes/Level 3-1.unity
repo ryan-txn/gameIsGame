@@ -5774,7 +5774,7 @@ MonoBehaviour:
   _bulletSpeed: 6
   _gunOffset: {fileID: 1371730817}
   _timeBetweenShots: 0.75
-  _staminaCostPerShot: 5
+  _staminaCostPerShot: 3
 --- !u!212 &367565280
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9314,7 +9314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 20
-  _staminaCostPerShot: 0
+  _staminaCostPerShot: 2
   _swingDuration: 0.2
   _swingCooldown: 0.2
   _weaponTransform: {fileID: 57057313}
