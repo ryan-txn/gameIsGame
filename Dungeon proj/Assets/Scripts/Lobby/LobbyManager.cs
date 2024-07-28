@@ -46,4 +46,10 @@ public class LobbyManager : MonoBehaviour
 
         //playerWeaponController.LoadWeaponSlots(DataManager.playerData.weapons);
     }
+
+    public void Save()
+    {
+        Debug.Log("Game saved");
+        DataManager.saveSystem.SavePlayer(coinController, staminaController, healthController, playerMovement, playerWeaponController, playerAbility);
+    }
 }
