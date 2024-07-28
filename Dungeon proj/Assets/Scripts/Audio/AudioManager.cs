@@ -241,6 +241,10 @@ public class AudioManager : MonoBehaviour
             case "Boss 3":
                 FadeOutMusic("Level 3 music", 3);
                 break;
+
+            case "Game Completed":
+                PlayMusic("Game Complete music");
+                break;
   
             default:
                 //PlayMusic("DefaultTheme"); 

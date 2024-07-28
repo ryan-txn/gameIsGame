@@ -7,7 +7,7 @@ public class GameCompleted : MonoBehaviour
 {
     public void Retry()
     {
-        DataManager.saveSystem.ResetSave();
+        //DataManager.saveSystem.ResetSave();
         SceneManager.LoadScene("MainMenu");
     }
 }

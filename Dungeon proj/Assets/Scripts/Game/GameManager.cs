@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         Invoke(nameof(EndGame), _timetoWaitBeforeExit);
     }
 
-    private void EndGame()
+    public void EndGame()
     {
         Save();
         SceneManager.LoadScene("MainMenu");

@@ -6157,6 +6157,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  dieSfx: 
 --- !u!114 &450590029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8655,16 +8656,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c78adb6b27e8f264aaebbf167487f174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onShootSfx: 
+  onShootSfx: Honey sfx
   defaultDistRay: 100
   _gunOffset: {fileID: 1241473983}
   _lineRenderer: {fileID: 1377073905}
   _layerMask:
     serializedVersion: 2
     m_Bits: 8
-  _staminaCostPerShot: 0.1
+  _staminaCostPerShot: 0.5
   _timeBetweenDamage: 0.1
-  laserDamage: 2
+  laserDamage: 3
   _hitParticleEffect: {fileID: 171988687}
 --- !u!120 &1377073905
 LineRenderer:
