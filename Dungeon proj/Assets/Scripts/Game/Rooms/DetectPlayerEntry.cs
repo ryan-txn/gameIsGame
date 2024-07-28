@@ -161,4 +161,19 @@ public class DetectPlayerEntry : MonoBehaviour
             }
         }
     }
+
+    public void SpawnPortal()
+    {
+        SpawnPortal spawnPortal = GetComponent<SpawnPortal>();
+        if (spawnPortal != null)
+        {
+            GameObject Portal = spawnPortal.Spawn();
+            SceneTransition sceneTransition = Portal.GetComponent<SceneTransition>();
+            sceneTransition.UpdateSceneToLoadString();
+        }
+        else
+        {
+            Debug.Log("Spawn Portal not found - either not boss room or error");
+        }
+    }
 }

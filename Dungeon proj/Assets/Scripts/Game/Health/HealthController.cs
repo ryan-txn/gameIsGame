@@ -112,7 +112,6 @@ public class HealthController : MonoBehaviour
 
     public void SpawnPortal()
     {
-        
         SpawnPortal spawnPortal = FindObjectOfType<SpawnPortal>();
         if (spawnPortal != null)
         {
