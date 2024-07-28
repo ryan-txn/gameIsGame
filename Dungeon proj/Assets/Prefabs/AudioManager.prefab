@@ -77,8 +77,33 @@ MonoBehaviour:
     source: {fileID: 0}
   musicSoundsList2:
   - name: Lobby music
-    clip: {fileID: 8300000, guid: a22082da985fb074fada0e50e17cbd2c, type: 3}
-    volume: 0.1
+    clip: {fileID: 8300000, guid: 51f2ee37bfb0a1e42b8fc41ebc45209f, type: 3}
+    volume: 0.25
+    pitch: 1
+    source: {fileID: 0}
+  - name: Level 1 music
+    clip: {fileID: 8300000, guid: cf3a4c16388c8774f948f3cdc02ae28f, type: 3}
+    volume: 0.25
+    pitch: 1
+    source: {fileID: 0}
+  - name: Boss 1 music
+    clip: {fileID: 8300000, guid: 6d4904ca6afa0f043a60b552c7ef52d2, type: 3}
+    volume: 0.25
+    pitch: 1
+    source: {fileID: 0}
+  - name: Level 2 music
+    clip: {fileID: 8300000, guid: f836b1720acd4724ea68ffea9a98943e, type: 3}
+    volume: 0.25
+    pitch: 1
+    source: {fileID: 0}
+  - name: Boss 2 music
+    clip: {fileID: 8300000, guid: 25fc398213ed4334d9e30e11f7c052e1, type: 3}
+    volume: 0.25
+    pitch: 1
+    source: {fileID: 0}
+  - name: Level 3 music
+    clip: {fileID: 8300000, guid: a977f8534ad015145a289a8f18a3cf65, type: 3}
+    volume: 0.25
     pitch: 1
     source: {fileID: 0}
   sfxSounds:

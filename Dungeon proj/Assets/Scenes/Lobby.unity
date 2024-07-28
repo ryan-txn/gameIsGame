@@ -5922,6 +5922,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  dieSfx: 
 --- !u!114 &384172903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7083,11 +7084,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _upgradeMenu: {fileID: 1627379966}
   _player: {fileID: 384172894}
-  upgradeCost: 0
+  upgradeCost: 10
   healthIncAmount: 10
   staminaIncAmount: 20
   speedIncAmount: 1
-  abilityUnlockCost: 0
+  abilityUnlockCost: 15
   healthUpgradeButton: {fileID: 1021984306}
   staminaUpgradeButton: {fileID: 705908001}
   speedUpgradeButton: {fileID: 905931313}

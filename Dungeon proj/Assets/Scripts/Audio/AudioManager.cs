@@ -20,7 +20,7 @@ public class AudioManager : MonoBehaviour
         InitializeSFX();
 
         //make the active list to be list 1 initially
-        activeMusicSounds = musicSoundsList1;
+        activeMusicSounds = musicSoundsList2;
 
         if (Instance == null)
         {
