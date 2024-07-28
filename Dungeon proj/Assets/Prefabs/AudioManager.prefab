@@ -70,6 +70,11 @@ MonoBehaviour:
     volume: 0.35
     pitch: 1
     source: {fileID: 0}
+  - name: Level 3 music
+    clip: {fileID: 8300000, guid: d5a487920daec544180ead927c7bf486, type: 3}
+    volume: 0.23
+    pitch: 1
+    source: {fileID: 0}
   musicSoundsList2:
   - name: Lobby music
     clip: {fileID: 8300000, guid: a22082da985fb074fada0e50e17cbd2c, type: 3}
@@ -133,9 +138,9 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
   - name: Stamina sfx
-    clip: {fileID: 8300000, guid: 2100263553715ce4285bb150fe41c8b5, type: 3}
-    volume: 0.9
-    pitch: 1
+    clip: {fileID: 8300000, guid: 42522ed8a194a364eae038fc9a7cfe17, type: 3}
+    volume: 0.75
+    pitch: 1.5
     source: {fileID: 0}
   - name: Health sfx
     clip: {fileID: 8300000, guid: 42522ed8a194a364eae038fc9a7cfe17, type: 3}

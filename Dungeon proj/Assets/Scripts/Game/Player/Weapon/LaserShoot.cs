@@ -59,7 +59,7 @@ public class LaserShoot : MonoBehaviour
             }
 
             ShootLaser();
-            _staminaController.ConsumeStamina(_staminaCostPerShot);
+            DepleteStamina();
             _fireSingle = false;
         }
         else
@@ -83,6 +83,17 @@ public class LaserShoot : MonoBehaviour
         }
     }
 
+    void DepleteStamina()
+    {
+        float _timeSinceLastShot = Time.time - _lastDamageTime;
+        if (_timeSinceLastShot > _timeBetweenDamage)
+        {
+            _staminaController.ConsumeStamina(_staminaCostPerShot);
+            _lastDamageTime = Time.time;
+        }
+
+    }
+
     void ClearLaser()
     {
         _hitParticleEffect.SetActive(false);
@@ -94,7 +105,7 @@ public class LaserShoot : MonoBehaviour
         if (onShootSfx != null)
         {
             FindObjectOfType<AudioManager>().PlaySFX(onShootSfx);
-        }   
+        }
     }
 
     void Draw2DRay(Vector2 startPos, Vector2 endPos)
@@ -116,6 +127,7 @@ public class LaserShoot : MonoBehaviour
             if (_timeSinceLastHit > _timeBetweenDamage)
             {
                 healthController.TakeDamage(laserDamage);
+                _staminaController.ConsumeStamina(_staminaCostPerShot);
                 _lastDamageTime = Time.time;
             }
         }

@@ -17,7 +17,7 @@ public class PlayerCollectableBehaviour : MonoBehaviour, interfaceCollectableBeh
         else
         {
             FindObjectOfType<AudioManager>().PlaySFX("Stamina sfx");
-            player.GetComponent<StaminaController>().RecoverStamina(10);
+            player.GetComponent<StaminaController>().RecoverStamina(15);
         }
     }
 }
