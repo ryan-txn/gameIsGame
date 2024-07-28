@@ -57,10 +57,10 @@ public class GameManager : MonoBehaviour
         DataManager.saveSystem.SavePlayer(coinController, staminaController, healthController, playerMovement, playerWeaponController, playerAbility);
     }
 
-    public void OnLevelCleared()
+/*    public void OnLevelCleared()
     {
         DataManager.playerData.coins = coinController.coinAmt;
-    }
+    }*/
 
     private void UpdatePlayerData()
     {

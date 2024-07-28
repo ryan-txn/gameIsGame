@@ -93,6 +93,10 @@ public class SceneTransition : MonoBehaviour
             else
             {
                 DataManager.playerData.weapons = playerWeaponController.GetInventoryIndexes();
+                if (_sceneToLoad == "Game Completed")
+                {
+                    DataManager.saveSystem.SavePlayer(coinController, staminaController, healthController,playerMovement, playerWeaponController, playerAbility);
+                }
             }
         }
     }
