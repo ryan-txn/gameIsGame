@@ -26,25 +26,58 @@ public class LobbyManager : MonoBehaviour
 
     public void Load()
     {
-        DataManager.playerData = DataManager.saveSystem.LoadPlayer();
+        // Check if the player data is loaded successfully
+        if (DataManager.saveSystem.LoadPlayer() == null)
+        {
+            // If load fails, set default values and create a new save file
+            SetDefaultValues();
+            Save();
+        }
+        else
+        {
+            // Proceed to apply loaded player data
+            ApplyLoadedData();
+        }
+    }
 
+    private void ApplyLoadedData()
+    {
+        // Apply loaded data to the game components
         coinController.ChangeCoinAmt(DataManager.playerData.coins);
-        Debug.Log("loaded coins are " + coinController.coinAmt);
+        Debug.Log("Loaded coins: " + coinController.coinAmt);
 
         healthController.UpdateMaxHealth(DataManager.playerData.max_health);
-        Debug.Log("loaded max_health is " + healthController._maximumHealth);
+        Debug.Log("Loaded max_health: " + healthController._maximumHealth);
         healthController.ResetHealth();
 
         staminaController.UpdateMaxStamina(DataManager.playerData.max_stamina);
-        Debug.Log("loaded max_stamina is " + staminaController._maximumStamina);
+        Debug.Log("Loaded max_stamina: " + staminaController._maximumStamina);
         staminaController.ResetStamina();
 
         playerMovement.UpdateSpeed(DataManager.playerData.speed);
-        Debug.Log("loaded speed is " + playerMovement.GetSpeed());
+        Debug.Log("Loaded speed: " + playerMovement.GetSpeed());
         playerAbility.UpdateCanUseAbility(DataManager.playerData.ability);
-        Debug.Log("loaded ability bool is " + playerAbility.CanUseAbility());
+        Debug.Log("Loaded ability: " + playerAbility.CanUseAbility());
 
         //playerWeaponController.LoadWeaponSlots(DataManager.playerData.weapons);
+    }
+
+    private void SetDefaultValues()
+    {
+        // Set default values for a new save
+        DataManager.playerData = new PlayerData
+        {
+            coins = 0,
+            max_health = 100,
+            curr_health = 100,
+            max_stamina = 200,
+            curr_stamina = 200,
+            speed = 6,
+            weapons = null, 
+            ability = false
+        };
+        
+        Debug.Log("Default player data has been set.");
     }
 
     public void Save()
