@@ -7,8 +7,11 @@ using UnityEngine.SceneManagement;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
-    public Sound[] musicSoundsList1, musicSoundsList2, sfxSounds;
-    private enum MusicList { List1, List2 }// Enum to keep track of the currently active music list
+
+    [SerializeField]
+    private Sound[] musicSoundsList1, musicSoundsList2, sfxSounds;
+
+    private enum MusicList { List1, List2 } // Enum to keep track of the currently active music list
     private MusicList currentMusicList = MusicList.List1;
 
     private Sound[] activeMusicSounds; // Array based on the selected music list

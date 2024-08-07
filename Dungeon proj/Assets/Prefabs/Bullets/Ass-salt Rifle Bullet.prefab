@@ -76,11 +76,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 10
   onShootSfx: Assalt sfx
-  onHitSfx: 
+  _destroyEffect: {fileID: 3952979388403058086, guid: 11653ce7de70f4c409ddd056d7a5531a, type: 3}
   _isExplosive: 0
   _explosionRadius: 2
   _explosionForce: 200
-  _explosionEffect: {fileID: 0}
   _enemyLayerMask:
     serializedVersion: 2
     m_Bits: 0

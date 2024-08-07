@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+//Assigned to player
 public class CoinController : MonoBehaviour
 {
     public UnityEvent OnCoinAmtChanged;

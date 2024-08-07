@@ -76,10 +76,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 10
   onShootSfx: Peastol sfx
+  _destroyEffect: {fileID: 3952979388403058086, guid: b1fc5099b1b34dd408743deff697a1f5, type: 3}
   _isExplosive: 0
   _explosionRadius: 2
   _explosionForce: 200
-  _explosionEffect: {fileID: 0}
   _enemyLayerMask:
     serializedVersion: 2
     m_Bits: 0

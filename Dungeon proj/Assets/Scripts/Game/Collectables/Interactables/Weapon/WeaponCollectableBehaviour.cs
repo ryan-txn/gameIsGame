@@ -9,7 +9,7 @@ public class WeaponCollectableBehaviour : MonoBehaviour, interfaceCollectableBeh
         PlayerWeaponController weaponController = player.GetComponentInChildren<PlayerWeaponController>(); // Find the weapon controller in the player's children
         if (weaponController.IsWeaponInInventory(GetComponent<WeaponIdentifier>().weaponIndex)!= true)
         {
-            weaponController.CollectWeapon(this.gameObject);
+            weaponController.CollectWeapon(gameObject);
             Destroy(gameObject);
         }
     }

@@ -11,6 +11,9 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private string onShootSfx;
 
+    [SerializeField]
+    private GameObject _destroyEffect; //destroy particle effect
+
     //EXPLOSIVE BULLET ATTRIBUTES
     [SerializeField]
     private bool _isExplosive = false;
@@ -20,9 +23,6 @@ public class Bullet : MonoBehaviour
 
     [SerializeField]
     private float _explosionForce = 200.0f;
-
-    [SerializeField]
-    private GameObject _explosionEffect; //visual effect
 
     [SerializeField]
     private LayerMask _enemyLayerMask; // Layer mask for enemies
@@ -85,23 +85,27 @@ public class Bullet : MonoBehaviour
                 _bounceCount++;
                 if (_bounceCount > _maxNumberOfBounces)
                 {
-                    Destroy(gameObject); // Destroy bullet after reaching max bounces
+                    HandleBulletDestroy(); // Destroy bullet after reaching max bounces
                 }
             }
             else
             {
-                Destroy(gameObject); // Destroy non-bouncy bullet after collision
+                HandleBulletDestroy(); // Destroy non-bouncy bullet after collision
             }
         }
     }
 
+    private void HandleBulletDestroy()
+    {
+        if (_destroyEffect != null)
+        {
+            Instantiate(_destroyEffect, transform.position, Quaternion.identity);
+        }
+        Destroy(gameObject);
+    }
+
     private void Explode()
     {
-        if (_explosionEffect != null)
-        {
-            Instantiate(_explosionEffect, transform.position, Quaternion.identity);
-        }
-
         //Hit enemies in the set explosion radius
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _explosionRadius, _enemyLayerMask);
         foreach (Collider2D collider in colliders)

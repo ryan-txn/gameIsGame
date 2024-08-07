@@ -10,7 +10,7 @@ public class ChestBehaviour : MonoBehaviour
     private bool _chestOpened = false;
     private bool _interacted;
     private bool _collided;
-    private Collider2D _collider; 
+    private Collider2D _collider;
     private Animator _animator;
 
     [SerializeField]
@@ -19,7 +19,7 @@ public class ChestBehaviour : MonoBehaviour
     private void Awake()
     {
         _collectableSpawner = FindObjectOfType<CollectableSpawner>();
-        _collider = GetComponent<Collider2D>(); 
+        _collider = GetComponent<Collider2D>();
         _animator = GetComponentInChildren<Animator>();
     }
 
@@ -27,24 +27,29 @@ public class ChestBehaviour : MonoBehaviour
     {
         SetAnimation();
     }
-    
+
     private void Update()
     {
         if (_collided && _interacted)
         {
-            _chestOpened = true;
-            _collectableSpawner.SpawnCollectable(_spawnPoint.position, CollectableSpawner.SpawnType.Weapon);
-            _collider.enabled = false;
-            Debug.Log("spawned weapon");
-
-            FindObjectOfType<AudioManager>().PlaySFX("Chest open");
-            Debug.Log("Chest open sound played");
+            OpenChest();
         }
+    }
+
+    private void OpenChest()
+    {
+        _chestOpened = true;
+        _collectableSpawner.SpawnCollectable(_spawnPoint.position, CollectableSpawner.SpawnType.Weapon);
+        _collider.enabled = false;
+        Debug.Log("spawned weapon");
+
+        FindObjectOfType<AudioManager>().PlaySFX("Chest open");
+        Debug.Log("Chest open sound played");
     }
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
-        
+
         if (collider.gameObject.tag == "Player")
         {
             _collided = true;

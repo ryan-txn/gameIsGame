@@ -76,10 +76,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 10
   onShootSfx: Bubblegum sfx
+  _destroyEffect: {fileID: 3952979388403058086, guid: 6acd0d24acd2b9f4f94130b2535dcf68, type: 3}
   _isExplosive: 0
   _explosionRadius: 2
   _explosionForce: 200
-  _explosionEffect: {fileID: 0}
   _enemyLayerMask:
     serializedVersion: 2
     m_Bits: 0
