@@ -56,6 +56,9 @@ public class BossMovement : MonoBehaviour
         // Enable phase one attack script and disable phase two attack script at the start
         _rangedEnemyAttackPhaseOne.enabled = true;
         _rangedEnemyAttackPhaseTwo.enabled = false;
+
+        // Make boss invincible before player enters room
+        _healthController.IsInvincible = true;
     }
 
     void FixedUpdate()
@@ -193,7 +196,8 @@ public class BossMovement : MonoBehaviour
 
     public void ActivateBoss()
     {
-        _bossIsActivated = true;
+        _bossIsActivated = true; //Starts movement phases
+        _healthController.IsInvincible = false; //Turns off boss invincibillity
         FindObjectOfType<AudioManager>().PlayMusic("Boss 1 music");
         Debug.Log("Boss is activated, now playing boss music");
     }

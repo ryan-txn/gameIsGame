@@ -35,6 +35,9 @@ public class JamRangedMovement : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _rangedEnemyAttack = GetComponent<RangedEnemyAttack>();
         _healthController = GetComponent<HealthController>();
+
+        // Make boss invincible before player enters room
+        _healthController.IsInvincible = true;
     }
 
     private void FixedUpdate()
@@ -153,6 +156,8 @@ public class JamRangedMovement : MonoBehaviour
     public void ActivateBoss()
     {
         _bossIsActivated = true;
+        _healthController.IsInvincible = false; //Turns off boss invincibillity
+        
         FindObjectOfType<AudioManager>().PlayMusic("Boss 2 music");
         Debug.Log("Boss is activated");
     }
