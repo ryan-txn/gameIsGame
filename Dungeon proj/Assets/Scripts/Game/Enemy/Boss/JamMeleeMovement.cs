@@ -45,6 +45,7 @@ public class JamMeleeMovement : MonoBehaviour
 
     private Rigidbody2D _rigidbody;
     private PlayerAwarenessController _playerAwarenessController;
+    private HealthController _healthController;
 
     private Animator _animator;
 
@@ -54,6 +55,10 @@ public class JamMeleeMovement : MonoBehaviour
         _playerAwarenessController = GetComponent<PlayerAwarenessController>();
         _targetDirection = transform.up; // initial target direction will be the way it's currently facing
         _animator = GetComponentInChildren<Animator>();
+        _healthController = GetComponent<HealthController>();
+
+        // Make boss invincible before player enters room
+        _healthController.IsInvincible = true;
 
         _chargeParticles = GetComponentInChildren<ParticleSystem>();
 
@@ -277,6 +282,7 @@ public class JamMeleeMovement : MonoBehaviour
     public void ActivateBoss()
     {
         _bossIsActivated = true;
+        _healthController.IsInvincible = false; //Turns off boss invincibillity
         Debug.Log("Boss is activated");
     }
 }

@@ -30,12 +30,14 @@ public class LobbyManager : MonoBehaviour
         if (DataManager.saveSystem.LoadPlayer() == null)
         {
             // If load fails, set default values and create a new save file
+            Debug.Log("New SaveFile created");
             SetDefaultValues();
             Save();
         }
         else
         {
             // Proceed to apply loaded player data
+            DataManager.playerData = DataManager.saveSystem.LoadPlayer();
             ApplyLoadedData();
         }
     }
