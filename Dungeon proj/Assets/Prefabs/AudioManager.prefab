@@ -75,6 +75,11 @@ MonoBehaviour:
     volume: 0.23
     pitch: 1
     source: {fileID: 0}
+  - name: Boss 3 music
+    clip: {fileID: 8300000, guid: ed9232c0368e9dd40a6d766a73ec481c, type: 3}
+    volume: 0.23
+    pitch: 1
+    source: {fileID: 0}
   musicSoundsList2:
   - name: Lobby music
     clip: {fileID: 8300000, guid: 51f2ee37bfb0a1e42b8fc41ebc45209f, type: 3}

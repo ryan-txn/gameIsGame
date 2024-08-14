@@ -36,6 +36,8 @@ public class CaseController : MonoBehaviour
 
     //Enemy Spawning
     [SerializeField]
+    private List<GameObject> _enemyList;
+    
     private GameObject _enemyPrefab;
 
     [SerializeField]
@@ -56,6 +58,8 @@ public class CaseController : MonoBehaviour
 
     private Coroutine _currentPhaseCoroutine;
 
+    private CapsuleCollider2D _capsuleCollider2D;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -63,6 +67,7 @@ public class CaseController : MonoBehaviour
         _targetDirection = transform.up; // initial target direction will be the way it's currently facing
         _animator = GetComponentInChildren<Animator>();
         _healthController = GetComponent<HealthController>();
+        _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
 
         // Enable phase one attack script and disable phase two attack script at the start
         _leftHandAttack.enabled = false;
@@ -178,12 +183,21 @@ public class CaseController : MonoBehaviour
         _isTransitioning = true;
         _healthController.IsInvincible = true;
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(3f);
 
         _isTransitioning = false;
         _healthController.IsInvincible = false;
 
         _transitionDone = true;
+
+        // Set the offset to (0, 0)
+        _capsuleCollider2D.offset = Vector2.zero;
+
+        // Set the size to (1, 3)
+        _capsuleCollider2D.size = new Vector2(1f, 1.2f);
+
+        // Set the direction to vertical
+        _capsuleCollider2D.direction = CapsuleDirection2D.Vertical; // Vertical direction
     }
 
     private void PhaseTwo()
@@ -245,6 +259,8 @@ public class CaseController : MonoBehaviour
 
             if (currentEnemyCount < _maxNumOfGummyToSpawn)
             {
+                int index = Random.Range(0, _enemyList.Count);
+                _enemyPrefab = _enemyList[index];
                 Instantiate(_enemyPrefab, spawnPoint.position, spawnPoint.rotation);
                 EnemyCounter.SetEnemies(currentEnemyCount += 1);
             }
@@ -264,12 +280,12 @@ public class CaseController : MonoBehaviour
     public void ActivateBoss()
     {
         _bossIsActivated = true;
-        FindObjectOfType<AudioManager>().PlayMusic("Boss 1 music");
+        FindObjectOfType<AudioManager>().PlayMusic("Boss 3");
         Debug.Log("Boss is activated, now playing boss music");
     }
 
     public void FadeBossMusic()
     {
-        FindObjectOfType<AudioManager>().FadeOutMusic("Boss 1 music", 5);
+        FindObjectOfType<AudioManager>().FadeOutMusic("Boss 3 ", 5);
     }
 }
