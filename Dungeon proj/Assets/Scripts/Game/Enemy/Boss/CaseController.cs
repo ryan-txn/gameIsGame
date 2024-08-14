@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.XR;
 
 public class CaseController : MonoBehaviour
 {
@@ -23,6 +24,11 @@ public class CaseController : MonoBehaviour
     private RangedEnemyAttack _leftHandAttack;
     [SerializeField]
     private RangedEnemyAttack _rightHandAttack;
+    [SerializeField]
+    private CaseKnifeAttack _leftHandSweep;
+    [SerializeField]
+    private CaseKnifeAttack _rightHandSweep;
+
     [SerializeField]
     private RangedEnemyAttack _rangedEnemyAttackPhaseTwo;
 
@@ -48,6 +54,8 @@ public class CaseController : MonoBehaviour
 
     private Animator _animator;
 
+    private Coroutine _currentPhaseCoroutine;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -57,8 +65,8 @@ public class CaseController : MonoBehaviour
         _healthController = GetComponent<HealthController>();
 
         // Enable phase one attack script and disable phase two attack script at the start
-        _leftHandAttack.enabled = true;
-        _rightHandAttack.enabled = true;
+        _leftHandAttack.enabled = false;
+        _rightHandAttack.enabled = false;
 
         _rangedEnemyAttackPhaseTwo.enabled = false;
     }
@@ -98,12 +106,67 @@ public class CaseController : MonoBehaviour
     {
         _isIdle = true; // Boss is stationary
 
-        if (Time.time - _lastSpawnTime >= _spawnIntervalPhaseOne)
+        if (_currentPhaseCoroutine == null) // Ensure no duplicate coroutines
         {
-            SpawnEnemies();
-            _lastSpawnTime = Time.time;
+            _currentPhaseCoroutine = StartCoroutine(PhaseOneAttackSequence());
         }
 
+        if (Time.time - _lastSpawnTime >= _spawnIntervalPhaseOne)
+        {
+            //SpawnEnemies();
+            _lastSpawnTime = Time.time;
+        }
+    }
+
+    private IEnumerator PhaseOneAttackSequence()
+    {
+        while (_healthController.RemainingHealthPercentage > 0.5f && !_isDead)
+        {
+            // Start Attack 1 Animation (1.33 * 3 = 4 seconds)
+            _animator.SetBool("Attack1", true);
+
+            yield return new WaitForSeconds(.5f);
+            _leftHandAttack.enabled = true;
+
+            yield return new WaitForSeconds(.5f);
+            _rightHandAttack.enabled = true;
+
+            yield return new WaitForSeconds(2.5f);
+            _animator.SetBool("Attack1", false);
+            _animator.SetBool("Attack2", true);
+
+            yield return new WaitForSeconds(0.5f);
+            _leftHandAttack.enabled = false;
+            _rightHandAttack.enabled = false;
+
+
+
+
+            // Attack 2 Animation (1.66 * 3 = 5 seconds)
+            yield return new WaitForSeconds(.5f);
+            _leftHandSweep.enabled = true;
+
+            yield return new WaitForSeconds(.833f);
+            _rightHandSweep.enabled = true;
+
+            yield return new WaitForSeconds(3.167f);
+            _animator.SetBool("Attack2", false);
+            _animator.SetBool("IsIdle", true);
+
+
+            yield return new WaitForSeconds(0.5f);
+            _leftHandSweep.enabled = false;
+            _rightHandSweep.enabled = false;
+
+
+            // Idle
+            yield return new WaitForSeconds(2f);
+            _animator.SetBool("IsIdle", false);
+
+        }
+
+        // Reset the coroutine reference when done
+        _currentPhaseCoroutine = null;
     }
 
     private IEnumerator TransitionToPhaseTwo()
