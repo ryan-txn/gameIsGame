@@ -280,12 +280,12 @@ public class CaseController : MonoBehaviour
     public void ActivateBoss()
     {
         _bossIsActivated = true;
-        FindObjectOfType<AudioManager>().PlayMusic("Boss 3");
+        FindObjectOfType<AudioManager>().PlayMusic("Boss 3 music");
         Debug.Log("Boss is activated, now playing boss music");
     }
 
     public void FadeBossMusic()
     {
-        FindObjectOfType<AudioManager>().FadeOutMusic("Boss 3 ", 5);
+        FindObjectOfType<AudioManager>().FadeOutMusic("Boss 3 music", 5);
     }
 }

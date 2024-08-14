@@ -545,7 +545,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &403567971
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3302,7 +3302,8 @@ MonoBehaviour:
 
     i love it (icona pop)
 
-    -'
+    Color your
+    night (persona 3 reload)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 654c2f55008a2594ba6fa4155498a09a, type: 2}
   m_sharedMaterial: {fileID: -9117217953451775223, guid: 654c2f55008a2594ba6fa4155498a09a, type: 2}
@@ -4751,7 +4752,8 @@ MonoBehaviour:
 
     mor ardain (xenoblade chronicles 2)
 
-    -
+    Brainiac
+    Maniac (Plants vs Zombies)
 
 '
   m_isRightToLeft: 0
