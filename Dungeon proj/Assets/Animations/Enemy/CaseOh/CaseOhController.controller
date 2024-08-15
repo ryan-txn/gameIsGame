@@ -35,7 +35,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GummyBoss GetUp
+  m_Name: Case Transform
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -419,7 +419,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8bc15bb4e3450be43ba5bfca331587bf, type: 2}
+  m_Motion: {fileID: 7400000, guid: 01726f20cebb28a428da43a1b15e91ba, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -461,13 +461,13 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 7617563916475655847}
-    m_Position: {x: 290, y: 340, z: 0}
+    m_Position: {x: 340, y: 440, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2483332020115594752}
-    m_Position: {x: 280, y: 180, z: 0}
+    m_Position: {x: 280, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5935413426886846931}
-    m_Position: {x: 280, y: 260, z: 0}
+    m_Position: {x: 260, y: 270, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4266316356945524793}
     m_Position: {x: 350, y: 10, z: 0}
@@ -476,7 +476,7 @@ AnimatorStateMachine:
     m_Position: {x: 520, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5302284506333647400}
-    m_Position: {x: 610, y: 220, z: 0}
+    m_Position: {x: 630, y: 320, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 610920788744480500}
