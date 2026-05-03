@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D _rigidbody;
     private Vector2 _movementInput;
+    private bool _receivedMoveInputThisFrame;
 
     private Vector2 _smoothedMovementInput;
     private Vector2 _movementInputSmoothVelocity;
@@ -70,8 +71,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        ApplyKeyboardMovementFallback();
         _pointerInput = GetPointerInput();
         _weaponParent.PointerPosition = _pointerInput;
+    }
+
+    private void LateUpdate()
+    {
+        _receivedMoveInputThisFrame = false;
     }
 
     //unity's FixedUpdate() method. called at the frequency of the physics system
@@ -88,6 +95,50 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnMove(InputValue inputValue) {
         _movementInput = inputValue.Get<Vector2>();
+        _receivedMoveInputThisFrame = true;
+    }
+
+    private void ApplyKeyboardMovementFallback()
+    {
+        if (Keyboard.current == null)
+        {
+            return;
+        }
+
+        Vector2 keyboardInput = Vector2.zero;
+
+        if (Keyboard.current.wKey.isPressed || Keyboard.current.upArrowKey.isPressed)
+        {
+            keyboardInput.y += 1f;
+        }
+
+        if (Keyboard.current.sKey.isPressed || Keyboard.current.downArrowKey.isPressed)
+        {
+            keyboardInput.y -= 1f;
+        }
+
+        if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
+        {
+            keyboardInput.x -= 1f;
+        }
+
+        if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
+        {
+            keyboardInput.x += 1f;
+        }
+
+        keyboardInput = Vector2.ClampMagnitude(keyboardInput, 1f);
+
+        if (keyboardInput != Vector2.zero)
+        {
+            _movementInput = keyboardInput;
+            return;
+        }
+
+        if (!_receivedMoveInputThisFrame)
+        {
+            _movementInput = Vector2.zero;
+        }
     }
 
     public Vector2 GetPointerInput()

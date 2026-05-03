@@ -29,6 +29,8 @@ public class NonAutoCollectable : MonoBehaviour
         _playerWeaponController = collider.GetComponentInChildren<PlayerWeaponController>();
         _coinController = collider.GetComponent<CoinController>();
 
+        bool interacted = _itemInteracted || WasInteractPressedThisFrame();
+
         if (collider.gameObject.tag == "Player")
         {
             if (_isInShop && _shopAreaDetection != null)
@@ -37,7 +39,7 @@ public class NonAutoCollectable : MonoBehaviour
                 _shopAreaDetection.ShowItemPrice(itemPrice);
             }
 
-            if (_itemInteracted)
+            if (interacted)
             {
                 if (_isInShop)
                 {
@@ -76,6 +78,8 @@ public class NonAutoCollectable : MonoBehaviour
                 }
             }
         }
+
+        _itemInteracted = false;
     }
 
     private void OnInteract(InputValue inputValue)
@@ -89,5 +93,15 @@ public class NonAutoCollectable : MonoBehaviour
         {
             _shopAreaDetection.HideItemPrice();
         }
+    }
+
+    private bool WasInteractPressedThisFrame()
+    {
+        if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            return true;
+        }
+
+        return Input.GetKeyDown(KeyCode.E);
     }
 }

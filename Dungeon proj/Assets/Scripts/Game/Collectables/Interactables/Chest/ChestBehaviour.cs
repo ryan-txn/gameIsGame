@@ -30,10 +30,14 @@ public class ChestBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (_collided && _interacted)
+        bool interacted = _interacted || WasInteractPressedThisFrame();
+
+        if (_collided && interacted)
         {
             OpenChest();
         }
+
+        _interacted = false;
     }
 
     private void OpenChest()
@@ -68,6 +72,16 @@ public class ChestBehaviour : MonoBehaviour
     private void OnInteract(InputValue inputValue)
     {
         _interacted = inputValue.isPressed;
+    }
+
+    private bool WasInteractPressedThisFrame()
+    {
+        if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            return true;
+        }
+
+        return Input.GetKeyDown(KeyCode.E);
     }
 
     private void SetAnimation()

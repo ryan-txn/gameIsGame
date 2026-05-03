@@ -117,13 +117,17 @@ public class UpgradeMenu : MonoBehaviour
 
     void Update()
     {
-        if (_collided && _menuInteracted)
+        bool interacted = _menuInteracted || WasInteractPressedThisFrame();
+
+        if (_collided && interacted)
         {
             if (!_menuIsOpen)
             {
                 OpenMenu();
             }
         }
+
+        _menuInteracted = false;
     }
 
     public void UpgradeHealth()
@@ -270,5 +274,15 @@ public class UpgradeMenu : MonoBehaviour
     private void OnInteract(InputValue inputValue)
     {
         _menuInteracted = inputValue.isPressed;
+    }
+
+    private bool WasInteractPressedThisFrame()
+    {
+        if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            return true;
+        }
+
+        return Input.GetKeyDown(KeyCode.E);
     }
 }

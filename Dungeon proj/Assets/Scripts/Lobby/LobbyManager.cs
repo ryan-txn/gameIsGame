@@ -15,6 +15,8 @@ public class LobbyManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1f;
+
         coinController = player.GetComponent<CoinController>();
         healthController = player.GetComponent<HealthController>();
         staminaController = player.GetComponent<StaminaController>();

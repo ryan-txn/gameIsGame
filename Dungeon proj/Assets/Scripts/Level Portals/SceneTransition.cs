@@ -22,16 +22,21 @@ public class SceneTransition : MonoBehaviour
 
     private void Update()
     {
-        if (_collided && _doorAccessed)
+        bool interacted = _doorAccessed || WasInteractPressedThisFrame();
+
+        if (_collided && interacted)
         {
             if (_sceneToLoad != "MainMenu" && _sceneToLoad != "Lobby")
             {
                 FindObjectOfType<AudioManager>().PlaySFX("Portal sfx");
             }
-            
+
+            Time.timeScale = 1f;
             UpdatePlayerData();
             SceneManager.LoadScene( _sceneToLoad );
         }
+
+        _doorAccessed = false;
     }
 
     public void OnTriggerEnter2D(Collider2D collider)
@@ -55,6 +60,16 @@ public class SceneTransition : MonoBehaviour
     private void OnInteract(InputValue inputValue)
     {
         _doorAccessed = inputValue.isPressed;
+    }
+
+    private bool WasInteractPressedThisFrame()
+    {
+        if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            return true;
+        }
+
+        return Input.GetKeyDown(KeyCode.E);
     }
 
     private void UpdatePlayerData()
