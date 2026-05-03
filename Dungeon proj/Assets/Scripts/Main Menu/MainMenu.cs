@@ -18,8 +18,12 @@ public class MainMenu : MonoBehaviour
     {
         if (!ControlMenu.isActive)
         {
+        // On WebGL (itch.io/browser) quit does nothing — redirect instead.
+    #if UNITY_WEBGL && !UNITY_EDITOR
+        Application.OpenURL("https://bungxd.itch.io"); // replace with your page URL
+    #else
         Application.Quit();
-
+    #endif
         }
     }
 
