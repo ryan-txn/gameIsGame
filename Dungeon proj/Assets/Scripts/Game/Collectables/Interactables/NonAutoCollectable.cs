@@ -13,6 +13,7 @@ public class NonAutoCollectable : MonoBehaviour
     private ShopAreaDetection _shopAreaDetection;
 
     private bool _itemInteracted;
+    private int _lastInteractFrameHandled = -1;
     public int itemPrice;
     public bool _isInShop;
 
@@ -39,7 +40,7 @@ public class NonAutoCollectable : MonoBehaviour
                 _shopAreaDetection.ShowItemPrice(itemPrice);
             }
 
-            if (interacted)
+            if (interacted && _lastInteractFrameHandled != Time.frameCount)
             {
                 if (_isInShop)
                 {
