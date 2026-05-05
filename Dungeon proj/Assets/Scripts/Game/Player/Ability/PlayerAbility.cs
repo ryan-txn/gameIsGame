@@ -29,11 +29,31 @@ public class PlayerAbility : MonoBehaviour
 
     void Update()
     {
+        ApplyAbilityFallback();
+
         if (_useAbility && _canUseAbility)
         {
             _playerMovement.TriggerDash();
             StartCoroutine(CooldownTimer());
             _useAbility = false;
+        }
+    }
+
+    private void ApplyAbilityFallback()
+    {
+        if (PauseMenu.isPaused || !_abilityUnlocked || !_canUseAbility)
+        {
+            return;
+        }
+
+        if (Keyboard.current == null)
+        {
+            return;
+        }
+
+        if (Keyboard.current.leftShiftKey.wasPressedThisFrame || Keyboard.current.rightShiftKey.wasPressedThisFrame)
+        {
+            _useAbility = true;
         }
     }
 
